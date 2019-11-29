@@ -1,14 +1,14 @@
-from .build import construct as construct_autods19
+from .autods19 import construct as construct_autods19
 from ..computation.util import to_dataframe
 
 __all__ = ['construct']
 
 
-def construct(X, y, task='classification', transformers='full', return_graph=False):
+def construct(X, y, task='classification', transformers='full', return_graph=False, **kwargs):
     """Construct features for a given time series dataset ``X, y``
 
-    Construct features according to the method described in [1]_. The implementation of this
-    method will change in future versions.
+    Construct features according to the method described in [1]_. The construction method will change in future versions
+    of TSFuse.
 
     Parameters
     ----------
@@ -35,7 +35,7 @@ def construct(X, y, task='classification', transformers='full', return_graph=Fal
     ----------
     .. [1] Arne De Brabandere, Pieter Robberechts, Tim Op De Beéck and Jesse Davis.
        Automating Feature Construction for Multi-View Time Series Data.
-       ECML/PKDD Workhop on Automating Data Science 2019.
+       ECML/PKDD Workshop on Automating Data Science 2019.
     """
     graph, data = construct_autods19(
         X,
@@ -43,6 +43,7 @@ def construct(X, y, task='classification', transformers='full', return_graph=Fal
         task=task,
         transformers=transformers,
         return_data=True,
+        **kwargs,
     )
     df = to_dataframe(data)
     if return_graph:
