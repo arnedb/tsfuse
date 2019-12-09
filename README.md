@@ -19,13 +19,10 @@ To install the latest unreleased version of TSFuse from GitHub:
     
 ## Documentation
 
-The full documentation will be made available soon.
-For now, have a look at the
-[synthetic sine waves demo](notebooks/Synthetic%20Sine%20Waves%20Demo.ipynb)
-in the `notebooks` directory.
+The documentation is available on [https://arnedb.github.io/tsfuse/](https://arnedb.github.io/tsfuse/)
+
+Examples on how to use TSFuse are shown in the [getting started](https://arnedb.github.io/tsfuse/getting-started.html) page and [synthetic sine waves demo](notebooks/Synthetic%20Sine%20Waves%20Demo.ipynb) notebook.
 
 ## Paper
 
-To learn more about TSFuse's feature construction method,
-have a look at our [paper](https://www.google.com/url?q=https%3A%2F%2Fupvedues-my.sharepoint.com%2F%3Ab%3A%2Fg%2Fpersonal%2Fjorallo_upv_edu_es%2FETxycG2WhmFBmVN7CNW8yKsBQHwhhlzdyegEx1AnNeRa2w%3Fe%3DbPQR7e&sa=D&sntz=1&usg=AFQjCNH-zTIQtPE2M0m0h_uUPN_25SaGCw)
-in the ECML/PKDD 2019 Automating Data Science workshop.
+To learn more about TSFuse's feature construction method, have a look at our [paper](https://www.google.com/url?q=https%3A%2F%2Fupvedues-my.sharepoint.com%2F%3Ab%3A%2Fg%2Fpersonal%2Fjorallo_upv_edu_es%2FETxycG2WhmFBmVN7CNW8yKsBQHwhhlzdyegEx1AnNeRa2w%3Fe%3DbPQR7e&sa=D&sntz=1&usg=AFQjCNH-zTIQtPE2M0m0h_uUPN_25SaGCw) in the ECML/PKDD 2019 Automating Data Science workshop.
