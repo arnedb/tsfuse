@@ -21,7 +21,7 @@ To install the latest unreleased version of TSFuse from GitHub:
 
 The documentation is available on [https://arnedb.github.io/tsfuse/](https://arnedb.github.io/tsfuse/)
 
-Examples on how to use TSFuse are shown in the [getting started](https://arnedb.github.io/tsfuse/getting-started.html) page and [synthetic sine waves demo](notebooks/Synthetic%20Sine%20Waves%20Demo.ipynb) notebook.
+Examples on how to use TSFuse are shown in the [getting started](https://arnedb.github.io/tsfuse/getting-started.html) page and the [synthetic sine waves demo](notebooks/Synthetic%20Sine%20Waves%20Demo.ipynb) notebook.
 
 ## Paper
 
