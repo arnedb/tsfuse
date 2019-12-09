@@ -16,15 +16,14 @@ class Tags(object):
     A tag is assigned to a unit of data and describes the contents of this data
     item. Each tag has a key and corresponding value. Possible tags are the
     sample rate, the sensor type and the location of the sensor. tsfuse
-    defines a couple of standardized tags (see
-    :class:`tsfuse.data.tags.TagKey`), but it is also possible to define your
-    own custom tags.
+    defines a couple of standardized tags (see :class:`tsfuse.data.tags.TagKey`),
+    but it is also possible to define your own custom tags.
 
     Parameters
     ----------
     tags : dict, optional
-        Dictionary where each key is a TagKey instance and each value is in the
-        domain of the key.
+        Dictionary where each key is a :class:`tsfuse.data.tags.TagKey` instance
+        and each value is in the domain of the key.
 
     Raises
     ------
@@ -34,7 +33,7 @@ class Tags(object):
     Examples
     --------
     >>> from tsfuse.data import Tags, TagKey
-    >>> tags = Tags({TagKey.TYPE: 'accelerometer'})
+    >>> tags = Tags({TagKey.QUANTITY: 'acceleration'})
     """
 
     def __init__(self, tags=None):
@@ -71,7 +70,7 @@ class Tags(object):
         Examples
         --------
         >>> tags = Tags()
-        >>> tags.add(TagKey.TYPE, 'accelerometer')
+        >>> tags.add(TagKey.QUANTITY, 'acceleration')
         """
         if isinstance(key, TagKey):
             if not key.is_valid(value):
@@ -83,8 +82,7 @@ class Tags(object):
 
     def get(self, key):
         """
-        Return the value for `key` if a tag with the given key exists. Otherwise
-        it returns None.
+        Return the value for a given tag key.
 
         Parameters
         ----------
@@ -93,7 +91,8 @@ class Tags(object):
 
         Returns
         -------
-        value : TagValue or custom
+        value
+            Tag value or `None` if the tag key does not exist.
         """
         name = key.name if isinstance(key, TagKey) else key
         key = TagKey(name)
@@ -101,18 +100,14 @@ class Tags(object):
             return self._tags[key]
         else:
             return None
-        # for k in list(self._tags):
-        #     if k.name == name:
-        #         return self._tags[k]
-        # return None
 
     def remove(self, key):
         """
-        Remove the tag with key `key`.
+        Remove a tag with a given key.
 
         Parameters
         ----------
-        key : TagKey or custom
+        key : TagKey or str
             The key of the tag to remove.
 
         Raises
@@ -126,16 +121,17 @@ class Tags(object):
 
     def check(self, *tags):
         """
-        Check wheter a set of tags is included in this collection.
+        Check whether a set of tags is included in this collection.
 
         Parameters
         ----------
         *tags : (key, value)
-            A key, value pair to check for.
+            Key-value pairs to check for.
 
         Returns
         -------
         checked : boolean
+            `True` if all key-value pairs exist.
         """
         for (key, value) in tags:
             if not self._tags.get(key) == value:
@@ -365,7 +361,7 @@ class HierarchicalTagKey(TagKey):
 
 def common_tags(data):
     """
-    Return a ``Tags`` instance containing all common tags of a given list of
+    Return a `Tags` instance containing all common tags of a given list of
     data collections, i.e., the tags for which all data collections have the
     same value.
 

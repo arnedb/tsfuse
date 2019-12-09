@@ -5,18 +5,19 @@ from tsfuse.data import Collection
 
 
 def brownian(N=10, t=100, d=2, random_state=None, **kwargs):
-    """Generate Brownian motion data.
+    """
+    Generate Brownian motion data.
 
-    The implementation is based on the SciPy Cookbook [1]_.
+    The implementation is based on the SciPy Cookbook. [1]_
 
     Parameters
     ----------
-    N : int, default: 10
-        Number of windows.
-    t : int, default: 100
-        Number of time stamps in each window.
-    d : int, default: 2
-        Number of dimensions.
+    N : int, optional
+        Number of windows. Default: 10
+    t : int, optional
+        Number of time stamps in each window. Default: 100
+    d : int, optional
+        Number of dimensions. Default: 2
     random_state : int, optional
         Random state initialization.
     **kwargs
@@ -24,8 +25,7 @@ def brownian(N=10, t=100, d=2, random_state=None, **kwargs):
 
     Returns
     -------
-    generated : :class:`~tsfuse.data.Collection`
-        Data collection.
+    generated : Collection
 
     References
     ----------

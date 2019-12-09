@@ -336,22 +336,22 @@ Default: <code class="docutils literal notranslate"><span class="pre">nan</span>
 <dt id="tsfuse.data.synthetic.brownian">
 <code class="sig-prename descclassname">tsfuse.data.synthetic.</code><code class="sig-name descname">brownian</code><span class="sig-paren">(</span><em class="sig-param">N=10</em>, <em class="sig-param">t=100</em>, <em class="sig-param">d=2</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.synthetic.brownian" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate Brownian motion data.</p>
-<p>The implementation is based on the SciPy Cookbook <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<p>The implementation is based on the SciPy Cookbook. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>int</em><em>, </em><em>default: 10</em>) – Number of windows.</p></li>
-<li><p><strong>t</strong> (<em>int</em><em>, </em><em>default: 100</em>) – Number of time stamps in each window.</p></li>
-<li><p><strong>d</strong> (<em>int</em><em>, </em><em>default: 2</em>) – Number of dimensions.</p></li>
+<li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of windows. Default: 10</p></li>
+<li><p><strong>t</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of time stamps in each window. Default: 100</p></li>
+<li><p><strong>d</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of dimensions. Default: 2</p></li>
 <li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>optional</em>) – Random state initialization.</p></li>
 <li><p><strong>**kwargs</strong> – Keyword arguments to pass to the <a class="reference internal" href="#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a> constructor.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>generated</strong> – Data collection.</p>
+<dd class="field-even"><p><strong>generated</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.Collection" title="tsfuse.data.Collection">Collection</a></p>
 </dd>
 </dl>
 <p class="rubric">References</p>
@@ -372,13 +372,12 @@ Default: <code class="docutils literal notranslate"><span class="pre">nan</span>
 <p>A tag is assigned to a unit of data and describes the contents of this data
 item. Each tag has a key and corresponding value. Possible tags are the
 sample rate, the sensor type and the location of the sensor. tsfuse
-defines a couple of standardized tags (see
-<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.data.tags.TagKey</span></code></a>), but it is also possible to define your
-own custom tags.</p>
+defines a couple of standardized tags (see <a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.data.tags.TagKey</span></code></a>),
+but it is also possible to define your own custom tags.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tags</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary where each key is a TagKey instance and each value is in the
-domain of the key.</p>
+<dd class="field-odd"><p><strong>tags</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary where each key is a <a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.data.tags.TagKey</span></code></a> instance
+and each value is in the domain of the key.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>InvalidTagError</strong> – If the given tag value is not valid for one of the keys.</p>
@@ -386,7 +385,7 @@ domain of the key.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tsfuse.data</span> <span class="k">import</span> <span class="n">Tags</span><span class="p">,</span> <span class="n">TagKey</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span> <span class="o">=</span> <span class="n">Tags</span><span class="p">({</span><span class="n">TagKey</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;accelerometer&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span> <span class="o">=</span> <span class="n">Tags</span><span class="p">({</span><span class="n">TagKey</span><span class="o">.</span><span class="n">QUANTITY</span><span class="p">:</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -407,7 +406,7 @@ should be in the tag’s domain.</p></li>
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span> <span class="o">=</span> <span class="n">Tags</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TagKey</span><span class="o">.</span><span class="n">TYPE</span><span class="p">,</span> <span class="s1">&#39;accelerometer&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TagKey</span><span class="o">.</span><span class="n">QUANTITY</span><span class="p">,</span> <span class="s1">&#39;acceleration&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -415,17 +414,16 @@ should be in the tag’s domain.</p></li>
 <dl class="method">
 <dt id="tsfuse.data.tags.Tags.get">
 <code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the value for <cite>key</cite> if a tag with the given key exists. Otherwise
-it returns None.</p>
+<dd><p>Return the value for a given tag key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>key</strong> (<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><em>TagKey</em></a><em> or </em><em>str</em>) – The key of the tag to retrieve.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>value</strong></p>
+<dd class="field-even"><p>Tag value or <cite>None</cite> if the tag key does not exist.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>TagValue or custom</p>
+<dd class="field-odd"><p>value</p>
 </dd>
 </dl>
 </dd></dl>
@@ -433,10 +431,10 @@ it returns None.</p>
 <dl class="method">
 <dt id="tsfuse.data.tags.Tags.remove">
 <code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove the tag with key <cite>key</cite>.</p>
+<dd><p>Remove a tag with a given key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>key</strong> (<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><em>TagKey</em></a><em> or </em><em>custom</em>) – The key of the tag to remove.</p>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><em>TagKey</em></a><em> or </em><em>str</em>) – The key of the tag to remove.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>KeyError</strong> – If no tag with key <cite>key</cite> exists.</p>
@@ -447,13 +445,13 @@ it returns None.</p>
 <dl class="method">
 <dt id="tsfuse.data.tags.Tags.check">
 <code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">*tags</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check wheter a set of tags is included in this collection.</p>
+<dd><p>Check whether a set of tags is included in this collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>*tags</strong> (<em>(</em><em>key</em><em>, </em><em>value</em><em>)</em>) – A key, value pair to check for.</p>
+<dd class="field-odd"><p><strong>*tags</strong> (<em>(</em><em>key</em><em>, </em><em>value</em><em>)</em>) – Key-value pairs to check for.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>checked</strong></p>
+<dd class="field-even"><p><strong>checked</strong> – <cite>True</cite> if all key-value pairs exist.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>boolean</p>
