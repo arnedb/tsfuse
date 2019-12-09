@@ -85,7 +85,7 @@ def test_add_node_transformer_without_optimization():
 def test_transform(graph):
     x = brownian()
     y = brownian()
-    result = graph.transform({'x': x, 'y': y})
+    result = graph.transform({'x': x, 'y': y}, return_dataframe=False)
     assert len(result) == 3
     np.testing.assert_almost_equal(
         result[graph.outputs[0]].values,

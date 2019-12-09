@@ -7,6 +7,7 @@ from math import inf
 import numpy as np
 from sklearn.feature_selection import f_classif, f_regression
 
+from ..computation.util import to_dataframe
 from ..data import Collection
 from ..computation import Input, Graph
 from ..transformers import *
@@ -151,7 +152,7 @@ full = {
 
 
 def construct(X, y, task='classification',
-              transformers='full', max_depth=None, corr=0.99, alpha=0.05,
+              transformers='full', max_depth=1, corr=0.99, alpha=0.05,
               return_data=False, return_log=False):
     # Create a log during the construction process
     log = {time.time(): {'event': 'started'}} if return_log else None
@@ -200,7 +201,7 @@ def build_series(X, N, transformers, max_depth, corr, log=None):
             else:
                 # output = transformer.transform(*[data[p.trace] for p in transformer.parents])
                 try:
-                    result = Graph(transformer).transform(X)
+                    result = Graph(transformer).transform(X, return_dataframe=False)
                     output = result[list(result)[0]]
                 except:
                     output = None
@@ -253,7 +254,7 @@ def build_attributes(X, y, task, series, transformers, alpha, log=None):
         if isinstance(s, Input):
             x = X[s.input_id]
         else:
-            result = Graph(s).transform(X)
+            result = Graph(s).transform(X, return_dataframe=False)
             x = result[list(result)[0]]
         for t in transformers:
             transformer = copy.deepcopy(t)
@@ -421,7 +422,7 @@ def create_result(attributes, data, log, return_data, return_log):
             node = graph.add_node(attribute)
             nodes.append(node)
             outputs[node] = data[attribute.trace]
-        result.append(outputs)
+        result.append(to_dataframe(outputs))
     else:
         for attr in attributes:
             nodes.append(graph.add_node(attr))

@@ -34,4 +34,7 @@ def to_dataframe(result):
                 else:
                     dfs.append(collection_to_dataframe(node, output))
 
-    return pd.concat(dfs, axis=1)
+    df = pd.concat(dfs, axis=1)
+    df = df.loc[:, sorted(df.columns)]
+
+    return df
