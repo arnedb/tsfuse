@@ -8,24 +8,43 @@ from .units import units
 __all__ = [
     'Collection',
     'Type',
-    'Tags',
-    'TagKey',
-    'HierarchicalTagKey',
-    'units',
 ]
 
 
 class Collection(object):
+    """
+    Data collection for representing time series and attributes.
 
-    def __init__(self,
-                 values,
-                 index=None,
-                 dimensions=None,
-                 sequences=None,
-                 mask_value=np.nan,
-                 unit=None,
-                 tags=None
-                 ):
+    Parameters
+    ----------
+
+    values : array-like
+        Three-dimensional array of shape ``(N, t, d)`` where:
+
+        - `N` is the number of windows
+        - `t` is the number of time stamps in each window
+        - `d` is the number of dimensions.
+
+    index : array-like, optional
+        Two-dimensional array of shape ``(N, t)`` with the time stamps of each window.
+
+    dimensions : array-like, optional
+        One-dimensional array of length ``d`` with the dimension names.
+
+    mask_value : optional
+        Placeholder representing missing values.
+        Can be used for representing variable-length time series.
+        Default: ``nan``
+
+    unit : optional
+        Unit, see the `Pint documentation <https://pint.readthedocs.io>`_.
+
+    tags : optional
+        :class:`~tsfuse.data.tags.Tags` object which specifies values for one or more tag keys.
+    """
+
+    def __init__(self, values, index=None, dimensions=None,
+                 mask_value=np.nan, unit=None, tags=None):
         # Unit
         self._unit = unit
         # Tags
@@ -96,40 +115,49 @@ class Collection(object):
             # Index and dimensions
             self._index = np.array(index, copy=True, dtype=self._itype)
             self._dimensions = np.array(dimensions, copy=True, dtype=self._ntype)
-        # Sequences
-        if sequences:
-            self._sequences = np.array(sequences, copy=True)
-        else:
-            self._sequences = np.arange(self._values.shape[0])
         # Mask value
         self._mask_value = mask_value
 
     @property
     def values(self):
+        """
+        numpy.array : Three-dimensional array of shape ``(N, t, d)``
+        """
         return self._values
 
     @property
     def index(self):
+        """
+        numpy.array : Two-dimensional array of shape ``(N, t)``
+        """
         return self._index
 
     @property
     def dimensions(self):
+        """
+        numpy.array : One-dimensional array of length ``d``
+        """
         return self._dimensions
 
     @property
-    def sequences(self):
-        return self._sequences
-
-    @property
     def tags(self):
+        """
+        :class:`~tsfuse.data.tags.Tags` object which specifies values for one or more tag keys.
+        """
         return self._tags
 
     @property
     def unit(self):
+        """
+        pint.unit.Unit : Unit of ``self.values``
+        """
         return self._unit
 
     @property
     def type(self):
+        """
+        tsfuse.data.Type : Type of data.
+        """
         if self.shape[0] > 1:
             return Type.WINDOWS
         elif np.max(self.shape[1]) > 1:
@@ -148,34 +176,16 @@ class Collection(object):
 
     @property
     def mask_value(self):
+        """
+        Mask value.
+        """
         return self._mask_value
-
-    def change_dimensions(self, dimensions):
-        self._dimensions = np.array(dimensions, copy=False)
-
-    @property
-    def n_dimensions(self):
-        if self.type != Type.SCALAR:
-            return self.shape[2]
-        else:
-            return None
-
-    @property
-    def n_timestamps(self):
-        if (self.type == Type.SERIES) or (self.type == Type.WINDOWS):
-            return self.shape[1]
-        else:
-            return None
-
-    @property
-    def n_windows(self):
-        if self.type == Type.WINDOWS:
-            return self.shape[0]
-        else:
-            return None
 
     @property
     def shape(self):
+        """
+        Shape ``(N, t, d)``
+        """
         if np.isscalar(self.values):
             return ()
         elif len(self.values.shape) == 1:
@@ -197,6 +207,9 @@ class Collection(object):
 
     @property
     def dtype(self):
+        """
+        Data type of ``self.values``
+        """
         if (self.values is not None) and (len(self.values.shape) == 3):
             return np.array(self.values, copy=False).dtype
         else:
@@ -204,22 +217,13 @@ class Collection(object):
 
     @property
     def itype(self):
+        """
+        Data type of ``self.index``
+        """
         if (self.values is not None) and (len(self.index.shape) == 2):
             return self.index.dtype
         else:
             return None
-
-    def subsample(self, size):
-        if size < 1:
-            n = int(self.shape[0] * size)
-        else:
-            n = int(size)
-        s = np.random.choice(self.shape[0], size=n, replace=False)
-        values = self.values[s]
-        index = self.index[s]
-        dimensions = self.dimensions
-        m = self.mask_value
-        return Collection(values, dimensions=dimensions, index=index, mask_value=m)
 
     def append(self, other):
         values = np.concatenate((self.values, other.values), axis=0)
@@ -230,6 +234,29 @@ class Collection(object):
 
     def __len__(self):
         return self.shape[0]
+
+
+def plot(X, i=0):
+    """Plot time series collections.
+
+    Parameters
+    ----------
+    X : dict
+        Time series collections.
+    i : int, optional
+        Select window ``i`` using ``.values[i, :, :]``. Default: 0
+    """
+    import matplotlib.pyplot as plt
+
+    plt.figure(figsize=(10, 2 * len(X)))
+    for v, name in enumerate(X):
+        plt.subplot(len(X), 1, v + 1)
+        collection = X[name]
+        for j in range(collection.shape[2]):
+            # TODO: Fix index of Collection
+            plt.plot(X[name].index[i, :], X[name].values[i, :, j].flatten())
+        plt.ylabel(name)
+    plt.show()
 
 
 class IndexLocationIndexer(object):
@@ -245,10 +272,29 @@ class IndexLocationIndexer(object):
 
 
 class Type(Enum):
+    """
+    Type of data.
+    """
+
     SCALAR = 0
+    """
+    One value (0-dimensional)
+    """
+
     ATTRIBUTES = 1
+    """
+    Vector of attributes (1-dimensional)
+    """
+
     SERIES = 2
+    """
+    Vector of one or more time series (2-dimensional)
+    """
+
     WINDOWS = 3
+    """
+    Windows, each with one or more time series (3-dimensional)
+    """
 
 
 def _reshape(values, index, dimensions):

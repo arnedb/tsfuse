@@ -1,5 +1,5 @@
 from ..computation import Transformer
-from ..data import View, Collection
+from ..data import Collection
 
 from .util import mask_nan
 

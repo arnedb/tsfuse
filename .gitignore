@@ -92,3 +92,9 @@ ENV/
 
 # PyCharm
 /.idea/
+
+# Local
+/local/
+
+# Documentation build
+/docs/_build/

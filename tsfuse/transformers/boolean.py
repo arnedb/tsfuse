@@ -13,6 +13,14 @@ __all__ = [
 
 
 class Equal(Transformer):
+    """
+    Element-wise equality comparison.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Equal, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -27,6 +35,14 @@ class Equal(Transformer):
 
 
 class NotEqual(Transformer):
+    """
+    Element-wise inequality comparison.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    """
+
     def __init__(self, *parents, **kwargs):
         super(NotEqual, self).__init__(*parents, **kwargs)
         self.preconditions = [

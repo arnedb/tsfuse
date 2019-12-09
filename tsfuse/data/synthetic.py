@@ -4,8 +4,36 @@ from scipy.stats import norm
 from tsfuse.data import Collection
 
 
-def brownian(n_windows=10, n_timestamps=100, n_dimensions=2):
-    # Reference: https://scipy-cookbook.readthedocs.io/items/BrownianMotion.html
+def brownian(N=10, t=100, d=2, random_state=None, **kwargs):
+    """Generate Brownian motion data.
+
+    The implementation is based on the SciPy Cookbook [1]_.
+
+    Parameters
+    ----------
+    N : int, default: 10
+        Number of windows.
+    t : int, default: 100
+        Number of time stamps in each window.
+    d : int, default: 2
+        Number of dimensions.
+    random_state : int, optional
+        Random state initialization.
+    **kwargs
+        Keyword arguments to pass to the :class:`~tsfuse.data.Collection` constructor.
+
+    Returns
+    -------
+    generated : :class:`~tsfuse.data.Collection`
+        Data collection.
+
+    References
+    ----------
+    .. [1] https://scipy-cookbook.readthedocs.io/items/BrownianMotion.html
+    """
+    if random_state is not None:
+        np.random.seed(random_state)
+
     def generate(n, delta=0.25, dt=0.1, initial=0.0):
         x = np.empty(n)
         x[0] = initial
@@ -13,12 +41,12 @@ def brownian(n_windows=10, n_timestamps=100, n_dimensions=2):
             x[k] = x[k - 1] + norm.rvs(scale=delta ** 2 * dt)
         return x
 
-    values = np.empty((n_windows, n_timestamps, n_dimensions))
-    for w in range(n_windows):
-        for d in range(n_dimensions):
-            values[w, :, d] = generate(n_timestamps)
+    values = np.empty((N, t, d), dtype=float)
+    for i in range(N):
+        for j in range(d):
+            values[i, :, j] = generate(t)
 
-    return Collection(values)
+    return Collection(values=values, **kwargs)
 
 
 def series(*collections):

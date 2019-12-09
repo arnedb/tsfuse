@@ -63,6 +63,32 @@ __all__ = [
 
 
 class SinglePassStatistics(Transformer):
+    """
+    Eight simple statistics.
+
+    Calculates the following statistics using only one pass over the data:
+
+    - length
+    - sum
+    - min
+    - max
+    - mean
+    - variance
+    - skewness
+    - kurtosis
+
+    Each series of the input collection is transformed to a series of eight values.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    axis : {'windows', 'timestamps', 'dimensions'}, optional
+        Aggregation axis. Default: first axis with more than one value.
+    """
     def __init__(self, *parents, axis=None, **kwargs):
         super(SinglePassStatistics, self).__init__(*parents, **kwargs)
         self.axis = axis

@@ -1,7 +1,5 @@
 import time
 import warnings
-import numpy as np
-from tsfuse.data import Collection
 from multiprocessing import Pool
 
 __all__ = [
@@ -10,6 +8,21 @@ __all__ = [
 
 
 def compute(graph, inputs, chunk_size=None, n_jobs=None, return_timings=False):
+    """
+    Compute the outputs of a computation graph.
+
+    Parameters
+    ----------
+    graph : Graph
+    inputs : dict
+    chunk_size : int, optional
+    n_jobs : int, optional
+    return_timings : bool, optional
+
+    Returns
+    -------
+    outputs : dict
+    """
     n = inputs[list(inputs)[0]].shape[0]
     if not all(inputs[i].shape[0] == n for i in inputs):
         raise ValueError("Size of axis 0 must be equal for all inputs")
@@ -23,20 +36,10 @@ def compute(graph, inputs, chunk_size=None, n_jobs=None, return_timings=False):
         for node in graph.nodes:
             if node.trace not in data:
                 data_parents = [data[n.trace] for n in graph.parents[node]]
-                # if any(isinstance(c.values[0], Collection)
-                #        for c in data_parents if isinstance(c, Collection)):
-                #     m = 1
-                #     for c in data_parents:
-                #         if isinstance(c, Collection):
-                #             m = max(c.shape[0], m)
-                #     for i, n in enumerate(graph.parents[node]):
-                #         if n in graph.constants:
-                #             data_parents[i] = Collection(values=np.array([data_parents[i]] * m))
-                #     print(m, data_parents)
                 t = time.time()
                 try:
                     data[node.trace] = node.transform(*data_parents)
-                except Exception:
+                except Exception:  # TODO: Make exception more specific
                     data[node.trace] = None
                     warnings.warn('Error for {}'.format(node))
                 timings[node.trace] += time.time() - t

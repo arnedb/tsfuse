@@ -13,6 +13,28 @@ from ..errors import InvalidPreconditionError
 
 @six.add_metaclass(abc.ABCMeta)
 class Node(object):
+    """
+    Node of a computation graph.
+
+    Parameters
+    ----------
+    parents : list(Node), optional
+        Parent nodes.
+    is_output : bool, optional
+        True if the node must be an output node or False if the node should not be an output node.
+        By default, the node is an output node if it is not used as a parent for another node.
+
+    Attributes
+    ----------
+    parents : list(Node)
+        Parent nodes.
+    children : list(Node)
+        Child nodes.
+    is_input : bool
+        True if the node is an input node.
+    is_output : bool
+        True if the node is an output node.
+    """
 
     def __init__(self, parents=None, is_output=None):
         self._id = None
@@ -21,59 +43,36 @@ class Node(object):
             p.add_child(self)
         self._children = []
         self._output = None
-        # self._output_last = None
         self._is_output = is_output
 
     @property
-    def id(self):
-        return self._id
-
-    @id.setter
-    def id(self, i):
-        self._id = i
-
-    @property
     def parents(self):
-        """list(Node): Parents of the Node."""
         return self._parents
 
     @property
     def children(self):
-        """list(Node): Children of the Node."""
         return self._children
 
     @property
-    def output(self):
-        """Collection: Collection produced by the Node."""
-        return self._output
-
-    @output.setter
-    def output(self, data):
-        """
-        Set the output of the Node.
-
-        Parameters
-        ----------
-        data : DataCollection
-            Output of the Node.
-        """
-        self._output = data
-
-    @property
     def is_input(self):
-        """True if the Node is an input of a Graph."""
         return False
 
     @property
     def is_output(self):
-        """True if the node is an output of a graph."""
         if self._is_output is None:
             return len(self._children) == 0
         else:
             return self._is_output
 
     def add_child(self, child):
-        """Add a Node to the children of the Node."""
+        """
+        Add a child node.
+
+        Parameters
+        ----------
+        child : Node
+            Child node.
+        """
         self._children.append(child)
 
     def __add__(self, other):
@@ -127,7 +126,7 @@ class Node(object):
 
 class Input(Node):
     """
-    Node that serves as the Input of a Graph.
+    Node that serves as the input of a computation graph.
 
     Parameters
     ----------
@@ -154,14 +153,18 @@ class Input(Node):
     def trace(self):
         return 'Input', self.input_id
 
+    @property
+    def name(self):
+        return str(self.input_id)
+
     def __str__(self):
         return 'Input({})'.format(self.input_id)
 
 
 class Constant(Node):
     """
-    Node that produces a constant, i.e. a Collection not depending on any
-    other Node's output.
+    Node that produces a constant value,
+    given as :class:`~tsfuse.data.Collection` object.
 
     Parameters
     ----------
@@ -173,13 +176,16 @@ class Constant(Node):
         super(Constant, self).__init__()
         self.output = data
 
-    def apply(self, copy=True):
-        """Produce the output of the Node and store it in `self.output``."""
+    def apply(self):
         pass
 
     @property
     def trace(self):
         return 'Constant', self.output
+
+    @property
+    def name(self):
+        return 'Constant'
 
     def __str__(self):
         return 'Constant({})'.format(self.output)
@@ -187,6 +193,11 @@ class Constant(Node):
 
 @six.add_metaclass(abc.ABCMeta)
 class Transformer(Node):
+    """
+    Transformer node.
+
+
+    """
 
     def __init__(self, *parents, **kwargs):
         is_output = kwargs.get('is_output', None)
@@ -196,6 +207,19 @@ class Transformer(Node):
         super(Transformer, self).__init__(parents=parents, is_output=is_output)
 
     def check_preconditions(self, *collections):
+        """
+        Check that the preconditions are satisfied.
+
+        Parameters
+        ----------
+        *collections
+            :class:`~tsfuse.data.Collection` objects used as input.
+
+        Returns
+        -------
+        satisfied : bool
+        """
+
         def satisfied(c):
             return all(p(*c) for p in self.preconditions)
 
@@ -217,7 +241,7 @@ class Transformer(Node):
                 f = partial(_apply, apply=self.apply, collections=collections[:])
                 try:
                     results = [f(i) for i in range(len(collections[0].values))]
-                except: # TODO: Make more restrictive!!
+                except:  # TODO: Make more restrictive!!
                     # TODO: Generate warning instead of error
                     results = None
                 if results is not None:
@@ -242,7 +266,9 @@ class Transformer(Node):
                     result = None
         elif hasattr(self, 'graph'):
             graph = self.graph(*[Input(i) for i in range(len(collections))])
-            outputs = graph.transform({i: c for i, c in enumerate(collections)})
+            outputs = graph.transform({
+                i: c for i, c in enumerate(collections)
+            }, return_dataframe=False)
             result = outputs[graph.outputs[-1]]
         if result is None:
             return None
@@ -261,7 +287,7 @@ class Transformer(Node):
         return propagated
 
     def unit(self, *collections):
-        return None
+        pass
 
     @property
     def trace(self):
@@ -296,6 +322,29 @@ class Transformer(Node):
         ))
         return s
 
+    @property
+    def name(self):
+        args = [
+            a for a in list(self.__dict__)
+            if a not in [
+                'preconditions',
+                '_id',
+                '_parents',
+                '_children',
+                '_output',
+                '_is_output',
+            ]
+        ]
+        values = [getattr(self, a) for a in args]
+        argsvalues = [(a, v) for a, v in zip(args, values) if v is not None]
+        if len(argsvalues) > 0:
+            parameters = '(' + ', '.join([
+                '{}={}'.format(a, v) for a, v in argsvalues
+            ]) + ')'
+        else:
+            parameters = ''
+        return str(self.__class__.__name__) + parameters
+
 
 def _is_parameter(p):
     if p[0].startswith('_'):
@@ -315,6 +364,15 @@ def _apply(i, apply=None, collections=None):
 
 
 class Add(Transformer):
+    """
+    Element-wise addition.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Add, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -330,6 +388,15 @@ class Add(Transformer):
 
 
 class Subtract(Transformer):
+    """
+    Element-wise subtraction.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Subtract, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -345,6 +412,15 @@ class Subtract(Transformer):
 
 
 class Multiply(Transformer):
+    """
+    Element-wise multiplication.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Multiply, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -360,6 +436,15 @@ class Multiply(Transformer):
 
 
 class Divide(Transformer):
+    """
+    Element-wise division.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Divide, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -376,6 +461,15 @@ class Divide(Transformer):
 
 
 class Greater(Transformer):
+    """
+    Element-wise greater than comparison.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Greater, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -391,6 +485,15 @@ class Greater(Transformer):
 
 
 class GreaterEqual(Transformer):
+    """
+    Element-wise greater than or equal comparison.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(GreaterEqual, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -406,6 +509,15 @@ class GreaterEqual(Transformer):
 
 
 class Less(Transformer):
+    """
+    Element-wise less than comparison.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Less, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -421,6 +533,15 @@ class Less(Transformer):
 
 
 class LessEqual(Transformer):
+    """
+    Element-wise less than or equal comparison.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(LessEqual, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -436,6 +557,15 @@ class LessEqual(Transformer):
 
 
 class And(Transformer):
+    """
+    Element-wise logical and.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be boolean.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(And, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -451,6 +581,15 @@ class And(Transformer):
 
 
 class Or(Transformer):
+    """
+    Element-wise logical or.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be boolean.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Or, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -466,6 +605,15 @@ class Or(Transformer):
 
 
 class Not(Transformer):
+    """
+    Element-wise logical negation.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be boolean.
+    """
+
     def __init__(self, *parents, **kwargs):
         super(Not, self).__init__(*parents, **kwargs)
         self.preconditions = [

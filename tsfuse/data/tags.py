@@ -2,7 +2,11 @@ from graphviz import Graph
 
 from tsfuse.errors import InvalidTagError
 
-__all__ = ['quantity', 'body_part']
+__all__ = [
+    'Tags',
+    'TagKey',
+    'HierarchicalTagKey',
+]
 
 
 class Tags(object):
@@ -186,6 +190,15 @@ class TagKey(object):
         A name to identify the tag.
     domain : <class 'int'>, <class 'float'> or list(int or str), default <class 'int'>
         ``int``, ``float``, or a list of values.
+
+    Attributes
+    ----------
+    QUANTITY : TagKey
+        Default tag key specifying the quantity that a collection represents,
+        see :ref:`quantity`.
+    BODY_PART : HierarchicalTagKey
+        Default tag key specifying the body part to which a sensor is attached,
+        see :ref:`body-part`.
     """
 
     def __init__(self, name, domain=int):
@@ -405,7 +418,7 @@ class HierarchicalValue(object):
 ####################################################################################################
 
 
-quantity = TagKey('quantity', [
+TagKey.QUANTITY = TagKey('quantity', [
     'jerk',
     'acceleration',
     'velocity',
@@ -414,6 +427,7 @@ quantity = TagKey('quantity', [
     'angle',
     'magnetic_field',
 ])
+quantity = TagKey.QUANTITY
 
 body_part_lattice = [
     ('head', 'upper'),
@@ -447,4 +461,5 @@ for side in ['left', 'right']:
         ('ankle_{}'.format(side), 'ankle'),
     ]
 
-body_part = HierarchicalTagKey('body_part', body_part_lattice)
+TagKey.BODY_PART = HierarchicalTagKey('body_part', body_part_lattice)
+body_part = TagKey.BODY_PART

@@ -35,6 +35,14 @@ __all__ = [
 
 
 class Negative(Transformer):
+    """
+    Element-wise negation.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+    """
     def __init__(self, *parents, **kwargs):
         super(Negative, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -47,6 +55,14 @@ class Negative(Transformer):
 
 
 class Reciprocal(Transformer):
+    """
+    Element-wise reciprocal, i.e., multiplicative inverse.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+    """
     def __init__(self, *parents, **kwargs):
         super(Reciprocal, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -59,6 +75,14 @@ class Reciprocal(Transformer):
 
 
 class Square(Transformer):
+    """
+    Element-wise square.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+    """
     def __init__(self, *parents, **kwargs):
         super(Square, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -71,6 +95,19 @@ class Square(Transformer):
 
 
 class Exponent(Transformer):
+    """
+    Element-wise exponent.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    a : int, optional
+        Exponent. Default: 2
+    """
     def __init__(self, *parents, a=2, **kwargs):
         super(Exponent, self).__init__(*parents, **kwargs)
         self.a = a
@@ -89,6 +126,14 @@ class Exponent(Transformer):
 
 
 class Sqrt(Transformer):
+    """
+    Element-wise square root.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+    """
     def __init__(self, *parents, **kwargs):
         super(Sqrt, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -101,6 +146,14 @@ class Sqrt(Transformer):
 
 
 class Abs(Transformer):
+    """
+    Element-wise absolute value.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+    """
     def __init__(self, *parents, **kwargs):
         super(Abs, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -113,6 +166,19 @@ class Abs(Transformer):
 
 
 class Sum(Transformer):
+    """
+    Sum.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    axis : {'windows', 'timestamps', 'dimensions'}, optional
+        Aggregation axis. Default: first axis with more than one value.
+    """
     def __init__(self, *parents, axis=None, **kwargs):
         super(Sum, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -129,6 +195,19 @@ class Sum(Transformer):
 
 
 class CumSum(Transformer):
+    """
+    Cumulative sum.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    axis : {'windows', 'timestamps', 'dimensions'}, optional
+        Aggregation axis. Default: first axis with more than one value.
+    """
     def __init__(self, *parents, axis=None, **kwargs):
         super(CumSum, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -145,6 +224,19 @@ class CumSum(Transformer):
 
 
 class Diff(Transformer):
+    """
+    First-order derivative.
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    axis : {'windows', 'timestamps', 'dimensions'}, optional
+        Aggregation axis. Default: first axis with more than one value.
+    """
     def __init__(self, *parents, axis=None, **kwargs):
         super(Diff, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -161,6 +253,29 @@ class Diff(Transformer):
 
 
 class Roots(Transformer):
+    """
+    Roots of a polynomial.
+
+    For the axis to which this transformer is applied,
+    the input values :math:`p_0, p_1, ..., p_n` represent the coefficients of a polynomial of
+    degree `n`:
+
+    :math:`p_0 \cdot x^n + p_1 \cdot x^{n-1} + ... + p_n`
+
+    Preconditions:
+
+    - Number of inputs: 1
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    axis : {'windows', 'timestamps', 'dimensions'}, optional
+        Aggregation axis. Default: first axis with more than one value.
+
+    Notes
+    -----
+    Only the real roots are returned (i.e., no complex roots).
+    """
     def __init__(self, *parents, axis=None, **kwargs):
         super(Roots, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -180,14 +295,19 @@ class Roots(Transformer):
 
 
 class Average(Transformer):
-    def __init__(self, *parents, rel=False, axis=None, **kwargs):
+    """
+    Element-wise average.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+    def __init__(self, *parents, **kwargs):
         super(Average, self).__init__(*parents, **kwargs)
-        self.rel = rel
-        self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64)
-                         and np.issubdtype(y.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
         ]
 
     @staticmethod
@@ -196,10 +316,23 @@ class Average(Transformer):
 
 
 class Difference(Transformer):
-    def __init__(self, *parents, rel=False, axis=None, **kwargs):
+    """
+    Element-wise difference.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+
+    Parameters
+    ----------
+    rel : bool, optional
+        Compute the relative difference by dividing the difference by the values of the first
+        input. Default: False
+    """
+    def __init__(self, *parents, rel=False, **kwargs):
         super(Difference, self).__init__(*parents, **kwargs)
         self.rel = rel
-        self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
@@ -213,9 +346,16 @@ class Difference(Transformer):
 
 
 class Ratio(Transformer):
-    def __init__(self, *parents, axis=None, **kwargs):
+    """
+    Element-wise ratio.
+
+    Preconditions:
+
+    - Number of inputs: 2
+    - Input data must be numeric.
+    """
+    def __init__(self, *parents, **kwargs):
         super(Ratio, self).__init__(*parents, **kwargs)
-        self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
