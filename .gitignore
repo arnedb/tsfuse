@@ -97,4 +97,4 @@ ENV/
 /local/
 
 # Documentation build
-/docs/_build/
+/docsource/_build/

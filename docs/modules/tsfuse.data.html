@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tsfuse.data &mdash; TSFuse 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tsfuse.computation" href="tsfuse.computation.html" />
+    <link rel="prev" title="tsfuse" href="tsfuse.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> TSFuse
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tsfuse.html">tsfuse</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tsfuse.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.data.synthetic">tsfuse.data.synthetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.data.tags">tsfuse.data.tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.data.units">tsfuse.data.units</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tsfuse.computation.html">tsfuse.computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfuse.transformers.html">tsfuse.transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfuse.construction.html">tsfuse.construction</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TSFuse</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>tsfuse.data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/tsfuse.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-tsfuse.data">
+<span id="tsfuse-data"></span><h1>tsfuse.data<a class="headerlink" href="#module-tsfuse.data" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="tsfuse.data.Collection">
+<em class="property">class </em><code class="sig-prename descclassname">tsfuse.data.</code><code class="sig-name descname">Collection</code><span class="sig-paren">(</span><em class="sig-param">values</em>, <em class="sig-param">index=None</em>, <em class="sig-param">dimensions=None</em>, <em class="sig-param">mask_value=nan</em>, <em class="sig-param">unit=None</em>, <em class="sig-param">tags=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.Collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data collection for representing time series and attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>array-like</em>) – <p>Three-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code> where:</p>
+<ul>
+<li><p><cite>N</cite> is the number of windows</p></li>
+<li><p><cite>t</cite> is the number of time stamps in each window</p></li>
+<li><p><cite>d</cite> is the number of dimensions.</p></li>
+</ul>
+</p></li>
+<li><p><strong>index</strong> (<em>array-like</em><em>, </em><em>optional</em>) – Two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t)</span></code> with the time stamps of each window.</p></li>
+<li><p><strong>dimensions</strong> (<em>array-like</em><em>, </em><em>optional</em>) – One-dimensional array of length <code class="docutils literal notranslate"><span class="pre">d</span></code> with the dimension names.</p></li>
+<li><p><strong>mask_value</strong> (<em>optional</em>) – Placeholder representing missing values.
+Can be used for representing variable-length time series.
+Default: <code class="docutils literal notranslate"><span class="pre">nan</span></code></p></li>
+<li><p><strong>unit</strong> (<em>optional</em>) – Unit, see the <a class="reference external" href="https://pint.readthedocs.io">Pint documentation</a>.</p></li>
+<li><p><strong>tags</strong> (<em>optional</em>) – <a class="reference internal" href="#tsfuse.data.tags.Tags" title="tsfuse.data.tags.Tags"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tags</span></code></a> object which specifies values for one or more tag keys.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="tsfuse.data.Collection.values">
+<em class="property">property </em><code class="sig-name descname">values</code><a class="headerlink" href="#tsfuse.data.Collection.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Three-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.index">
+<em class="property">property </em><code class="sig-name descname">index</code><a class="headerlink" href="#tsfuse.data.Collection.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t)</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.dimensions">
+<em class="property">property </em><code class="sig-name descname">dimensions</code><a class="headerlink" href="#tsfuse.data.Collection.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>One-dimensional array of length <code class="docutils literal notranslate"><span class="pre">d</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.tags">
+<em class="property">property </em><code class="sig-name descname">tags</code><a class="headerlink" href="#tsfuse.data.Collection.tags" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#tsfuse.data.tags.Tags" title="tsfuse.data.tags.Tags"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tags</span></code></a> object which specifies values for one or more tag keys.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.unit">
+<em class="property">property </em><code class="sig-name descname">unit</code><a class="headerlink" href="#tsfuse.data.Collection.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unit of <code class="docutils literal notranslate"><span class="pre">self.values</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pint.unit.Unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.type">
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#tsfuse.data.Collection.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.Type" title="tsfuse.data.Type">tsfuse.data.Type</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.mask_value">
+<em class="property">property </em><code class="sig-name descname">mask_value</code><a class="headerlink" href="#tsfuse.data.Collection.mask_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mask value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.shape">
+<em class="property">property </em><code class="sig-name descname">shape</code><a class="headerlink" href="#tsfuse.data.Collection.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.dtype">
+<em class="property">property </em><code class="sig-name descname">dtype</code><a class="headerlink" href="#tsfuse.data.Collection.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data type of <code class="docutils literal notranslate"><span class="pre">self.values</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.Collection.itype">
+<em class="property">property </em><code class="sig-name descname">itype</code><a class="headerlink" href="#tsfuse.data.Collection.itype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data type of <code class="docutils literal notranslate"><span class="pre">self.index</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tsfuse.data.Type">
+<em class="property">class </em><code class="sig-prename descclassname">tsfuse.data.</code><code class="sig-name descname">Type</code><a class="headerlink" href="#tsfuse.data.Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of data.</p>
+<dl class="attribute">
+<dt id="tsfuse.data.Type.SCALAR">
+<code class="sig-name descname">SCALAR</code><em class="property"> = 0</em><a class="headerlink" href="#tsfuse.data.Type.SCALAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>One value (0-dimensional)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tsfuse.data.Type.ATTRIBUTES">
+<code class="sig-name descname">ATTRIBUTES</code><em class="property"> = 1</em><a class="headerlink" href="#tsfuse.data.Type.ATTRIBUTES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vector of attributes (1-dimensional)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tsfuse.data.Type.SERIES">
+<code class="sig-name descname">SERIES</code><em class="property"> = 2</em><a class="headerlink" href="#tsfuse.data.Type.SERIES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vector of one or more time series (2-dimensional)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tsfuse.data.Type.WINDOWS">
+<code class="sig-name descname">WINDOWS</code><em class="property"> = 3</em><a class="headerlink" href="#tsfuse.data.Type.WINDOWS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Windows, each with one or more time series (3-dimensional)</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="module-tsfuse.data.synthetic">
+<span id="tsfuse-data-synthetic"></span><h2>tsfuse.data.synthetic<a class="headerlink" href="#module-tsfuse.data.synthetic" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tsfuse.data.synthetic.brownian">
+<code class="sig-prename descclassname">tsfuse.data.synthetic.</code><code class="sig-name descname">brownian</code><span class="sig-paren">(</span><em class="sig-param">N=10</em>, <em class="sig-param">t=100</em>, <em class="sig-param">d=2</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.synthetic.brownian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate Brownian motion data.</p>
+<p>The implementation is based on the SciPy Cookbook <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em><em>, </em><em>default: 10</em>) – Number of windows.</p></li>
+<li><p><strong>t</strong> (<em>int</em><em>, </em><em>default: 100</em>) – Number of time stamps in each window.</p></li>
+<li><p><strong>d</strong> (<em>int</em><em>, </em><em>default: 2</em>) – Number of dimensions.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>optional</em>) – Random state initialization.</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments to pass to the <a class="reference internal" href="#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a> constructor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>generated</strong> – Data collection.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://scipy-cookbook.readthedocs.io/items/BrownianMotion.html">https://scipy-cookbook.readthedocs.io/items/BrownianMotion.html</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tsfuse.data.tags">
+<span id="tsfuse-data-tags"></span><h2>tsfuse.data.tags<a class="headerlink" href="#module-tsfuse.data.tags" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="tsfuse.data.tags.Tags">
+<em class="property">class </em><code class="sig-prename descclassname">tsfuse.data.tags.</code><code class="sig-name descname">Tags</code><span class="sig-paren">(</span><em class="sig-param">tags=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of tag keys to values.</p>
+<p>A tag is assigned to a unit of data and describes the contents of this data
+item. Each tag has a key and corresponding value. Possible tags are the
+sample rate, the sensor type and the location of the sensor. tsfuse
+defines a couple of standardized tags (see
+<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.data.tags.TagKey</span></code></a>), but it is also possible to define your
+own custom tags.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tags</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary where each key is a TagKey instance and each value is in the
+domain of the key.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>InvalidTagError</strong> – If the given tag value is not valid for one of the keys.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tsfuse.data</span> <span class="k">import</span> <span class="n">Tags</span><span class="p">,</span> <span class="n">TagKey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span> <span class="o">=</span> <span class="n">Tags</span><span class="p">({</span><span class="n">TagKey</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;accelerometer&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="tsfuse.data.tags.Tags.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new tag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><em>TagKey</em></a>) – The key to identify the tag.</p></li>
+<li><p><strong>value</strong> (<em>int</em><em>, </em><em>float</em><em> or </em><em>str</em>) – The value of the tag. The value should be valid, i.e., the value
+should be in the tag’s domain.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>InvalidTagException</strong> – If the given value is not valid for the given key.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span> <span class="o">=</span> <span class="n">Tags</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TagKey</span><span class="o">.</span><span class="n">TYPE</span><span class="p">,</span> <span class="s1">&#39;accelerometer&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.tags.Tags.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value for <cite>key</cite> if a tag with the given key exists. Otherwise
+it returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><em>TagKey</em></a><em> or </em><em>str</em>) – The key of the tag to retrieve.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>value</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>TagValue or custom</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.tags.Tags.remove">
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the tag with key <cite>key</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey"><em>TagKey</em></a><em> or </em><em>custom</em>) – The key of the tag to remove.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>KeyError</strong> – If no tag with key <cite>key</cite> exists.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.tags.Tags.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">*tags</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check wheter a set of tags is included in this collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*tags</strong> (<em>(</em><em>key</em><em>, </em><em>value</em><em>)</em>) – A key, value pair to check for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>checked</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.tags.Tags.intersect">
+<code class="sig-name descname">intersect</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.Tags.intersect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the intersection of two Tags instances as a new Tags instance.
+The intersection consists of all (key, value) pairs that occur in
+both Tags instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#tsfuse.data.tags.Tags" title="tsfuse.data.tags.Tags"><em>Tags</em></a>) – Other Tags instance.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>intersection</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.tags.Tags" title="tsfuse.data.tags.Tags">Tags</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tsfuse.data.tags.TagKey">
+<em class="property">class </em><code class="sig-prename descclassname">tsfuse.data.tags.</code><code class="sig-name descname">TagKey</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">domain=&lt;class 'int'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.TagKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name and domain of a tag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – A name to identify the tag.</p></li>
+<li><p><strong>domain</strong> (<em>&lt;class 'int'&gt;</em><em>, </em><em>&lt;class 'float'&gt;</em><em> or </em><em>list</em><em>(</em><em>int</em><em> or </em><em>str</em><em>)</em><em>, </em><em>default &lt;class 'int'&gt;</em>) – <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, or a list of values.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="tsfuse.data.tags.TagKey.QUANTITY">
+<code class="sig-name descname">QUANTITY</code><a class="headerlink" href="#tsfuse.data.tags.TagKey.QUANTITY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default tag key specifying the quantity that a collection represents,
+see <a class="reference internal" href="../tags/quantity.html#quantity"><span class="std std-ref">Quantity</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.tags.TagKey" title="tsfuse.data.tags.TagKey">TagKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tsfuse.data.tags.TagKey.BODY_PART">
+<code class="sig-name descname">BODY_PART</code><a class="headerlink" href="#tsfuse.data.tags.TagKey.BODY_PART" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default tag key specifying the body part to which a sensor is attached,
+see <a class="reference internal" href="../tags/body-part.html#body-part"><span class="std std-ref">Body part</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tsfuse.data.tags.HierarchicalTagKey" title="tsfuse.data.tags.HierarchicalTagKey">HierarchicalTagKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tsfuse.data.tags.TagKey.is_valid">
+<code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.TagKey.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a given value is allowed for the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>object</em>) – The value to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>is_allowed</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tsfuse.data.tags.HierarchicalTagKey">
+<em class="property">class </em><code class="sig-prename descclassname">tsfuse.data.tags.</code><code class="sig-name descname">HierarchicalTagKey</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">lattice</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.HierarchicalTagKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag key where the domain has a lattice structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the tag key.</p></li>
+<li><p><strong>lattice</strong> (<em>tuple</em><em> or </em><em>list</em>) – Domain specified as a lattice structure. The lattice must be specified as a tuple (or list)
+where each element is a tuple (or list) of length two: <code class="docutils literal notranslate"><span class="pre">[specific,</span> <span class="pre">general]</span></code> where
+<code class="docutils literal notranslate"><span class="pre">specific</span></code> is a value that is more specific than <code class="docutils literal notranslate"><span class="pre">general</span></code> (both values can be an
+<code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tsfuse.data</span> <span class="k">import</span> <span class="n">HierarchicalTagKey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;location&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;hand&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;hand_left&#39;</span><span class="p">,</span> <span class="s1">&#39;hand&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;hand_left&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">location_tag_key</span> <span class="o">=</span> <span class="n">HierarchicalTagKey</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">lattice</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="tsfuse.data.tags.HierarchicalTagKey.is_valid">
+<code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.tags.HierarchicalTagKey.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a given value is allowed for the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>object</em>) – The value to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>is_allowed</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tsfuse.data.units">
+<span id="tsfuse-data-units"></span><h2>tsfuse.data.units<a class="headerlink" href="#module-tsfuse.data.units" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tsfuse.computation.html" class="btn btn-neutral float-right" title="tsfuse.computation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tsfuse.html" class="btn btn-neutral float-left" title="tsfuse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, DTAI KU Leuven
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

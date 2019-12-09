@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; TSFuse 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tsfuse" href="modules/tsfuse.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TSFuse
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Data-representation">Data representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Feature-construction">Feature construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Feature-computation">Feature computation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.html">tsfuse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.data.html">tsfuse.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.computation.html">tsfuse.computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.transformers.html">tsfuse.transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.construction.html">tsfuse.construction</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TSFuse</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting-started.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Getting-started">
+<h1>Getting started<a class="headerlink" href="#Getting-started" title="Permalink to this headline">¶</a></h1>
+<p>The example below shows the basic usage of TSFuse.</p>
+<div class="section" id="Data-representation">
+<h2>Data representation<a class="headerlink" href="#Data-representation" title="Permalink to this headline">¶</a></h2>
+<p>TSFuse represents time series data as a dictionary of <a class="reference internal" href="modules/tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a> objects. In this dictionary, each item <code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">:</span> <span class="pre">Collection(...)</span></code> is a <cite>view</cite> which corresponds to a specific sensor (or another type of source) which generates time series data. The data of a view is stored as a three-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code> where <cite>N</cite> is the number of windows, <cite>t</cite> is the number of time stamps in each window, and <cite>d</cite> is the number of dimensions. Using multiple dimensions is useful for sensors that collected multiple time series, e.g., a tri-axial accelerometer which simultaneously measures the <cite>x</cite>, <cite>y</cite>, <cite>z</cite> acceleration.</p>
+<p>As an example, let’s create a dictionary with two views <cite>x1</cite> and <cite>x2</cite>. Each view consists of <cite>N = 6</cite> windows, <cite>t = 3</cite> time stamps in each window, and <cite>d = 1</cite> dimension.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.data</span> <span class="k">import</span> <span class="n">Collection</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">Collection</span><span class="p">([</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="n">Collection</span><span class="p">([</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span>
+    <span class="p">]),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Since the goal of TSFuse is to construct features that are relevant for a classification or regression task, let’s also define a target variable. There should be one target value for each window, so we create a list of length <cite>N</cite>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Feature-construction">
+<h2>Feature construction<a class="headerlink" href="#Feature-construction" title="Permalink to this headline">¶</a></h2>
+<p>To construct features, TSFuse provides a <a class="reference internal" href="modules/tsfuse.html#tsfuse.construct" title="tsfuse.construct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">construct()</span></code></a> function which requires time series data <cite>X</cite> and target data <cite>y</cite>, and returns a DataFrame where each column corresponds to a feature. In addition, this function can return a computation graph which contains all transformation steps required to compute the features for new data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">tsfuse</span> <span class="k">import</span> <span class="n">construct</span>
+<span class="n">features</span><span class="p">,</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">construct</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">transformers</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">return_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The DataFrame with the constructed features looks like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">features</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=2)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=3)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=4)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=5)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=6)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=7)</th>
+      <th>Sqrt(Variance(Ratio(Input(x1), Input(x2))))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>1.283951</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>1.283951</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>1.283951</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>And this is the corresponding computation graph:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">graph</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="_images/getting-started_14_0.svg" src="_images/getting-started_14_0.svg" /></div>
+</div>
+<p>The <a class="reference internal" href="modules/tsfuse.transformers.html#tsfuse.transformers.statistics.SinglePassStatistics" title="tsfuse.transformers.statistics.SinglePassStatistics"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.transformers.statistics.SinglePassStatistics</span></code></a> transformer computes eight simple statistical features (length, sum, min, max, mean, variance, skewness, kurtosis) at once, i.e., using only a single pass over the time series data. Each <a class="reference internal" href="modules/tsfuse.transformers.html#tsfuse.transformers.queries.Slice" title="tsfuse.transformers.queries.Slice"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.transformers.queries.Slice</span></code></a> transformer selects one of these features.</p>
+<p>To apply this computation graph, simply call <a class="reference internal" href="modules/tsfuse.computation.html#tsfuse.computation.Graph.transform" title="tsfuse.computation.Graph.transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">transform()</span></code></a> with a time series dictionary <code class="docutils literal notranslate"><span class="pre">X</span></code> as argument:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=2)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=3)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=4)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=5)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=6)</th>
+      <th>Slice(SinglePassStatistics(Ratio(Input(x1), Input(x2))), i=7)</th>
+      <th>Sqrt(Variance(Ratio(Input(x1), Input(x2))))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>1.283951</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>1.283951</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>1.283951</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Feature-computation">
+<h2>Feature computation<a class="headerlink" href="#Feature-computation" title="Permalink to this headline">¶</a></h2>
+<p>Instead of automatically generating a computation graph using the <a class="reference internal" href="modules/tsfuse.html#tsfuse.construct" title="tsfuse.construct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">construct()</span></code></a> function, it is also possible to define a custom computation graph. To build such a graph, create a <a class="reference internal" href="modules/tsfuse.computation.html#tsfuse.computation.Graph" title="tsfuse.computation.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> object as follows:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.computation</span> <span class="k">import</span> <span class="n">Graph</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>First, the graph needs placeholders for the input data. These can be created by adding <a class="reference internal" href="modules/tsfuse.computation.html#tsfuse.computation.Input" title="tsfuse.computation.Input"><code class="xref py py-class docutils literal notranslate"><span class="pre">Input</span></code></a> nodes to the graph:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.computation</span> <span class="k">import</span> <span class="n">Input</span>
+<span class="n">input1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">))</span>
+<span class="n">input2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>Then, add transformer nodes to create new data from the input data. Each transformer has one or more parent nodes which are used as input data. For example, we can define the features of cell [4] as follows:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.transformers</span> <span class="k">import</span> <span class="n">Slice</span><span class="p">,</span> <span class="n">SinglePassStatistics</span><span class="p">,</span> <span class="n">Divide</span><span class="p">,</span> <span class="n">Sqrt</span>
+
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Sqrt</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">graph</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="_images/getting-started_24_0.svg" src="_images/getting-started_24_0.svg" /></div>
+</div>
+<p>This is the same graph as the one we constructed previously, and we can use it in the same way to compute features:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Slice(SinglePassStatistics(Divide(Input(x1), Input(x2))), i=2)</th>
+      <th>Slice(SinglePassStatistics(Divide(Input(x1), Input(x2))), i=3)</th>
+      <th>Slice(SinglePassStatistics(Divide(Input(x1), Input(x2))), i=4)</th>
+      <th>Slice(SinglePassStatistics(Divide(Input(x1), Input(x2))), i=6)</th>
+      <th>Slice(SinglePassStatistics(Divide(Input(x1), Input(x2))), i=7)</th>
+      <th>Sqrt(Slice(SinglePassStatistics(Divide(Input(x1), Input(x2))), i=5))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.333333</td>
+      <td>3.0</td>
+      <td>1.444444</td>
+      <td>0.528005</td>
+      <td>-1.5</td>
+      <td>1.133115</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules/tsfuse.html" class="btn btn-neutral float-right" title="tsfuse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, DTAI KU Leuven
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
