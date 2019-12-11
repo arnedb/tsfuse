@@ -387,6 +387,7 @@ class HierarchicalValue(object):
     def __init__(self, value):
         self.value = value
         self.parents = []
+        self._ancestors = None
 
     def add_parent(self, parent):
         if parent not in self.parents:
@@ -394,10 +395,14 @@ class HierarchicalValue(object):
 
     @property
     def ancestors(self):
-        l = self.parents
-        for p in self.parents:
-            l += p.ancestors
-        return l
+        if self._ancestors is None:
+            l = self.parents
+            for p in self.parents:
+                l += p.ancestors
+            self._ancestors = l
+            return l
+        else:
+            return self._ancestors
 
     def __eq__(self, other):
         if not isinstance(other, HierarchicalTagKey):
