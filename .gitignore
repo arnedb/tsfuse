@@ -90,8 +90,12 @@ celerybeat-schedule
 venv/
 ENV/
 
-# PyCharm
+# IDEs
 /.idea/
+.vscode/settings.json
+
+# Mac
+*.DS_Store
 
 # Local
 /local/
