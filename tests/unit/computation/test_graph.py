@@ -105,4 +105,5 @@ def test_transform_to_dataframe(graph):
     x = brownian()
     y = brownian()
     result = graph.transform({'x': x, 'y': y}, return_dataframe=True)
-    assert result.shape == (10, 2 * 1 + 2 * 51 + 2 * 1)
+    print(graph.outputs)
+    assert result.shape == (10, 4)
