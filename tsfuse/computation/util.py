@@ -11,10 +11,11 @@ def to_dataframe(result):
             n = str(n).replace('[', '(').replace(']', ')')
             df = pd.DataFrame()
             values = x.values
-            if x.shape[1] > 1:
-                for d in range(x.shape[2]):
-                    for t in range(x.shape[1]):
-                        df['{}[{}, {}]'.format(n, t, d).replace('[', '{').replace(']', '}')] = values[:, t, d]
+            if isinstance(x.shape[1], tuple) or (x.shape[1] > 1):
+                pass
+                # for d in range(x.shape[2]):
+                #     for t in range(x.shape[1]):
+                #         df['{}[{}, {}]'.format(n, t, d).replace('[', '{').replace(']', '}')] = values[:, t, d]
             elif x.shape[2] > 1:
                 for d in range(x.shape[2]):
                     df['{}[{}]'.format(n, d).replace('[', '{').replace(']', '}')] = values[:, 0, d]
@@ -22,7 +23,9 @@ def to_dataframe(result):
                 df[n] = values[:, 0, 0]
             return df
 
-        assert len(set(len(result[node]) for node in result if result[node] is not None)) <= 1
+        assert len(set(len(result[node]) for node in result if (result[node] is not None)
+            and (not isinstance(result[node].shape[1], tuple)))) <= 1
+        
         dfs = []
 
         for node in result:
