@@ -1,3 +1,5 @@
+![tests](https://github.com/arnedb/tsfuse/workflows/Run%20tests/badge.svg)
+
 # TSFuse
 
 Python package for automatically constructing features from multi-view time series data.
