@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'TSFuse'
-copyright = '2019, DTAI KU Leuven'
+copyright = '2020, DTAI KU Leuven'
 author = 'DTAI KU Leuven'
 
 # The full version, including alpha/beta/rc tags
