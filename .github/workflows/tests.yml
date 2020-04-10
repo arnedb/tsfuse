@@ -1,4 +1,4 @@
-name: Run tests
+name: tests
 
 on: [push]
 
@@ -9,16 +9,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Python 3.7
+    - name: set up python
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Install dependencies
+    - name: install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install .
-    - name: Test with pytest
+    - name: run pytest
       run: |
         pip install pytest
         pytest
