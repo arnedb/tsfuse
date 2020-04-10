@@ -1,4 +1,4 @@
-![tests](https://github.com/arnedb/tsfuse/workflows/Run%20tests/badge.svg)
+![tests](https://github.com/arnedb/tsfuse/workflows/tests/badge.svg)
 
 # TSFuse
 
