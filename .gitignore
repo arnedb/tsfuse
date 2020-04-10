@@ -92,13 +92,13 @@ ENV/
 
 # IDEs
 /.idea/
-.vscode/settings.json
+/.vscode/
 
 # Mac
 *.DS_Store
 
-# Local
-/local/
+# Local scripts
+/.scripts/
 
 # Documentation build
 /docsource/_build/
