@@ -34,6 +34,7 @@ __all__ = [
     'Energy',
     'EnergyRatio',
     'Entropy',
+    'SampleEntropy',
     'BinnedDistribution',
     'BinnedEntropy',
     'C3',
@@ -440,6 +441,19 @@ class Entropy(Transformer):
 
     def apply(self, x):
         return apply_to_axis(entropy, x, axis=self.axis)
+
+
+class SampleEntropy(Transformer):
+    def __init__(self, *parents, axis=None, **kwargs):
+        super(SampleEntropy, self).__init__(*parents, **kwargs)
+        self.axis = axis
+        self.preconditions = [
+            lambda *collections: len(collections) == 1,
+            lambda x: np.issubdtype(x.dtype, np.float64),
+        ]
+
+    def apply(self, x):
+        return apply_to_axis(sample_entropy, x, axis=self.axis)
 
 
 class BinnedDistribution(Transformer):

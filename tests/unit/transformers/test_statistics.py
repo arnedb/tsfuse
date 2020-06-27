@@ -174,6 +174,16 @@ def test_entropy(x):
         expected = stats.entropy(a)
         np.testing.assert_almost_equal(actual, expected)
 
+    
+def test_sample_entropy(x):
+    x = Collection([1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 5])
+    result = SampleEntropy().transform(x)
+    actual = result.values
+    expected = 0.55961579
+    # Computed using Physionet sample entropy implementation:
+    # https://physionet.org/content/sampen/1.0.0/
+    np.testing.assert_almost_equal(actual, expected)
+
 
 def test_binned_distribution(x):
     result = BinnedDistribution(bins=10).transform(x)

@@ -5,6 +5,7 @@ __all__ = [
     'cross_correlation',
     'binned_distribution',
     'entropy',
+    'sample_entropy',
     'energy_ratio',
     'spectral_moment',
 ]
@@ -20,6 +21,7 @@ cdef extern from "<math.h>" nogil:
     bint isnan(double x)
     double sqrt(double x)
     double log(double x)
+    double fabs(double x)
     double pow(double x, double y)
 
 @cython.boundscheck(False)
@@ -280,6 +282,74 @@ def entropy(values):
                         result[i, j, 0] += - x[i, j, l] * log(x[i, j, l])
 
     return np.array(result)
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+def sample_entropy(values):
+    # Input array
+    if not np.issubdtype(values.dtype, np.float64):
+        raise AttributeError()
+
+    cdef double[:, :, :] x = values
+
+    cdef int M = 2
+    cdef double[:, :] tolerance = 0.2 * np.nanstd(values, axis=2)
+    cdef int n = x.shape[2]
+    cdef double[:] v = np.full((n,), dtype=np.float64, fill_value=np.nan)
+
+    cdef int i, j, l
+
+    # Create results array
+    shape = (x.shape[0], x.shape[1], 1)
+    cdef double[:, :, :] result = np.full(shape, dtype=np.float64, fill_value=np.nan)
+
+    for i in range(x.shape[0]):
+        for j in range(x.shape[1]):
+                # Copy as one array
+                for l in range(x.shape[2]):
+                    v[l] = x[i, j, l]
+                # Compute sample entropy
+                result[i, j, 0] = sampen(v, M, tolerance[i, j])
+
+    return np.array(result)
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+@cython.cdivision(True)
+cdef double sampen(double[:] L, int m, double r):
+    cdef int N = L.shape[0]
+    cdef double B = 0.0
+    cdef double A = 0.0
+    cdef int i, j, k
+    cdef double dist
+    cdef double d
+
+    # Compute B
+    for i in range(N - m):
+        for j in range(N - m):
+            if j > i:
+                dist = 0.0
+                for k in range(m):
+                    d = fabs(L[i+k]-L[j+k])
+                    if d > dist:
+                        dist = d
+                if dist < r:
+                    B = B + 1
+
+    # Compute A
+    for i in range(N - m):
+        for j in range(N - m):
+            if j > i:
+                dist = 0.0
+                for k in range(m + 1):
+                    d = fabs(L[i+k]-L[j+k])
+                    if d > dist:
+                        dist = d
+                if dist < r:
+                    A = A + 1
+
+    # Return SampEn
+    return - log(A / B)
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
