@@ -1,9 +1,10 @@
 from .autods19 import construct as construct_autods19
+from .unsupervised import construct as construct_unsupervised
 
 __all__ = ['construct']
 
 
-def construct(X, y, task='classification', transformers='full', return_graph=False, **kwargs):
+def construct(X, y=None, task='classification', transformers='full', return_graph=False, **kwargs):
     """
     Construct features for a given time series dataset ``X, y``
 
@@ -14,8 +15,8 @@ def construct(X, y, task='classification', transformers='full', return_graph=Fal
     ----------
     X : dict(str, Collection)
         Multi-view time series data.
-    y : array-like
-        Target data.
+    y : array-like, optional
+        Target data. Not required for unsupervised feature construction.
     task : {'classification', 'regression'}, optional
         Machine learning task. Default: `classification`
     transformers : {'minimal', 'fast', 'full'}, optional
@@ -36,14 +37,22 @@ def construct(X, y, task='classification', transformers='full', return_graph=Fal
        `Automating Feature Construction for Multi-View Time Series Data <https://www.google.com/url?q=https%3A%2F%2Fupvedues-my.sharepoint.com%2F%3Ab%3A%2Fg%2Fpersonal%2Fjorallo_upv_edu_es%2FETxycG2WhmFBmVN7CNW8yKsBQHwhhlzdyegEx1AnNeRa2w%3Fe%3DbPQR7e&sa=D&sntz=1&usg=AFQjCNH-zTIQtPE2M0m0h_uUPN_25SaGCw>`_.
        ECML/PKDD Workshop on Automating Data Science 2019.
     """
-    graph, data = construct_autods19(
-        X,
-        y,
-        task=task,
-        transformers=transformers,
-        return_data=True,
-        **kwargs,
-    )
+    if y is not None:
+        graph, data = construct_autods19(
+            X,
+            y,
+            task=task,
+            transformers=transformers,
+            return_data=True,
+            **kwargs,
+        )
+    else:
+        graph, data = construct_unsupervised(
+            X,
+            transformers=transformers,
+            return_data=True,
+            **kwargs,
+        )
     if return_graph:
         return data, graph
     else:
