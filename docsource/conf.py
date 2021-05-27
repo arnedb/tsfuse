@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'TSFuse'
-copyright = '2020, DTAI KU Leuven'
+copyright = '2021, DTAI KU Leuven'
 author = 'DTAI KU Leuven'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = '0.1.0'
 
 # -- General configuration ---------------------------------------------------
 

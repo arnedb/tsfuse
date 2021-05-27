@@ -1,41 +1,45 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>tsfuse.computation &mdash; TSFuse 1.0 documentation</title>
+  <title>tsfuse.computation &mdash; TSFuse 0.1.0 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tsfuse.transformers" href="tsfuse.transformers.html" />
@@ -76,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +104,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -133,18 +139,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>tsfuse.computation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/modules/tsfuse.computation.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -184,9 +192,9 @@
 </style>
 <div class="section" id="module-tsfuse.computation">
 <span id="tsfuse-computation"></span><h1>tsfuse.computation<a class="headerlink" href="#module-tsfuse.computation" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="tsfuse.computation.Graph">
-<em class="property">class </em><code class="sig-prename descclassname">tsfuse.computation.</code><code class="sig-name descname">Graph</code><span class="sig-paren">(</span><em class="sig-param">nodes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computation graph.</p>
 <p>A computation graph is a directed acyclic graph (DAG) whose nodes are connected by edges that
 represent the flow of the data. There are three types of nodes:</p>
@@ -205,9 +213,9 @@ have no outgoing edges, or are marked as an output node.</p>
 Nodes can also be added later using <a class="reference internal" href="#tsfuse.computation.Graph.add_node" title="tsfuse.computation.Graph.add_node"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_node()</span></code></a></p>
 </dd>
 </dl>
-<dl class="attribute">
-<dt id="tsfuse.computation.Graph.nodes">
-<code class="sig-name descname">nodes</code><a class="headerlink" href="#tsfuse.computation.Graph.nodes" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.nodes">
+<span class="sig-name descname"><span class="pre">nodes</span></span><a class="headerlink" href="#tsfuse.computation.Graph.nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>All nodes of the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -216,9 +224,9 @@ Nodes can also be added later using <a class="reference internal" href="#tsfuse.
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Graph.inputs">
-<code class="sig-name descname">inputs</code><a class="headerlink" href="#tsfuse.computation.Graph.inputs" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.inputs">
+<span class="sig-name descname"><span class="pre">inputs</span></span><a class="headerlink" href="#tsfuse.computation.Graph.inputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Input nodes, given as a dictionary of <code class="docutils literal notranslate"><span class="pre">{input_id:</span> <span class="pre">node}</span></code> items.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -227,9 +235,9 @@ Nodes can also be added later using <a class="reference internal" href="#tsfuse.
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Graph.constants">
-<code class="sig-name descname">constants</code><a class="headerlink" href="#tsfuse.computation.Graph.constants" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.constants">
+<span class="sig-name descname"><span class="pre">constants</span></span><a class="headerlink" href="#tsfuse.computation.Graph.constants" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constant nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -238,9 +246,9 @@ Nodes can also be added later using <a class="reference internal" href="#tsfuse.
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Graph.transformers">
-<code class="sig-name descname">transformers</code><a class="headerlink" href="#tsfuse.computation.Graph.transformers" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.transformers">
+<span class="sig-name descname"><span class="pre">transformers</span></span><a class="headerlink" href="#tsfuse.computation.Graph.transformers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transformer nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -249,9 +257,9 @@ Nodes can also be added later using <a class="reference internal" href="#tsfuse.
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Graph.outputs">
-<code class="sig-name descname">outputs</code><a class="headerlink" href="#tsfuse.computation.Graph.outputs" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.outputs">
+<span class="sig-name descname"><span class="pre">outputs</span></span><a class="headerlink" href="#tsfuse.computation.Graph.outputs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -260,9 +268,9 @@ Nodes can also be added later using <a class="reference internal" href="#tsfuse.
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="tsfuse.computation.Graph.add_node">
-<code class="sig-name descname">add_node</code><span class="sig-paren">(</span><em class="sig-param">node</em>, <em class="sig-param">optimize=True</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.add_node" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.add_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a node to the computation graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -281,9 +289,9 @@ transformations more than once. Default: True</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="tsfuse.computation.Graph.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">return_dataframe=True</em>, <em class="sig-param">chunk_size=None</em>, <em class="sig-param">n_jobs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.transform" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute all outputs of the graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -300,17 +308,17 @@ only relevant if a chunk size is specified.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="tsfuse.computation.Graph.to_dot">
-<code class="sig-name descname">to_dot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.to_dot" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.computation.Graph.to_dot">
+<span class="sig-name descname"><span class="pre">to_dot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.to_dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Visualize the computation graph.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="tsfuse.computation.Node">
-<em class="property">class </em><code class="sig-prename descclassname">tsfuse.computation.</code><code class="sig-name descname">Node</code><span class="sig-paren">(</span><em class="sig-param">parents=None</em>, <em class="sig-param">is_output=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Node" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsfuse.computation.Node">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Node of a computation graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -321,9 +329,9 @@ By default, the node is an output node if it is not used as a parent for another
 </ul>
 </dd>
 </dl>
-<dl class="attribute">
-<dt id="tsfuse.computation.Node.parents">
-<code class="sig-name descname">parents</code><a class="headerlink" href="#tsfuse.computation.Node.parents" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Node.parents">
+<span class="sig-name descname"><span class="pre">parents</span></span><a class="headerlink" href="#tsfuse.computation.Node.parents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parent nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -332,9 +340,9 @@ By default, the node is an output node if it is not used as a parent for another
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Node.children">
-<code class="sig-name descname">children</code><a class="headerlink" href="#tsfuse.computation.Node.children" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Node.children">
+<span class="sig-name descname"><span class="pre">children</span></span><a class="headerlink" href="#tsfuse.computation.Node.children" title="Permalink to this definition">¶</a></dt>
 <dd><p>Child nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -343,9 +351,9 @@ By default, the node is an output node if it is not used as a parent for another
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Node.is_input">
-<code class="sig-name descname">is_input</code><a class="headerlink" href="#tsfuse.computation.Node.is_input" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Node.is_input">
+<span class="sig-name descname"><span class="pre">is_input</span></span><a class="headerlink" href="#tsfuse.computation.Node.is_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if the node is an input node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -354,9 +362,9 @@ By default, the node is an output node if it is not used as a parent for another
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="tsfuse.computation.Node.is_output">
-<code class="sig-name descname">is_output</code><a class="headerlink" href="#tsfuse.computation.Node.is_output" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsfuse.computation.Node.is_output">
+<span class="sig-name descname"><span class="pre">is_output</span></span><a class="headerlink" href="#tsfuse.computation.Node.is_output" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if the node is an output node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -365,9 +373,9 @@ By default, the node is an output node if it is not used as a parent for another
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="tsfuse.computation.Node.add_child">
-<code class="sig-name descname">add_child</code><span class="sig-paren">(</span><em class="sig-param">child</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Node.add_child" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.computation.Node.add_child">
+<span class="sig-name descname"><span class="pre">add_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Node.add_child" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a child node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -378,9 +386,9 @@ By default, the node is an output node if it is not used as a parent for another
 
 </dd></dl>
 
-<dl class="class">
-<dt id="tsfuse.computation.Input">
-<em class="property">class </em><code class="sig-prename descclassname">tsfuse.computation.</code><code class="sig-name descname">Input</code><span class="sig-paren">(</span><em class="sig-param">input_id</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Input" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsfuse.computation.Input">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">Input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Node that serves as the input of a computation graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -389,9 +397,9 @@ By default, the node is an output node if it is not used as a parent for another
 </dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="tsfuse.computation.Constant">
-<em class="property">class </em><code class="sig-prename descclassname">tsfuse.computation.</code><code class="sig-name descname">Constant</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Constant" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsfuse.computation.Constant">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">Constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Constant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Node that produces a constant value,
 given as <a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a> object.</p>
 <dl class="field-list simple">
@@ -401,13 +409,13 @@ given as <a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collec
 </dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="tsfuse.computation.Transformer">
-<em class="property">class </em><code class="sig-prename descclassname">tsfuse.computation.</code><code class="sig-name descname">Transformer</code><span class="sig-paren">(</span><em class="sig-param">*parents</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Transformer" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsfuse.computation.Transformer">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">Transformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Transformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transformer node.</p>
-<dl class="method">
-<dt id="tsfuse.computation.Transformer.check_preconditions">
-<code class="sig-name descname">check_preconditions</code><span class="sig-paren">(</span><em class="sig-param">*collections</em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Transformer.check_preconditions" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.computation.Transformer.check_preconditions">
+<span class="sig-name descname"><span class="pre">check_preconditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">collections</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Transformer.check_preconditions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the preconditions are satisfied.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -431,29 +439,29 @@ given as <a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collec
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="tsfuse.transformers.html" class="btn btn-neutral float-right" title="tsfuse.transformers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="tsfuse.data.html" class="btn btn-neutral float-left" title="tsfuse.data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="tsfuse.transformers.html" class="btn btn-neutral float-right" title="tsfuse.transformers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tsfuse.data.html" class="btn btn-neutral float-left" title="tsfuse.data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, DTAI KU Leuven
+        &#169; Copyright 2021, DTAI KU Leuven.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -461,7 +469,6 @@ given as <a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collec
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
