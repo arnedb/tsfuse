@@ -6,16 +6,11 @@ Python package for automatically constructing features from multi-view time seri
 
 ## Installation
 
-TSFuse requires Python 3 and the following packages:
+TSFuse requires Python 3 and is available on PyPI:
 
-- Cython>=0.28.5
-- numpy>=1.16.1
-
-These packages can be installed using pip:
-
-    pip install "cython>=0.28.5" "numpy>=1.16.1"
+    pip install tsfuse
     
-To install the latest unreleased version of TSFuse from GitHub:
+Alternatively, you can install the latest, unreleased version from GitHub:
 
     pip install git+https://github.com/arnedb/tsfuse#egg=tsfuse
     

@@ -5,22 +5,30 @@ import numpy as np
 
 setup(
     name='tsfuse',
-    version='1.0dev',
+    version='0.1.0',
+    description='Automated feature construction for multiple time series data',
+    author='Arne De Brabandere',
+    project_urls={
+        'TSFuse documentation': 'https://arnedb.github.io/tsfuse/',
+        'TSFuse source': 'https://github.com/arnedb/tsfuse'
+    },
+    license='Apache 2.0',
+    classifiers=[
+        'Intended Audience :: Developers',
+        'Programming Language :: Python :: 3'
+    ],
     packages=find_packages(),
     include_package_data=True,
     package_data={},
-    setup_requires=[
-        'setuptools',
-        'Cython>=0.28.5',
-        'numpy>=1.16.1'
-    ],
     install_requires=[
-        'six>=1.12.0',
-        'graphviz>=0.10.1',
+        'cython',
+        'numpy',
         'scipy>=1.2.1',
-        'scikit-learn>=0.20.1',
         'statsmodels>=0.9.0',
+        'scikit-learn>=0.20.1',
+        'six>=1.12.0',
         'Pint>=0.9',
+        'graphviz>=0.10.1',
     ],
     extras_require={'test': [
         'pytest',
