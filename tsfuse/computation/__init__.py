@@ -4,12 +4,12 @@ from .graph import *
 from .nodes import *
 
 __all__ = [
+    'extract',
     'Graph',
     'Node',
     'Input',
     'Constant',
     'Transformer',
-    'extract',
 ]
 
 def extract(X, transformers='full', return_graph=False):

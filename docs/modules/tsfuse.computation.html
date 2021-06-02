@@ -193,6 +193,30 @@
 </style>
 <div class="section" id="module-tsfuse.computation">
 <span id="tsfuse-computation"></span><h1>tsfuse.computation<a class="headerlink" href="#module-tsfuse.computation" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tsfuse.computation.extract">
+<span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a given list of series-to-attribute transformers
+for given time series data <code class="docutils literal notranslate"><span class="pre">X</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>dict</em><em>(</em><em>str</em><em>, </em><a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a><em>)</em>) – Multi-view time series data.</p></li>
+<li><p><strong>transformers</strong> (<em>{'minimal'</em><em>, </em><em>'fast'</em><em>, </em><em>'full'}</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – List of transformers: ‘minimal’, ‘fast’ or ‘full’ (default).
+Alternatively, it is possible to give an explicit list of transformers.</p></li>
+<li><p><strong>return_graph</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the computation graph. Default: <cite>False</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>features</strong> (<em>pandas.DataFrame</em>) – Tabular representation of the constructed features.</p></li>
+<li><p><strong>graph</strong> (<em>Graph</em>) – Constructed computation graph. Only returned if <code class="docutils literal notranslate"><span class="pre">return_graph</span> <span class="pre">==</span> <span class="pre">True</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.computation.Graph">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph" title="Permalink to this definition">¶</a></dt>
@@ -427,30 +451,6 @@ given as <a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collec
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="tsfuse.computation.extract">
-<span class="sig-prename descclassname"><span class="pre">tsfuse.computation.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.extract" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute a given list of series-to-attribute transformers
-for given time series data <code class="docutils literal notranslate"><span class="pre">X</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>dict</em><em>(</em><em>str</em><em>, </em><a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a><em>)</em>) – Multi-view time series data.</p></li>
-<li><p><strong>transformers</strong> (<em>{'minimal'</em><em>, </em><em>'fast'</em><em>, </em><em>'full'}</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – List of transformers: ‘minimal’, ‘fast’ or ‘full’ (default).
-Alternatively, it is possible to give an explicit list of transformers.</p></li>
-<li><p><strong>return_graph</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the computation graph. Default: <cite>False</cite></p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>features</strong> (<em>pandas.DataFrame</em>) – Tabular representation of the constructed features.</p></li>
-<li><p><strong>graph</strong> (<em>Graph</em>) – Constructed computation graph. Only returned if <code class="docutils literal notranslate"><span class="pre">return_graph</span> <span class="pre">==</span> <span class="pre">True</span></code></p></li>
-</ul>
-</p>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
