@@ -639,7 +639,6 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <img alt="_images/getting-started_17_0.svg" src="_images/getting-started_17_0.svg" /></div>
 </div>
-<p>The <a class="reference internal" href="modules/tsfuse.transformers.html#tsfuse.transformers.statistics.SinglePassStatistics" title="tsfuse.transformers.statistics.SinglePassStatistics"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.transformers.statistics.SinglePassStatistics</span></code></a> transformer computes eight simple statistical features (length, sum, min, max, mean, variance, skewness, kurtosis) at once, i.e., using only a single pass over the time series data. Each <a class="reference internal" href="modules/tsfuse.transformers.html#tsfuse.transformers.queries.Slice" title="tsfuse.transformers.queries.Slice"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.transformers.queries.Slice</span></code></a> transformer selects one of these features.</p>
 <p>To apply this computation graph, simply call <a class="reference internal" href="modules/tsfuse.computation.html#tsfuse.computation.Graph.transform" title="tsfuse.computation.Graph.transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">transform()</span></code></a> with a time series dictionary <code class="docutils literal notranslate"><span class="pre">X</span></code> as argument:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -791,7 +790,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="_images/getting-started_27_0.svg" src="_images/getting-started_27_0.svg" /></div>
+<img alt="_images/getting-started_26_0.svg" src="_images/getting-started_26_0.svg" /></div>
 </div>
 <p>This is the same graph as the one we constructed previously, and we can use it in the same way to compute features:</p>
 <div class="nbinput docutils container">
