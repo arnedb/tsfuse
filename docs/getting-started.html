@@ -93,7 +93,11 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Data-representation">Data representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Data-representation">Data representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Time-series">Time series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Labels">Labels</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#Feature-construction">Feature construction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Feature-computation">Feature computation</a></li>
 </ul>
@@ -448,57 +452,65 @@ div.rendered_html tbody tr:hover {
 <p>The example below shows the basic usage of TSFuse.</p>
 <div class="section" id="Data-representation">
 <h2>Data representation<a class="headerlink" href="#Data-representation" title="Permalink to this headline">¶</a></h2>
-<p>TSFuse represents time series data as a dictionary of <a class="reference internal" href="modules/tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a> objects. In this dictionary, each item <code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">:</span> <span class="pre">Collection(...)</span></code> is a <cite>view</cite> which corresponds to a specific sensor (or another type of source) which generates time series data. The data of a view is stored as a three-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code> where <cite>N</cite> is the number of windows, <cite>t</cite> is the number of time stamps in each window, and <cite>d</cite> is the number of dimensions. Using multiple dimensions is useful for sensors that collected multiple time series, e.g., a tri-axial accelerometer which simultaneously measures the <cite>x</cite>, <cite>y</cite>, <cite>z</cite> acceleration.</p>
-<p>As an example, let’s create a dictionary with two views <cite>x1</cite> and <cite>x2</cite>. Each view consists of <cite>N = 6</cite> windows, <cite>t = 3</cite> time stamps in each window, and <cite>d = 1</cite> dimension.</p>
+<p>As input, the system requires a dataset where each instance is a window that consists of time series and a label.</p>
+<div class="section" id="Time-series">
+<h3>Time series<a class="headerlink" href="#Time-series" title="Permalink to this headline">¶</a></h3>
+<p>Time series are represented using a dictionary where each entry represents a univariate or multivariate time series. As an example, let’s create a dictionary with two univariate time series:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from tsfuse.data import Collection
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tsfuse.data</span> <span class="kn">import</span> <span class="n">Collection</span>
 
-X = {
-    &#39;x1&#39;: Collection([
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-        [[3], [2], [1]],
-        [[3], [2], [1]],
-        [[3], [2], [1]],
-    ]),
-    &#39;x2&#39;: Collection([
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-        [[1], [2], [3]],
-    ]),
-}
+<span class="n">X</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">Collection</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">})),</span>
+    <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="n">Collection</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">})),</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<p>Since the goal of TSFuse is to construct features that are relevant for a classification or regression task, let’s also define a target variable. There should be one target value for each window, so we create a list of length <cite>N</cite>:</p>
+<p>The two univariate time series are named <cite>x1</cite> and <cite>x2</cite> and each series is represented as a <a class="reference internal" href="modules/tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a> object. Each <code class="docutils literal notranslate"><span class="pre">Collection</span></code> is initialized with a DataFrame that has three columns:</p>
+<ul class="simple">
+<li><p><cite>id</cite> which is the identifier of each instance, i.e., each window,</p></li>
+<li><p><cite>time</cite> which contains the time stamps,</p></li>
+<li><p><cite>data</cite> contains the time series data itself.</p></li>
+</ul>
+<p>For multivariate time series data, there can be multiple columns similar to the <cite>data</cite> column. For example, the data of a tri-axial accelerometer would have three columns <cite>x</cite>, <cite>y</cite>, <cite>z</cite> instead of <cite>data</cite> as it simultaneously measures the <cite>x</cite>, <cite>y</cite>, <cite>z</cite> acceleration.</p>
+</div>
+<div class="section" id="Labels">
+<h3>Labels<a class="headerlink" href="#Labels" title="Permalink to this headline">¶</a></h3>
+<p>There should be one target value for each window, so we create a Series where the index contains all unique <cite>id</cite> values of the time series data and the data consists of the labels:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>y = [0, 0, 0, 1, 1, 1]
+<span></span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
 <div class="section" id="Feature-construction">
 <h2>Feature construction<a class="headerlink" href="#Feature-construction" title="Permalink to this headline">¶</a></h2>
-<p>To construct features, TSFuse provides a <a class="reference internal" href="modules/tsfuse.html#tsfuse.construct" title="tsfuse.construct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">construct()</span></code></a> function which requires time series data <cite>X</cite> and target data <cite>y</cite>, and returns a DataFrame where each column corresponds to a feature. In addition, this function can return a computation graph which contains all transformation steps required to compute the features for new data.</p>
+<p>To construct features, TSFuse provides a <a class="reference internal" href="modules/tsfuse.html#tsfuse.construct" title="tsfuse.construct"><code class="xref py py-meth docutils literal notranslate"><span class="pre">construct()</span></code></a> function which takes time series data <cite>X</cite> and target data <cite>y</cite> as input, and returns a DataFrame where each column corresponds to a feature. In addition, this function can return a computation graph which contains all transformation steps required to compute the features for new data:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from tsfuse import construct
-features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=True)
+<span></span><span class="kn">from</span> <span class="nn">tsfuse</span> <span class="kn">import</span> <span class="n">construct</span>
+<span class="n">features</span><span class="p">,</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">construct</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">transformers</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">return_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -508,7 +520,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>features
+<span></span><span class="n">features</span>
 </pre></div>
 </div>
 </div>
@@ -546,7 +558,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -556,7 +568,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -566,7 +578,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -576,7 +588,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -586,7 +598,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>1.133115</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -596,7 +608,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>1.133115</td>
     </tr>
     <tr>
-      <td>5</td>
+      <th>5</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -615,7 +627,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>graph
+<span></span><span class="n">graph</span>
 </pre></div>
 </div>
 </div>
@@ -624,7 +636,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="_images/getting-started_14_0.svg" src="_images/getting-started_14_0.svg" /></div>
+<img alt="_images/getting-started_17_0.svg" src="_images/getting-started_17_0.svg" /></div>
 </div>
 <p>The <a class="reference internal" href="modules/tsfuse.transformers.html#tsfuse.transformers.statistics.SinglePassStatistics" title="tsfuse.transformers.statistics.SinglePassStatistics"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.transformers.statistics.SinglePassStatistics</span></code></a> transformer computes eight simple statistical features (length, sum, min, max, mean, variance, skewness, kurtosis) at once, i.e., using only a single pass over the time series data. Each <a class="reference internal" href="modules/tsfuse.transformers.html#tsfuse.transformers.queries.Slice" title="tsfuse.transformers.queries.Slice"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsfuse.transformers.queries.Slice</span></code></a> transformer selects one of these features.</p>
 <p>To apply this computation graph, simply call <a class="reference internal" href="modules/tsfuse.computation.html#tsfuse.computation.Graph.transform" title="tsfuse.computation.Graph.transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">transform()</span></code></a> with a time series dictionary <code class="docutils literal notranslate"><span class="pre">X</span></code> as argument:</p>
@@ -633,7 +645,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>graph.transform(X)
+<span></span><span class="n">graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -671,7 +683,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -681,7 +693,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -691,7 +703,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -701,7 +713,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -711,7 +723,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>1.133115</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -721,7 +733,7 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
       <td>1.133115</td>
     </tr>
     <tr>
-      <td>5</td>
+      <th>5</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -743,8 +755,8 @@ features, graph = construct(X, y, transformers=&#39;minimal&#39;, return_graph=T
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from tsfuse.computation import Graph
-graph = Graph()
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.computation</span> <span class="kn">import</span> <span class="n">Graph</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -754,9 +766,9 @@ graph = Graph()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from tsfuse.computation import Input
-input1 = graph.add_node(Input(&#39;x1&#39;))
-input2 = graph.add_node(Input(&#39;x2&#39;))
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.computation</span> <span class="kn">import</span> <span class="n">Input</span>
+<span class="n">input1</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">))</span>
+<span class="n">input2</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;x2&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -766,16 +778,16 @@ input2 = graph.add_node(Input(&#39;x2&#39;))
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from tsfuse.transformers import Slice, SinglePassStatistics, Divide, Sqrt
+<span></span><span class="kn">from</span> <span class="nn">tsfuse.transformers</span> <span class="kn">import</span> <span class="n">Slice</span><span class="p">,</span> <span class="n">SinglePassStatistics</span><span class="p">,</span> <span class="n">Divide</span><span class="p">,</span> <span class="n">Sqrt</span>
 
-graph.add_node(Slice(SinglePassStatistics(Divide(input1, input2)), i=2))
-graph.add_node(Slice(SinglePassStatistics(Divide(input1, input2)), i=3))
-graph.add_node(Slice(SinglePassStatistics(Divide(input1, input2)), i=4))
-graph.add_node(Sqrt(Slice(SinglePassStatistics(Divide(input1, input2)), i=5)))
-graph.add_node(Slice(SinglePassStatistics(Divide(input1, input2)), i=6))
-graph.add_node(Slice(SinglePassStatistics(Divide(input1, input2)), i=7))
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Sqrt</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="n">SinglePassStatistics</span><span class="p">(</span><span class="n">Divide</span><span class="p">(</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">)),</span> <span class="n">i</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
 
-graph
+<span class="n">graph</span>
 </pre></div>
 </div>
 </div>
@@ -784,7 +796,7 @@ graph
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="_images/getting-started_24_0.svg" src="_images/getting-started_24_0.svg" /></div>
+<img alt="_images/getting-started_27_0.svg" src="_images/getting-started_27_0.svg" /></div>
 </div>
 <p>This is the same graph as the one we constructed previously, and we can use it in the same way to compute features:</p>
 <div class="nbinput docutils container">
@@ -792,7 +804,7 @@ graph
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>graph.transform(X)
+<span></span><span class="n">graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -829,7 +841,7 @@ graph
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -838,7 +850,7 @@ graph
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -847,7 +859,7 @@ graph
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>1.000000</td>
       <td>1.0</td>
       <td>1.000000</td>
@@ -856,7 +868,7 @@ graph
       <td>0.000000</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -865,7 +877,7 @@ graph
       <td>1.133115</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>
@@ -874,7 +886,7 @@ graph
       <td>1.133115</td>
     </tr>
     <tr>
-      <td>5</td>
+      <th>5</th>
       <td>0.333333</td>
       <td>3.0</td>
       <td>1.444444</td>

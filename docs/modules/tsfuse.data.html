@@ -199,109 +199,16 @@
 <span id="tsfuse-data"></span><h1>tsfuse.data<a class="headerlink" href="#module-tsfuse.data" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.data.Collection">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.data.</span></span><span class="sig-name descname"><span class="pre">Collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.Collection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.data.</span></span><span class="sig-name descname"><span class="pre">Collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.Collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data structure for representing time series data and attribute-value data.</p>
-<p>Internally, collections store data as a three-dimensional arrays of shape
-<cite>(N, t, d)</cite> where:</p>
-<ul class="simple">
-<li><p><cite>N</cite> is the number of instances,</p></li>
-<li><p><cite>t</cite> is the number of time stamps per instance,</p></li>
-<li><p><cite>d</cite> is the number of dimensions.</p></li>
-</ul>
-<p><strong>Representing time series data</strong></p>
-<p>For time series data, each instance represents a window of <cite>t</cite> time stamps,
-each having <cite>d</cite> values, i.e., one value per dimension. Hence, each window
-is a multivariate time series with <cite>d</cite> variables and <cite>t</cite> samples per
-variable.</p>
-<p>Note that the above representation requires a fixed window size <cite>t</cite> for all
-instances. Variable size windows can be represented in two ways:</p>
-<ul class="simple">
-<li><p>Pad each window to the maximal length using a value <cite>x</cite> and set
-<code class="docutils literal notranslate"><span class="pre">mask_value=x</span></code>.</p></li>
-<li><p>If the above is not desired due to memory issues (since padding
-increases the number of values that need to be stored), create one
-collection for each window (with <cite>N = 1</cite>) and initialize a new collection
-with a list of these collections instead of a three-dimensional array.</p></li>
-</ul>
-<p><strong>Representing attribute-value data</strong></p>
-<p>Attribute-value data is represented using the same three-dimensional array.
-However, <cite>t = 1</cite> as attributes have no time dimension.</p>
-<p class="rubric">Examples</p>
-<p>The examples below show how to create different kinds of collections.
-See below for more advanced parameters to add instance identifiers, time
-stamps, dimension names, tags and units.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For convenience, it is also possible to convert a DataFrame to a
-Collection and vice versa using the <a class="reference internal" href="#tsfuse.data.Collection.from_dataframe" title="tsfuse.data.Collection.from_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">Collection.from_dataframe()</span></code></a>
-and <a class="reference internal" href="#tsfuse.data.Collection.to_dataframe" title="tsfuse.data.Collection.to_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_dataframe()</span></code></a> methods.</p>
-</div>
-<p>Example 1: Create a time series collection with a fixed window size</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># N=2 instances with t=5 time stamps and d=3 dimensions</span>
-<span class="n">fixed_window_time_series_collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">([</span>
-    <span class="c1"># Instance A</span>
-    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>   <span class="c1"># Time stamp 1</span>
-     <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>   <span class="c1"># Time stamp 2</span>
-     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>   <span class="c1"># Time stamp 3</span>
-     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>   <span class="c1"># Time stamp 4</span>
-     <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">]],</span>  <span class="c1"># Time stamp 5</span>
-    <span class="c1"># Instance B</span>
-    <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>  <span class="c1"># Time stamp 1</span>
-     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">70</span><span class="p">],</span>  <span class="c1"># Time stamp 2</span>
-     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>  <span class="c1"># Time stamp 3</span>
-     <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>  <span class="c1"># Time stamp 4</span>
-     <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">]],</span> <span class="c1"># Time stamp 5</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-<p>Example 2: Create a time series collection with a variable window size</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># N=2 instances with d=3 dimensions:</span>
-<span class="c1"># one with t=5 time stamps and one with t=4 time stamps</span>
-
-<span class="c1"># Instance A</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">([</span>
-    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>   <span class="c1"># Time stamp 1</span>
-     <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>   <span class="c1"># Time stamp 2</span>
-     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>   <span class="c1"># Time stamp 3</span>
-     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>   <span class="c1"># Time stamp 4</span>
-     <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">]]</span>   <span class="c1"># Time stamp 5</span>
-<span class="p">])</span>
-
-<span class="c1"># Instance B</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">([</span>
-    <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>  <span class="c1"># Time stamp 1</span>
-     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">70</span><span class="p">],</span>  <span class="c1"># Time stamp 2</span>
-     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>  <span class="c1"># Time stamp 3</span>
-     <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">]]</span>  <span class="c1"># Time stamp 4</span>
-<span class="p">])</span>
-
-<span class="c1"># One collection with both instances</span>
-<span class="n">variable_window_time_series_collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
-</pre></div>
-</div>
-<p>Example 3: Create an attribute collection</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># N=2 instances with d=3 dimensions</span>
-<span class="n">attribute_collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">([</span>
-    <span class="c1"># Instance A</span>
-    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span>
-    <span class="c1"># Instance B</span>
-    <span class="p">[[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">]],</span>
-<span class="p">])</span>
-</pre></div>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>values</strong> (<em>array-like</em>) – Three-dimensional array of shape <cite>(N, t, d)</cite>.</p></li>
-<li><p><strong>index</strong> (<em>array-like</em><em>, </em><em>optional</em>) – Two-dimensional array of shape <cite>(N, t)</cite> with the time stamps of each
-window.</p></li>
-<li><p><strong>id</strong> (<em>array-like</em><em>, </em><em>optional</em>) – One-dimensional array of length <cite>N</cite> with the instance identifiers.</p></li>
-<li><p><strong>dimensions</strong> (<em>array-like</em><em>, </em><em>optional</em>) – One-dimensional array of length <cite>d</cite> with the dimension names.</p></li>
-<li><p><strong>tags</strong> (<a class="reference internal" href="#tsfuse.data.tags.Tags" title="tsfuse.data.tags.Tags"><em>Tags</em></a><em>, </em><em>optional</em>) – Tags specified by keys and values.</p></li>
+<li><p><strong>x</strong> (<em>pandas.DataFrame</em>) – Time series or attributes given as a DataFrame.</p></li>
+<li><p><strong>column_id</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the column that contains the instance identifiers. Default: ‘id’</p></li>
+<li><p><strong>column_sort</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the column that contains the timestamps. Default: ‘time’</p></li>
+<li><p><strong>tags</strong> (<em>optional</em>) – Tags specified by keys and values.</p></li>
 <li><p><strong>unit</strong> (<em>optional</em>) – Unit, see the <a class="reference external" href="https://pint.readthedocs.io">Pint documentation</a>.</p></li>
-<li><p><strong>mask_value</strong> (<em>optional</em>) – Placeholder representing missing values.
-Can be used for representing variable-length time series.
-Default: <code class="docutils literal notranslate"><span class="pre">nan</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -309,17 +216,6 @@ Default: <code class="docutils literal notranslate"><span class="pre">nan</span>
 <dt class="sig sig-object py" id="tsfuse.data.Collection.values">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">values</span></span><a class="headerlink" href="#tsfuse.data.Collection.values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Three-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>numpy.array</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="tsfuse.data.Collection.index">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#tsfuse.data.Collection.index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t)</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>numpy.array</p>
@@ -339,8 +235,19 @@ Default: <code class="docutils literal notranslate"><span class="pre">nan</span>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="tsfuse.data.Collection.dimensions">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dimensions</span></span><a class="headerlink" href="#tsfuse.data.Collection.dimensions" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tsfuse.data.Collection.time">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">time</span></span><a class="headerlink" href="#tsfuse.data.Collection.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional array of shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t)</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tsfuse.data.Collection.dims">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dims</span></span><a class="headerlink" href="#tsfuse.data.Collection.dims" title="Permalink to this definition">¶</a></dt>
 <dd><p>One-dimensional array of length <code class="docutils literal notranslate"><span class="pre">d</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -378,12 +285,6 @@ Default: <code class="docutils literal notranslate"><span class="pre">nan</span>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="tsfuse.data.Collection.mask_value">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">mask_value</span></span><a class="headerlink" href="#tsfuse.data.Collection.mask_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mask value.</p>
-</dd></dl>
-
-<dl class="py property">
 <dt class="sig sig-object py" id="tsfuse.data.Collection.shape">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#tsfuse.data.Collection.shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">t,</span> <span class="pre">d)</span></code></p>
@@ -398,127 +299,13 @@ Default: <code class="docutils literal notranslate"><span class="pre">nan</span>
 <dl class="py property">
 <dt class="sig sig-object py" id="tsfuse.data.Collection.itype">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">itype</span></span><a class="headerlink" href="#tsfuse.data.Collection.itype" title="Permalink to this definition">¶</a></dt>
-<dd><p>Data type of <code class="docutils literal notranslate"><span class="pre">self.index</span></code></p>
+<dd><p>Data type of <code class="docutils literal notranslate"><span class="pre">self.time</span></code></p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tsfuse.data.Collection.to_dataframe">
-<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.Collection.to_dataframe" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.Collection.to_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert to a DataFrame.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tsfuse.data.Collection.from_dataframe">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.data.Collection.from_dataframe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a collection from a DataFrame.</p>
-<p>The given DataFrame can either contain time series data or
-attribute-value data. For compatibility and ease-of-use, we follow the
-<a class="reference external" href="https://tsfresh.readthedocs.io/en/latest/text/data_formats.html#input-option-1-flat-dataframe">tsfresh time  series format (option 1)</a>.</p>
-<p>For time series data, the following format is expected:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 12%" />
-<col style="width: 15%" />
-<col style="width: 24%" />
-<col style="width: 24%" />
-<col style="width: 24%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>id</p></th>
-<th class="head"><p>time</p></th>
-<th class="head"><p>x</p></th>
-<th class="head"><p>y</p></th>
-<th class="head"><p>z</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>A</p></td>
-<td><p>t1</p></td>
-<td><p>x(A, t1)</p></td>
-<td><p>y(A, t1)</p></td>
-<td><p>z(A, t1)</p></td>
-</tr>
-<tr class="row-odd"><td><p>A</p></td>
-<td><p>t2</p></td>
-<td><p>x(A, t2)</p></td>
-<td><p>y(A, t2)</p></td>
-<td><p>z(A, t2)</p></td>
-</tr>
-<tr class="row-even"><td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-</tr>
-<tr class="row-odd"><td><p>B</p></td>
-<td><p>t1</p></td>
-<td><p>x(B, t1)</p></td>
-<td><p>y(B, t1)</p></td>
-<td><p>z(B, t1)</p></td>
-</tr>
-<tr class="row-even"><td><p>B</p></td>
-<td><p>t2</p></td>
-<td><p>x(B, t2)</p></td>
-<td><p>y(B, t2)</p></td>
-<td><p>z(B, t2)</p></td>
-</tr>
-<tr class="row-odd"><td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-</tr>
-</tbody>
-</table>
-<p>For attribute-value data, the following format is expected:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 26%" />
-<col style="width: 26%" />
-<col style="width: 26%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>id</p></th>
-<th class="head"><p>x</p></th>
-<th class="head"><p>y</p></th>
-<th class="head"><p>z</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>A</p></td>
-<td><p>x(A)</p></td>
-<td><p>y(A)</p></td>
-<td><p>z(A)</p></td>
-</tr>
-<tr class="row-odd"><td><p>B</p></td>
-<td><p>x(B)</p></td>
-<td><p>y(B)</p></td>
-<td><p>z(B)</p></td>
-</tr>
-<tr class="row-even"><td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-<td><p>…</p></td>
-</tr>
-</tbody>
-</table>
-<p>Both time series data and attribute-value data can consist of multiple
-variables (<strong>x</strong>, <strong>y</strong>, <strong>z</strong>) that have values for multiple instances
-(<strong>id</strong>: A, B, …). For time series data, each variable represents a
-time series and hence has multiple values (<strong>time</strong>: t1, t2, …). The
-values and the length of the time column do not have to be identical
-across instances.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<em>DataFrame</em>) – Time series data or attribute-value given as a DataFrame in the
-format specified above.</p></li>
-<li><p><strong>column_id</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the <strong>id</strong> column. Default: ‘id’</p></li>
-<li><p><strong>column_sort</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the <strong>time</strong> column. Default: ‘time’</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -548,7 +335,7 @@ format specified above.</p></li>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tsfuse.data.Type.WINDOWS">
 <span class="sig-name descname"><span class="pre">WINDOWS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#tsfuse.data.Type.WINDOWS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Windows, each with one or more time series (3-dimensional)</p>
+<dd><p>Windows, each with one or more attributes or time series (3-dimensional)</p>
 </dd></dl>
 
 </dd></dl>

@@ -6,11 +6,15 @@ Instead of extracting univariate time series features, TSFuse generates new seri
 time series fusion operations.
 
 .. toctree::
+   :caption: Contents
+   :maxdepth: 1
+
    installation
    getting-started.ipynb
 
 .. toctree::
    :caption: Modules
+   :maxdepth: 1
 
    modules/tsfuse
    modules/tsfuse.data
