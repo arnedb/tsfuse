@@ -13,25 +13,25 @@ def x():
 
 
 def test_number_of_peaks_support_1():
-    x = Collection([1, 2, 1, 2, 3, 2, 3])
+    x = Collection.from_array([1, 2, 1, 2, 3, 2, 3])
     actual = NumberPeaks(support=1).transform(x).values
     np.testing.assert_equal(actual, 2)
 
 
 def test_number_of_peaks_support_1_zero():
-    x = Collection([1, 1, 1, 1])
+    x = Collection.from_array([1, 1, 1, 1])
     actual = NumberPeaks(support=1).transform(x).values
     np.testing.assert_equal(actual, 0)
 
 
 def test_number_of_peaks_support_2():
-    x = Collection([1, 2, 3, 2, 1, 0, 1, 0])
+    x = Collection.from_array([1, 2, 3, 2, 1, 0, 1, 0])
     actual = NumberPeaks(support=2).transform(x).values
     np.testing.assert_equal(actual, 1)
 
 
 def test_number_of_peaks_support_2_zero():
-    x = Collection([3, 2, 1, 0])
+    x = Collection.from_array([3, 2, 1, 0])
     actual = NumberPeaks(support=2).transform(x).values
     np.testing.assert_equal(actual, 0)
 

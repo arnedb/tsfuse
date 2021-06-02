@@ -13,7 +13,7 @@ __all__ = [
 
 
 class Norm(Transformer):
-    def __init__(self, *parents, p=2, axis='dimensions', **kwargs):
+    def __init__(self, *parents, p=2, axis='dims', **kwargs):
         super(Norm, self).__init__(*parents, **kwargs)
         self.p = p
         self.axis = axis
@@ -30,7 +30,7 @@ class Norm(Transformer):
 
 
 class Resultant(Transformer):
-    def __init__(self, *parents, axis='dimensions', **kwargs):
+    def __init__(self, *parents, axis='dims', **kwargs):
         super(Resultant, self).__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
@@ -44,7 +44,7 @@ class Resultant(Transformer):
 
 
 class Angle(Transformer):
-    def __init__(self, *parents, axis='dimensions', **kwargs):
+    def __init__(self, *parents, axis='dims', **kwargs):
         super(Angle, self).__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [

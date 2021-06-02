@@ -57,7 +57,7 @@ def test_diff(x):
 
 
 def test_roots():
-    x = Collection([-1, 0, 1])
+    x = Collection.from_array([-1, 0, 1])
     actual = Roots().transform(x).values
     np.testing.assert_almost_equal(actual.flatten(), [1, -1])
 

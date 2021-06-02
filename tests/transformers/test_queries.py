@@ -36,18 +36,18 @@ def test_slice_last(x):
 
 
 def test_aggregate_mean():
-    x = Collection([1, 2, 3, 3, 5])
-    actual = Aggregate(size=2, agg='mean', axis='dimensions').transform(x).values
+    x = Collection.from_array([1, 2, 3, 3, 5])
+    actual = Aggregate(size=2, agg='mean', axis='dims').transform(x).values
     np.testing.assert_equal(actual[0, 0, :], [1.5, 3, 5])
 
 
 def test_aggregate_min():
-    x = Collection([1, 2, 3, 3, 5])
-    actual = Aggregate(size=2, agg='min', axis='dimensions').transform(x).values
+    x = Collection.from_array([1, 2, 3, 3, 5])
+    actual = Aggregate(size=2, agg='min', axis='dims').transform(x).values
     np.testing.assert_equal(actual[0, 0, :], [1, 3, 5])
 
 
 def test_aggregate_max():
-    x = Collection([1, 2, 3, 3, 5])
-    actual = Aggregate(size=2, agg='max', axis='dimensions').transform(x).values
+    x = Collection.from_array([1, 2, 3, 3, 5])
+    actual = Aggregate(size=2, agg='max', axis='dims').transform(x).values
     np.testing.assert_equal(actual[0, 0, :], [2, 3, 5])

@@ -16,10 +16,10 @@ class SIUnits(Transformer):
                 return x
             else:
                 values = mask_nan(x) * x.unit
-                return Collection(
-                    values=values.to(si_unit).values,
-                    index=x.index,
-                    dimensions=x.dimensions
+                return Collection.from_array(
+                    values.to(si_unit).values,
+                    time=x.time,
+                    dims=x.dims
                 )
 
     @staticmethod

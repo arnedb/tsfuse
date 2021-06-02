@@ -23,17 +23,16 @@ setup(
     install_requires=[
         'cython',
         'numpy',
+        'pandas',
         'scipy>=1.2.1',
         'statsmodels>=0.9.0',
         'scikit-learn>=0.20.1',
         'six>=1.12.0',
         'Pint>=0.9',
-        'graphviz>=0.10.1',
+        'graphviz',
+        'matplotlib',
     ],
-    extras_require={'test': [
-        'pytest',
-        'pandas>=0.24.2'
-    ]},
+    extras_require={'test': ['pytest']},
     ext_modules=cythonize([
         Extension(
             'tsfuse.data.df', ['tsfuse/data/df.pyx'],

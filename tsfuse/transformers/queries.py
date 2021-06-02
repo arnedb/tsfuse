@@ -50,23 +50,23 @@ class Slice(Transformer):
             s = self.i
         if a == 0:
             values = x.values[s, :, :]
-            index = x.index[s, :]
-            dimensions = x.dimensions[:]
+            time = x.time[s, :]
+            dims = x.dims[:]
         elif a == 1:
             values = x.values[:, s, :]
-            index = x.index[:, s]
-            dimensions = x.dimensions[:]
+            time = x.time[:, s]
+            dims = x.dims[:]
         else:
             values = x.values[:, :, s]
-            index = x.index[:, :]
-            dimensions = x.dimensions[s]
+            time = x.time[:, :]
+            dims = x.dims[s]
         if values.shape[a] == 0:
             return None
-        return Collection(values, index=index, dimensions=dimensions)
+        return Collection.from_array(values, time=time, dims=dims)
 
 
 class Aggregate(Transformer):
-    def __init__(self, *parents, size=10, agg='mean', axis='timestamps', **kwargs):
+    def __init__(self, *parents, size=10, agg='mean', axis='time', **kwargs):
         super(Aggregate, self).__init__(*parents, **kwargs)
         self.size = size
         self.agg = agg

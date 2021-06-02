@@ -42,25 +42,25 @@ def test_sum(x):
 
 
 def test_min():
-    x = Collection([4, 3, 2, 1, 2, 3, 4])
+    x = Collection.from_array([4, 3, 2, 1, 2, 3, 4])
     actual = Min().transform(x).values
     np.testing.assert_equal(actual, 1)
 
 
 def test_arg_min():
-    x = Collection([4, 3, 2, 1, 2, 3, 4])
+    x = Collection.from_array([4, 3, 2, 1, 2, 3, 4])
     actual = ArgMin().transform(x).values
     np.testing.assert_equal(actual, 3)
 
 
 def test_max():
-    x = Collection([1, 2, 3, 4, 3, 2, 1])
+    x = Collection.from_array([1, 2, 3, 4, 3, 2, 1])
     actual = Max().transform(x).values
     np.testing.assert_equal(actual, 4)
 
 
 def test_arg_max():
-    x = Collection([1, 2, 3, 4, 3, 2, 1])
+    x = Collection.from_array([1, 2, 3, 4, 3, 2, 1])
     actual = ArgMax().transform(x).values
     np.testing.assert_equal(actual, 3)
 
@@ -156,7 +156,7 @@ def test_energy(x):
 
 
 def test_energy_ratio():
-    x = Collection([1, 2, 3, 4, 5, 6, 7, 8])
+    x = Collection.from_array([1, 2, 3, 4, 5, 6, 7, 8])
     chunks = [[1, 2, 3], [4, 5, 6], [7, 8]]
     result = EnergyRatio(chunks=3).transform(x).values
     assert result.shape == (1, 1, 3)
@@ -167,7 +167,7 @@ def test_energy_ratio():
 
 
 def test_entropy(x):
-    x = Collection(np.abs(x.values) + 1)  # ensure that values > 0
+    x = Collection.from_array(np.abs(x.values) + 1)  # ensure that values > 0
     result = Entropy().transform(x)
     for i, a in series(x):
         actual = result.values[i]
@@ -176,7 +176,7 @@ def test_entropy(x):
 
     
 def test_sample_entropy(x):
-    x = Collection([1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 5])
+    x = Collection.from_array([1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 5])
     result = SampleEntropy().transform(x)
     actual = result.values
     expected = 0.55961579
@@ -261,7 +261,7 @@ def test_range_count(x):
 
 
 def test_value_count():
-    x = Collection([1, 1, 2, 3])
+    x = Collection.from_array([1, 1, 2, 3])
     actual = ValueCount(value=1).transform(x).values
     np.testing.assert_equal(actual, 2)
 
@@ -375,25 +375,25 @@ def test_symmetry_looking_1(x):
 
 
 def test_number_crossings_zero_no():
-    x = Collection([1, 2, 3, 4])
+    x = Collection.from_array([1, 2, 3, 4])
     actual = NumberCrossings().transform(x).values
     np.testing.assert_equal(actual, 0)
 
 
 def test_number_crossings_zero_one():
-    x = Collection([-1, 1, 2, 3, 4])
+    x = Collection.from_array([-1, 1, 2, 3, 4])
     actual = NumberCrossings().transform(x).values
     np.testing.assert_equal(actual, 1)
 
 
 def test_number_crossings_zero_two():
-    x = Collection([1, -1, 2, 3, 4])
+    x = Collection.from_array([1, -1, 2, 3, 4])
     actual = NumberCrossings().transform(x).values
     np.testing.assert_equal(actual, 2)
 
 
 def test_number_crossings_one():
-    x = Collection([0, 2, 3, 4])
+    x = Collection.from_array([0, 2, 3, 4])
     actual = NumberCrossings().transform(x).values
     np.testing.assert_equal(actual, 1)
 
@@ -407,19 +407,19 @@ def test_linear_trend(x):
 
 
 def test_longest_strike_above_mean_zero():
-    x = Collection([1, 1, 1])
+    x = Collection.from_array([1, 1, 1])
     actual = LongestStrikeAboveMean().transform(x).values
     np.testing.assert_equal(actual, 0)
 
 
 def test_longest_strike_above_mean_two():
-    x = Collection([0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 0])
+    x = Collection.from_array([0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 0])
     actual = LongestStrikeAboveMean().transform(x).values
     np.testing.assert_equal(actual, 2)
 
 
 def test_longest_strike_above_mean_three():
-    x = Collection([0, 0, 0, 2, 2, 0, 0, 2, 2, 2, 0, 0, 2, 0])
+    x = Collection.from_array([0, 0, 0, 2, 2, 0, 0, 2, 2, 2, 0, 0, 2, 0])
     actual = LongestStrikeAboveMean().transform(x).values
     np.testing.assert_equal(actual, 3)
 

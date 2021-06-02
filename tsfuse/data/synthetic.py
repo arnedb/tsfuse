@@ -46,7 +46,7 @@ def brownian(N=10, t=100, d=2, random_state=None, **kwargs):
         for j in range(d):
             values[i, :, j] = generate(t)
 
-    return Collection(values=values, **kwargs)
+    return Collection.from_array(values, **kwargs)
 
 
 def series(*collections):

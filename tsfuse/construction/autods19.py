@@ -106,7 +106,7 @@ fast = {
             HasDuplicateMin(),
             HasDuplicateMax(),
         ] + [
-            Slice(AutoCorrelation(), i=i, axis='timestamps') for i in range(10)
+            Slice(AutoCorrelation(), i=i, axis='time') for i in range(10)
         ]
 }
 
@@ -118,9 +118,9 @@ full = {
             Quantile(q=round(q, 1))
             for q in (.1, .2, .3, .4, .6, .7, .8, .9)
         ] + [
-            Slice(FFT(), i=i, axis='timestamps') for i in range(100)
+            Slice(FFT(), i=i, axis='time') for i in range(100)
         ] + [
-            Slice(CWT(), i=i, axis='timestamps') for i in range(10)
+            Slice(CWT(), i=i, axis='time') for i in range(10)
         ] + [
             SpectralMean(FFT()),
             SpectralVariance(FFT()),
@@ -133,9 +133,9 @@ full = {
             for size in (5, 10, 50)
             for agg in ('mean', 'var', 'min', 'max')
         ] + [
-            Slice(AutoRegressiveCoefficients(), i=i, axis='timestamps') for i in range(10)
+            Slice(AutoRegressiveCoefficients(), i=i, axis='time') for i in range(10)
         ] + [
-            Slice(FriedrichCoefficients(m=3, r=30), i=i, axis='timestamps') for i in range(4)
+            Slice(FriedrichCoefficients(m=3, r=30), i=i, axis='time') for i in range(4)
         ] + [
             MaxLangevinFixedPoint(m=3, r=30),
         ] + [
@@ -305,7 +305,7 @@ def build_attributes(X, y, task, series, transformers, alpha, log=None):
 
 def subsample(x, y, ratio=0.1):
     i = np.random.choice(x.shape[0], size=int(ratio * x.shape[0]))
-    xs = Collection(x.values[i], x.dimensions, x.index[i])
+    xs = Collection.from_array(x.values[i], dims=x.dims, time=x.time[i])
     ys = y[i]
     return xs, ys
 
@@ -384,7 +384,7 @@ def set_parents(node, parents, data):
     #         resampled = []
     #         for i, parent in enumerate(parents):
     #             if n_timestamps[i] != num:
-    #                 resampled.append(Resample(parent, num=num, axis='timestamps'))
+    #                 resampled.append(Resample(parent, num=num, axis='time'))
     #             else:
     #                 resampled.append(parent)
     #         c = copy.deepcopy(node)
@@ -446,7 +446,7 @@ def format_args(X, y, transformers, task, max_depth):
     elif isinstance(X, Collection):
         X = {'X': X}
     elif not isinstance(X, dict):
-        X = {'X': Collection(X)}
+        X = {'X': Collection.from_array(X)}
     # y should be a np.ndarray
     if isinstance(y, list):
         y = np.array(y)
@@ -496,4 +496,4 @@ def to_collection(x):
         elif len(set([c.shape[1] for c in x])) > 1:
             return None
         else:
-            return Collection(values=np.concatenate([c.values for c in x]))
+            return Collection.from_array(np.concatenate([c.values for c in x]))

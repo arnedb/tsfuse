@@ -36,16 +36,16 @@ def test_resultant(x):
 
 
 def test_angle_half():
-    p1 = Collection([1, 0])
-    p2 = Collection([0, 0])
-    p3 = Collection([-2, 0])
+    p1 = Collection.from_array([1, 0])
+    p2 = Collection.from_array([0, 0])
+    p3 = Collection.from_array([-2, 0])
     actual = Angle().transform(p1, p2, p3, ignore_preconditions=True).values
     np.testing.assert_almost_equal(np.mod(actual, np.pi), 0)
 
 
 def test_angle_perpendicular():
-    p1 = Collection([1, 0])
-    p2 = Collection([0, 0])
-    p3 = Collection([0, 2])
+    p1 = Collection.from_array([1, 0])
+    p2 = Collection.from_array([0, 0])
+    p3 = Collection.from_array([0, 2])
     actual = Angle().transform(p1, p2, p3, ignore_preconditions=True).values
     np.testing.assert_almost_equal(np.mod(actual, np.pi), np.pi / 2)

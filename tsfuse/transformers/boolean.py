@@ -58,14 +58,14 @@ class NotEqual(Transformer):
 
 def _collections(x, y):
     if not isinstance(x, Collection):
-        x = Collection(np.array([[[[x]]]]))
+        x = Collection.from_array(np.array([[[[x]]]]))
     if not isinstance(y, Collection):
-        y = Collection(np.array([[[[y]]]]))
+        y = Collection.from_array(np.array([[[[y]]]]))
     return x, y
 
 
 def _result(x, y, values):
     if values.shape == x.shape:
-        return Collection(values, index=x.index, dimensions=x.dimensions)
+        return Collection.from_array(values, time=x.time, dims=x.dims)
     else:
-        return Collection(values, index=y.index, dimensions=y.dimensions)
+        return Collection.from_array(values, time=y.time, dims=y.dims)

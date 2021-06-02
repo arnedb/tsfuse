@@ -248,14 +248,13 @@ class Transformer(Node):
                     if any(r is None for r in results):
                         result = None
                     elif len(set(r.shape for r in results)) == 1:
-                        result = Collection(
-                            values=np.concatenate([r.values for r in results]),
-                            index=np.concatenate([r.index for r in results]),
-                            dimensions=results[0].dimensions,
-                            mask_value=results[0].mask_value,
+                        result = Collection.from_array(
+                            np.concatenate([r.values for r in results]),
+                            time=np.concatenate([r.time for r in results]),
+                            dims=results[0].dims,
                         )
                     else:
-                        result = Collection(results)
+                        result = Collection.from_array(results)
                 else:
                     result = None
             else:
@@ -624,19 +623,19 @@ class Not(Transformer):
     @staticmethod
     def apply(x):
         values = np.logical_not(x.values)
-        return Collection(values)
+        return Collection.from_array(values)
 
 
 def _collections(x, y):
     if not isinstance(x, Collection):
-        x = Collection(x)
+        x = Collection.from_array(x)
     if not isinstance(y, Collection):
-        y = Collection(y)
+        y = Collection.from_array(y)
     return x, y
 
 
 def _result(x, y, values):
     if values.shape == x.shape:
-        return Collection(values, index=x.index, dimensions=x.dimensions)
+        return Collection.from_array(values, time=x.time, dims=x.dims)
     else:
-        return Collection(values, index=y.index, dimensions=y.dimensions)
+        return Collection.from_array(values, time=y.time, dims=y.dims)
