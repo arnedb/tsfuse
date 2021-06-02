@@ -1,4 +1,5 @@
 from graphviz import Digraph
+from copy import copy
 
 from .nodes import Node, Input, Constant, Transformer
 from .apply import compute
@@ -42,6 +43,7 @@ class Graph(object):
     """
 
     def __init__(self, nodes=None):
+        self.optimized = None
         self._nodes = []
         self._inputs = dict()
         self._parents = dict()
@@ -52,7 +54,7 @@ class Graph(object):
                 self.add_node(nodes)
             else:
                 for node in nodes:
-                    self.add_node(node)
+                    node = self.add_node(node)
 
     @property
     def nodes(self):
@@ -86,7 +88,7 @@ class Graph(object):
     def outputs(self):
         return [n for n in self.nodes if n.is_output]
 
-    def add_node(self, node, optimize=True):
+    def add_node(self, node, **kwargs):
         """
         Add a node to the computation graph.
 
@@ -94,25 +96,33 @@ class Graph(object):
         ----------
         node : Node
             Node that will be added to the graph.
-        optimize : boolean, optional
-            Merge equal paths to speed up the computation by avoiding to recompute the same
-            transformations more than once. Default: True
 
         Returns
         -------
         node : Node
         """
+        optimize = kwargs.get('optimize', False)
+
+        if not optimize:
+            if self.optimized is None:
+                self.optimized = Graph()
+                self.optimized.original = dict()
+            # node_copy._parents = [p.optimized for p in node_copy.parents]
+            # node_optimized = self.optimized.add_node(node_copy, optimize=True)
+            node_optimized = self.optimized.add_node(node, optimize=True)
+            self.optimized.original[node_optimized] = node
+
         if isinstance(node, (Input, int, str)):
-            return self._add_input(node)
-        elif isinstance(node, Transformer) and hasattr(node, 'graph'):
-            return self._add_graph_transformer(node, optimize=optimize)
+            node = self._add_input(node)
+        elif optimize and isinstance(node, Transformer) and hasattr(node, 'graph'):
+            node = self._add_graph_transformer(node, optimize=True)
         elif node not in self._nodes:
-            if optimize and node.trace in self.traces:
-                return self.traces[node.trace]
+            if node.trace in self.traces:
+                node = self.traces[node.trace]
             else:
-                return self._add_node(node, optimize=optimize)
-        else:
-            return node
+                node = self._add_node(node, optimize=optimize)
+
+        return node
 
     def transform(self, X, return_dataframe=True, chunk_size=None, n_jobs=None):
         """

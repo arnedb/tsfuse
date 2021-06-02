@@ -7,7 +7,7 @@ __all__ = [
 ]
 
 
-def compute(graph, inputs, chunk_size=None, n_jobs=None, return_timings=False):
+def compute(graph, inputs, chunk_size=None, n_jobs=None):
     """
     Compute the outputs of a computation graph.
 
@@ -17,7 +17,6 @@ def compute(graph, inputs, chunk_size=None, n_jobs=None, return_timings=False):
     inputs : dict
     chunk_size : int, optional
     n_jobs : int, optional
-    return_timings : bool, optional
 
     Returns
     -------
@@ -26,47 +25,42 @@ def compute(graph, inputs, chunk_size=None, n_jobs=None, return_timings=False):
     n = inputs[list(inputs)[0]].shape[0]
     if not all(inputs[i].shape[0] == n for i in inputs):
         raise ValueError("Size of axis 0 must be equal for all inputs")
-    timings = {node.trace: 0 for node in graph.nodes}
+    if graph.optimized:
+        graph_original = graph
+        graph = graph.optimized
     if chunk_size is None:
         data = {}
         for input_id in graph.inputs:
-            data[graph.inputs[input_id].trace] = inputs[input_id]
+            data[graph.inputs[input_id]] = inputs[input_id]
         for n in graph.constants:
-            data[n.trace] = n.output
+            data[n] = n.output
         for node in graph.nodes:
-            if node.trace not in data:
-                data_parents = [data[n.trace] for n in graph.parents[node]]
+            if node not in data:
+                data_parents = [data[n] for n in graph.parents[node]]
                 t = time.time()
                 try:
-                    data[node.trace] = node.transform(*data_parents)
+                    data[node] = node.transform(*data_parents)
                 except Exception:  # TODO: Make exception more specific
-                    data[node.trace] = None
+                    data[node] = None
                     warnings.warn('Error for {}'.format(node))
-                timings[node.trace] += time.time() - t
-        result = [{node: data[node.trace] for node in graph.outputs}]
-        if return_timings:
-            result.append(timings)
-        return result[0] if len(result) == 1 else tuple(result)
+        if graph_original.optimized:
+            return {graph.original[node]: data[node] for node in graph.outputs}
+        else:
+            return {node: data[node] for node in graph.outputs}
     else:
         if n_jobs is None:
-            return _compute_chunks(inputs, graph, chunk_size, return_timings)
+            return _compute_chunks(inputs, graph_original, chunk_size)
         else:
-            return _compute_chunks_parallel(inputs, graph, chunk_size, n_jobs)
+            return _compute_chunks_parallel(inputs, graph_original, chunk_size, n_jobs)
 
 
-def _compute_chunks(inputs, graph, chunk_size, return_timings):
+def _compute_chunks(inputs, graph, chunk_size):
     n = next(iter(inputs.values())).shape[0] if isinstance(inputs, dict) else inputs[0].shape[0]
     outputs = None
-    timings = {node.trace: 0 for node in graph.nodes}
     for i in range(0, n, chunk_size):
         j = min(i + chunk_size, n)
-        result_chunk = compute(graph, _select(inputs, i, j), return_timings=return_timings)
-        if return_timings:
-            outputs_chunk = result_chunk[0]
-            timings_chunk = result_chunk[1]
-            timings[i] += timings_chunk[i]
-        else:
-            outputs_chunk = result_chunk
+        result_chunk = compute(graph, _select(inputs, i, j))
+        outputs_chunk = result_chunk
         if outputs is None:
             outputs = outputs_chunk
         else:
@@ -75,10 +69,7 @@ def _compute_chunks(inputs, graph, chunk_size, return_timings):
                     outputs[o] = None
                 elif outputs[o] is not None:
                     outputs[o] = outputs[o].append(outputs_chunk[o])
-    result = [outputs]
-    if return_timings:
-        result.append(timings)
-    return result[0] if len(result) == 1 else tuple(result)
+    return outputs
 
 
 def _compute_chunks_parallel(inputs, graph, chunk_size, n_jobs):

@@ -68,16 +68,16 @@ def test_add_node_transformer():
     graph = Graph()
     graph.add_node(Mean(Input(0)))
     graph.add_node(Variance(Input(0)))
-    assert len(graph.nodes) == 4
+    assert len(graph.nodes) == 3
     assert len(graph.inputs) == 1
     assert len(graph.outputs) == 2
 
 
-def test_add_node_transformer_without_optimization():
+def test_add_node_transformer_with_optimization():
     graph = Graph()
-    graph.add_node(Mean(Input(0)), optimize=False)
-    graph.add_node(Variance(Input(0)), optimize=False)
-    assert len(graph.nodes) == 5
+    graph.add_node(Mean(Input(0)), optimize=True)
+    graph.add_node(Variance(Input(0)), optimize=True)
+    assert len(graph.nodes) == 4
     assert len(graph.inputs) == 1
     assert len(graph.outputs) == 2
 
