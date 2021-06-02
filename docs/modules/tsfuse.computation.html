@@ -88,7 +88,8 @@
               
             
             
-              <ul>
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 </ul>
@@ -270,15 +271,11 @@ Nodes can also be added later using <a class="reference internal" href="#tsfuse.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tsfuse.computation.Graph.add_node">
-<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.add_node" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.computation.Graph.add_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a node to the computation graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>node</strong> (<a class="reference internal" href="#tsfuse.computation.Node" title="tsfuse.computation.Node"><em>Node</em></a>) – Node that will be added to the graph.</p></li>
-<li><p><strong>optimize</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Merge equal paths to speed up the computation by avoiding to recompute the same
-transformations more than once. Default: True</p></li>
-</ul>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#tsfuse.computation.Node" title="tsfuse.computation.Node"><em>Node</em></a>) – Node that will be added to the graph.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>node</strong></p>
