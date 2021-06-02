@@ -107,10 +107,10 @@ class Graph(object):
             if self.optimized is None:
                 self.optimized = Graph()
                 self.optimized.original = dict()
-            # node_copy._parents = [p.optimized for p in node_copy.parents]
-            # node_optimized = self.optimized.add_node(node_copy, optimize=True)
             node_optimized = self.optimized.add_node(node, optimize=True)
             self.optimized.original[node_optimized] = node
+            if isinstance(node, Node) and node._is_output:
+                node_optimized._is_output = True
 
         if isinstance(node, (Input, int, str)):
             node = self._add_input(node)

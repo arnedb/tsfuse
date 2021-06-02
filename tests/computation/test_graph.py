@@ -2,7 +2,8 @@ import pytest
 import numpy as np
 
 from tsfuse.data.synthetic import brownian
-from tsfuse.computation import Graph, Input
+from tsfuse.computation import Graph, Input, extract
+from tsfuse.construction.autods19 import minimal
 from tsfuse.transformers import Add, Mean, Variance, PowerSpectralDensity
 
 
@@ -107,3 +108,30 @@ def test_transform_to_dataframe(graph):
     result = graph.transform({'x': x, 'y': y}, return_dataframe=True)
     print(graph.outputs)
     assert result.shape == (10, 4)
+
+def test_extract_minimal(graph):
+    x = brownian()
+    y = brownian()
+    X = {'x': x, 'y': y}
+    features, graph = extract(X, transformers='minimal', return_graph=True)
+    print(list(features.columns))
+    print(graph.optimized.outputs)
+    assert features.shape == (x.shape[0], len(minimal['series-to-attribute']) * 2 * 2)
+    np.testing.assert_almost_equal(
+        features.loc[:, 'Mean(Input(x)){0}'],
+        Mean().transform(x).values[:, 0, 0]
+    )
+
+def test_extract_custom(graph):
+    x = brownian()
+    y = brownian()
+    X = {'x': x, 'y': y}
+    transformers = [Mean(), Variance()]
+    features, graph = extract(X, transformers=transformers, return_graph=True)
+    print(list(features.columns))
+    print(graph.optimized.outputs)
+    assert features.shape == (x.shape[0], len(transformers) * 2 * 2)
+    np.testing.assert_almost_equal(
+        features.loc[:, 'Mean(Input(x)){0}'],
+        Mean().transform(x).values[:, 0, 0]
+    )
