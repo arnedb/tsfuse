@@ -5,7 +5,7 @@ import numpy as np
 
 setup(
     name='tsfuse',
-    version='0.1.0',
+    version='0.1.1',
     description='Automated feature construction for multiple time series data',
     author='Arne De Brabandere',
     project_urls={
