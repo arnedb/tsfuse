@@ -38,7 +38,7 @@ class NumberPeaks(Transformer):
             for i in range(1, n + 1):
                 is_peak &= a[:, :, n - i:][:, :, :l] < a[:, :, n:-n]
                 is_peak &= a[:, :, n + i:][:, :, :l] < a[:, :, n:-n]
-            return np.sum(is_peak, keepdims=True)
+            return np.sum(is_peak, axis=-1, keepdims=True)
 
         return apply_to_axis(calculator, x, axis=self.axis)
 
