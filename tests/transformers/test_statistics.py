@@ -307,7 +307,7 @@ def test_auto_regressive_coefficients(x):
     result = AutoRegressiveCoefficients().transform(x)
     for i, a in series(x):
         actual = result.values[i]
-        expected = statsmodels.tsa.ar_model.AR(a).fit().params
+        expected = statsmodels.tsa.ar_model.AutoReg(a, 1).fit().params
         np.testing.assert_almost_equal(actual, expected)
 
 

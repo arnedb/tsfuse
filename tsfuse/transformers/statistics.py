@@ -647,7 +647,7 @@ class AutoRegressiveCoefficients(Transformer):
         def calculator1d(a):
             nnan = ~np.isnan(a)
             a = a[nnan]
-            return statsmodels.tsa.ar_model.AR(a).fit().params
+            return statsmodels.tsa.ar_model.AutoReg(a, 1).fit().params
 
         def calculator(a):
             return np.apply_along_axis(calculator1d, -1, a)

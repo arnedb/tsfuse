@@ -25,7 +25,7 @@ setup(
         'numpy',
         'pandas',
         'scipy>=1.2.1',
-        'statsmodels>=0.9.0',
+        'statsmodels>=0.12.0',
         'scikit-learn>=0.20.1',
         'six>=1.12.0',
         'Pint>=0.9',
