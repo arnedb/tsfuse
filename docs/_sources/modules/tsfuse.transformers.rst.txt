@@ -11,14 +11,6 @@ tsfuse.transformers.boolean
    :undoc-members:
    :exclude-members: apply, graph, unit
 
-tsfuse.transformers.conversion
-------------------------------
-
-.. automodule:: tsfuse.transformers.conversion
-   :members:
-   :undoc-members:
-   :exclude-members: apply, graph, unit
-
 tsfuse.transformers.frequency
 -----------------------------
 
@@ -41,7 +33,7 @@ tsfuse.transformers.mathematics
 .. automodule:: tsfuse.transformers.mathematics
    :members:
    :undoc-members:
-   :exclude-members: apply, graph, unit
+   :exclude-members: apply, graph, unit, Sin, Cos, Tan, ArcSin, ArcCos, ArcTan
 
 tsfuse.transformers.peaks
 -------------------------
@@ -73,7 +65,7 @@ tsfuse.transformers.statistics
 .. automodule:: tsfuse.transformers.statistics
    :members:
    :undoc-members:
-   :exclude-members: apply, graph, unit
+   :exclude-members: apply, graph, unit, SinglePassStatistics
 
 tsfuse.transformers.uniqueness
 ------------------------------

@@ -79,16 +79,6 @@ class SinglePassStatistics(Transformer):
     - kurtosis
 
     Each series of the input collection is transformed to a series of eight values.
-
-    Preconditions:
-
-    - Number of inputs: 1
-    - Input data must be numeric.
-
-    Parameters
-    ----------
-    axis : {'windows', 'timestamps', 'dimensions'}, optional
-        Aggregation axis. Default: first axis with more than one value.
     """
     def __init__(self, *parents, axis=None, **kwargs):
         super(SinglePassStatistics, self).__init__(*parents, **kwargs)

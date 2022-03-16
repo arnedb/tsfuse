@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 """
-Add:
+Add later:
 - DetectPeaks
 - DetectPeaksCWT
 - PeakDistanceMean
@@ -21,6 +21,17 @@ Add:
 
 
 class NumberPeaks(Transformer):
+    """
+    Number of peaks
+
+    Parameters
+    ----------
+    support : int, optional
+        Minimum support of each peak. Default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
     def __init__(self, *parents, support=1, axis=None, **kwargs):
         super(NumberPeaks, self).__init__(*parents, **kwargs)
         self.support = support
@@ -29,6 +40,15 @@ class NumberPeaks(Transformer):
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, **kwargs):
+        """
+        For each series in **x**, compute the number of peaks that have a
+        support larger than the  given minimum support.
+        The support of a peak is defined as the length of the largest
+        subsequence around the peak where the peak has the largest value.
+        """
+        return super().transform(x, **kwargs)
 
     def apply(self, x):
         def calculator(a):
@@ -44,6 +64,17 @@ class NumberPeaks(Transformer):
 
 
 class NumberPeaksCWT(Transformer):
+    """
+    Number of peaks estimated using a continous wavelet transform
+
+    Parameters
+    ----------
+    max_width : int, optional
+        Maximum width of the wavelet. Default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
     def __init__(self, *parents, max_width=1, axis=None, **kwargs):
         super(NumberPeaksCWT, self).__init__(*parents, **kwargs)
         self.max_width = max_width
@@ -52,6 +83,13 @@ class NumberPeaksCWT(Transformer):
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, **kwargs):
+        """
+        For each series in **x**, estimate the number of peaks using
+        ``scipy.signal.find_peaks_cwt`` where ``widths = [1, ..., max_width]``
+        """
+        return super().transform(x, **kwargs)
 
     def apply(self, x):
         def calculator1d(a):

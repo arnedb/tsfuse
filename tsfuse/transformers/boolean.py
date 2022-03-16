@@ -14,11 +14,7 @@ __all__ = [
 
 class Equal(Transformer):
     """
-    Element-wise equality comparison.
-
-    Preconditions:
-
-    - Number of inputs: 1
+    Element-wise equality comparison
     """
 
     def __init__(self, *parents, **kwargs):
@@ -26,6 +22,12 @@ class Equal(Transformer):
         self.preconditions = [
             lambda *collections: len(collections) == 2,
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x = y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -36,11 +38,7 @@ class Equal(Transformer):
 
 class NotEqual(Transformer):
     """
-    Element-wise inequality comparison.
-
-    Preconditions:
-
-    - Number of inputs: 1
+    Element-wise inequality comparison
     """
 
     def __init__(self, *parents, **kwargs):
@@ -48,6 +46,12 @@ class NotEqual(Transformer):
         self.preconditions = [
             lambda *collections: len(collections) == 2,
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x \\neq y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):

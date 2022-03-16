@@ -90,7 +90,8 @@
               
             
             
-              <ul>
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 </ul>
@@ -101,7 +102,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.computation.html">tsfuse.computation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">tsfuse.transformers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.transformers.boolean">tsfuse.transformers.boolean</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.transformers.conversion">tsfuse.transformers.conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.transformers.frequency">tsfuse.transformers.frequency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.transformers.geometry">tsfuse.transformers.geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.transformers.mathematics">tsfuse.transformers.mathematics</a></li>
@@ -211,88 +211,199 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.boolean.Greater">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.boolean.</span></span><span class="sig-name descname"><span class="pre">Greater</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.Greater" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise greater than comparison.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise greater than comparison</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.boolean.Greater.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.Greater.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x &gt; y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.boolean.Less">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.boolean.</span></span><span class="sig-name descname"><span class="pre">Less</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.Less" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise less than comparison.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise less than comparison</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.boolean.Less.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.Less.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x &lt; y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.boolean.Equal">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.boolean.</span></span><span class="sig-name descname"><span class="pre">Equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.Equal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise equality comparison.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-</ul>
+<dd><p>Element-wise equality comparison</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.boolean.Equal.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.Equal.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x = y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.boolean.NotEqual">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.boolean.</span></span><span class="sig-name descname"><span class="pre">NotEqual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.NotEqual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise inequality comparison.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-</ul>
+<dd><p>Element-wise inequality comparison</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.boolean.NotEqual.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.boolean.NotEqual.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x \neq y\)</span></p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-tsfuse.transformers.conversion">
-<span id="tsfuse-transformers-conversion"></span><h2>tsfuse.transformers.conversion<a class="headerlink" href="#module-tsfuse.transformers.conversion" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.conversion.SIUnits">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.conversion.</span></span><span class="sig-name descname"><span class="pre">SIUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.conversion.SIUnits" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-tsfuse.transformers.frequency">
 <span id="tsfuse-transformers-frequency"></span><h2>tsfuse.transformers.frequency<a class="headerlink" href="#module-tsfuse.transformers.frequency" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.frequency.FFT">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.frequency.</span></span><span class="sig-name descname"><span class="pre">FFT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'abs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.FFT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.frequency.</span></span><span class="sig-name descname"><span class="pre">FFT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'abs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.FFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fast Fourier transform</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<em>{'real'</em><em>, </em><em>'imag'</em><em>, </em><em>'abs'</em><em>, </em><em>'angle'}</em><em>, </em><em>optional</em>) – Return the real part (‘real’), imginary part (‘imag’),
+absolute value (‘abs’), or angle in degrees (‘angle’).
+Default: ‘abs’</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: ‘time’</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.frequency.FFT.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.FFT.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the fast Fourier transform of each time series in <strong>x</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – Time series data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.frequency.CWT">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.frequency.</span></span><span class="sig-name descname"><span class="pre">CWT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ricker'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.CWT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Continuous wavelet transform</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wavelet</strong> (<em>{'ricker'}</em><em>, </em><em>optional</em>) – Wavelet type. Default: ‘ricker’</p></li>
+<li><p><strong>width</strong> (<em>int</em><em>, </em><em>optional</em>) – Wavelet width. Default: 1</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: ‘time’</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.frequency.CWT.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.CWT.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute continous wavelet transform for each time series in <strong>x</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – Time series data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.frequency.PowerSpectralDensity">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.frequency.</span></span><span class="sig-name descname"><span class="pre">PowerSpectralDensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.PowerSpectralDensity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Power spectral density</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: ‘time’</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.frequency.PowerSpectralDensity.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.frequency.PowerSpectralDensity.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute power spectral density using Welch’s method,
+for each time series in <strong>x</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – Time series data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 <div class="section" id="module-tsfuse.transformers.geometry">
 <span id="tsfuse-transformers-geometry"></span><h2>tsfuse.transformers.geometry<a class="headerlink" href="#module-tsfuse.transformers.geometry" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.geometry.Norm">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.geometry.</span></span><span class="sig-name descname"><span class="pre">Norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dims'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Norm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.geometry.</span></span><span class="sig-name descname"><span class="pre">Norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vector norm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of the vector norm. Default: 2</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.geometry.Norm.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Norm.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the vector norm of order <span class="math notranslate nohighlight">\(p\)</span> over the dimensions of <strong>x</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – Multivariate time series data with least 2 dimensions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.geometry.Resultant">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.geometry.</span></span><span class="sig-name descname"><span class="pre">Resultant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dims'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Resultant" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.geometry.</span></span><span class="sig-name descname"><span class="pre">Resultant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Resultant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Euclidean norm</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.geometry.Resultant.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Resultant.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the Euclidean norm over the dimensions of <strong>x</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – Multivariate time series data with least 2 dimensions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.geometry.Angle">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.geometry.</span></span><span class="sig-name descname"><span class="pre">Angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dims'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Angle" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.geometry.</span></span><span class="sig-name descname"><span class="pre">Angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Angle defined by three points</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.geometry.Angle.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.geometry.Angle.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the angle <span class="math notranslate nohighlight">\(\mathbf{\theta}\)</span> defined by three points
+<strong>p1</strong>, <strong>p2</strong>, <strong>p3</strong> as shown in the figure below:</p>
+<a class="reference internal image-reference" href="../_images/angles.png"><img alt="../_images/angles.png" class="align-center" src="../_images/angles.png" style="width: 200px;" /></a>
+<p>This function uses the following formula for computing <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<p class="centered">
+<strong><span class="math notranslate nohighlight">\(\theta = \mathrm{arccos}\Bigg( \frac{\overrightarrow{p1p2}~\cdot~\overrightarrow{p2p3}}{||\overrightarrow{p1p2}||~||\overrightarrow{p2p3}||} \Bigg)\)</span></strong></p><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – 2D/3D coordinates of point 1.</p></li>
+<li><p><strong>p2</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – 2D/3D coordinates of point 2.</p></li>
+<li><p><strong>p3</strong> (<a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a>) – 2D/3D coordinates of point 3.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 <div class="section" id="module-tsfuse.transformers.mathematics">
@@ -300,256 +411,250 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Add">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Add" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise addition.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise addition</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Add.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Add.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x + y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Subtract">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Subtract" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise subtraction.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise subtraction</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Subtract.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Subtract.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x - y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Multiply">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Multiply" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise multiplication.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise multiplication</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Multiply.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Multiply.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x \cdot y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Divide">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Divide" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise division.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise division</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Divide.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Divide.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x / y\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Negative">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Negative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Negative" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise negation.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise negation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Negative.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Negative.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(-x\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Reciprocal">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Reciprocal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Reciprocal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise reciprocal, i.e., multiplicative inverse.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise multiplicative inverse</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Reciprocal.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Reciprocal.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(1/x\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Square">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Square" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise square.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise square</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Square.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Square.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x^2\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Exponent">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Exponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Exponent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element-wise exponent.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>a</strong> (<em>int</em><em>, </em><em>optional</em>) – Exponent. Default: 2</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Exponent.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Exponent.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x^a\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sqrt">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sqrt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise square root.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise square root</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sqrt.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sqrt.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(\sqrt{x}\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Abs">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Abs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Abs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise absolute value.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise absolute value</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Abs.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Abs.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(|x|\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sum">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sum.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
-<dl class="field-list simple">
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sum.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sum.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute sum for each dimension (if axis=’time’)
+or for each timestamp (if axis=’dims’)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.CumSum">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">CumSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.CumSum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cumulative sum.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Cumulative sum</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.CumSum.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.CumSum.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cumulative sum for each dimension (if axis=’time’)
+or for each timestamp (if axis=’dims’)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Diff">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Diff" title="Permalink to this definition">¶</a></dt>
-<dd><p>First-order derivative.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>First-order derivative</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Diff.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Diff.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute difference <span class="math notranslate nohighlight">\(v_{i+1} - v_i\)</span> for all pairs of consecutive
+value <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_{i+1}\)</span>,
+for each dimension (if axis=’time’)
+or for each timestamp (if axis=’dims’)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Roots">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Roots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Roots" title="Permalink to this definition">¶</a></dt>
-<dd><p>Roots of a polynomial.</p>
-<p>For the axis to which this transformer is applied,
-the input values <span class="math notranslate nohighlight">\(p_0, p_1, ..., p_n\)</span> represent the coefficients of a polynomial of
-degree <cite>n</cite>:</p>
-<p><span class="math notranslate nohighlight">\(p_0 \cdot x^n + p_1 \cdot x^{n-1} + ... + p_n\)</span></p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Roots of a polynomial</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Roots.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Roots.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>For the axis to which this transformer is applied, the values
+<span class="math notranslate nohighlight">\(p_0, p_1, ..., p_n\)</span> are interpreted as the coefficients of a
+polynomial of degree <cite>n</cite>:</p>
+<p class="centered">
+<strong><span class="math notranslate nohighlight">\(p_0 \cdot x^n + p_1 \cdot x^{n-1} + ... + p_n\)</span></strong></p><p>For each polynomial, this transformer computes the values where the
+result of the polynomial equals zero.</p>
 <p class="rubric">Notes</p>
-<p>Only the real roots are returned (i.e., no complex roots).</p>
+<p>Only the real roots are returned (i.e., no complex roots)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Average">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Average" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise average.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise average</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Average.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Average.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(\frac{x+y}{2}\)</span></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Difference">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Difference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Difference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise difference.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise difference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rel</strong> (<em>bool</em><em>, </em><em>optional</em>) – Compute the relative difference by dividing the difference by the values of the first
-input. Default: False</p>
+<dd class="field-odd"><p><strong>rel</strong> (<em>bool</em><em>, </em><em>optional</em>) – Compute the relative difference. Default: False</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Difference.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Difference.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(|x-y|\)</span> and divide by <span class="math notranslate nohighlight">\(|x|\)</span> if <strong>rel</strong> is true</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Ratio">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Ratio" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element-wise ratio.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 2</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
+<dd><p>Element-wise ratio</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Ratio.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Ratio.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute <span class="math notranslate nohighlight">\(x/y\)</span></p>
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Cos">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Cos" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Tan">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Tan" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.ArcSin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">ArcSin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.ArcSin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.ArcCos">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">ArcCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.ArcCos" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.mathematics.ArcTan">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">ArcTan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.ArcTan" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-tsfuse.transformers.peaks">
@@ -557,12 +662,48 @@ input. Default: False</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.peaks.NumberPeaks">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.peaks.</span></span><span class="sig-name descname"><span class="pre">NumberPeaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.peaks.NumberPeaks" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Number of peaks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>support</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum support of each peak. Default: 1</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.peaks.NumberPeaks.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.peaks.NumberPeaks.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each series in <strong>x</strong>, compute the number of peaks that have a
+support larger than the  given minimum support.
+The support of a peak is defined as the length of the largest
+subsequence around the peak where the peak has the largest value.</p>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.peaks.NumberPeaksCWT">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.peaks.</span></span><span class="sig-name descname"><span class="pre">NumberPeaksCWT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.peaks.NumberPeaksCWT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Number of peaks estimated using a continous wavelet transform</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_width</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum width of the wavelet. Default: 1</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.peaks.NumberPeaksCWT.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.peaks.NumberPeaksCWT.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each series in <strong>x</strong>, estimate the number of peaks using
+<code class="docutils literal notranslate"><span class="pre">scipy.signal.find_peaks_cwt</span></code> where <code class="docutils literal notranslate"><span class="pre">widths</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">...,</span> <span class="pre">max_width]</span></code></p>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 <div class="section" id="module-tsfuse.transformers.queries">
@@ -601,17 +742,19 @@ input. Default: False</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Sum">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Sum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sum.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
-<dl class="field-list simple">
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsfuse.transformers.statistics.Sum.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Sum.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute sum for each dimension (if axis=’time’)
+or for each timestamp (if axis=’dims’)</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -688,34 +831,6 @@ input. Default: False</p>
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SpectralKurtosis">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SpectralKurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SpectralKurtosis" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.statistics.SinglePassStatistics">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SinglePassStatistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SinglePassStatistics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Eight simple statistics.</p>
-<p>Calculates the following statistics using only one pass over the data:</p>
-<ul class="simple">
-<li><p>length</p></li>
-<li><p>sum</p></li>
-<li><p>min</p></li>
-<li><p>max</p></li>
-<li><p>mean</p></li>
-<li><p>variance</p></li>
-<li><p>skewness</p></li>
-<li><p>kurtosis</p></li>
-</ul>
-<p>Each series of the input collection is transformed to a series of eight values.</p>
-<p>Preconditions:</p>
-<ul class="simple">
-<li><p>Number of inputs: 1</p></li>
-<li><p>Input data must be numeric.</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Quantile">

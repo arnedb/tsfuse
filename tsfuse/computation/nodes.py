@@ -364,12 +364,7 @@ def _apply(i, apply=None, collections=None):
 
 class Add(Transformer):
     """
-    Element-wise addition.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise addition
     """
 
     def __init__(self, *parents, **kwargs):
@@ -378,6 +373,12 @@ class Add(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x + y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -388,12 +389,7 @@ class Add(Transformer):
 
 class Subtract(Transformer):
     """
-    Element-wise subtraction.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise subtraction
     """
 
     def __init__(self, *parents, **kwargs):
@@ -402,6 +398,12 @@ class Subtract(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+    
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x - y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -412,12 +414,7 @@ class Subtract(Transformer):
 
 class Multiply(Transformer):
     """
-    Element-wise multiplication.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise multiplication
     """
 
     def __init__(self, *parents, **kwargs):
@@ -426,6 +423,12 @@ class Multiply(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x \\cdot y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -436,12 +439,7 @@ class Multiply(Transformer):
 
 class Divide(Transformer):
     """
-    Element-wise division.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise division
     """
 
     def __init__(self, *parents, **kwargs):
@@ -450,6 +448,12 @@ class Divide(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x / y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -461,12 +465,7 @@ class Divide(Transformer):
 
 class Greater(Transformer):
     """
-    Element-wise greater than comparison.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise greater than comparison
     """
 
     def __init__(self, *parents, **kwargs):
@@ -475,6 +474,12 @@ class Greater(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x > y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -486,11 +491,6 @@ class Greater(Transformer):
 class GreaterEqual(Transformer):
     """
     Element-wise greater than or equal comparison.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
     """
 
     def __init__(self, *parents, **kwargs):
@@ -499,6 +499,12 @@ class GreaterEqual(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x \\geq y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -509,12 +515,7 @@ class GreaterEqual(Transformer):
 
 class Less(Transformer):
     """
-    Element-wise less than comparison.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise less than comparison
     """
 
     def __init__(self, *parents, **kwargs):
@@ -523,6 +524,12 @@ class Less(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x < y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -533,12 +540,7 @@ class Less(Transformer):
 
 class LessEqual(Transformer):
     """
-    Element-wise less than or equal comparison.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be numeric.
+    Element-wise less than or equal comparison
     """
 
     def __init__(self, *parents, **kwargs):
@@ -547,6 +549,12 @@ class LessEqual(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
         ]
+        
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x \\leq y`
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -557,12 +565,7 @@ class LessEqual(Transformer):
 
 class And(Transformer):
     """
-    Element-wise logical and.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be boolean.
+    Element-wise logical and
     """
 
     def __init__(self, *parents, **kwargs):
@@ -571,6 +574,19 @@ class And(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.bool_) & np.issubdtype(y.dtype, np.bool_),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x \\land y`
+
+        Parameters
+        ----------
+        x : Collection
+            Boolean data.
+        y : Collection
+            Boolean data.
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -581,12 +597,7 @@ class And(Transformer):
 
 class Or(Transformer):
     """
-    Element-wise logical or.
-
-    Preconditions:
-
-    - Number of inputs: 2
-    - Input data must be boolean.
+    Element-wise logical or
     """
 
     def __init__(self, *parents, **kwargs):
@@ -595,6 +606,19 @@ class Or(Transformer):
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.bool_) & np.issubdtype(y.dtype, np.bool_),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`x \\lor y`
+
+        Parameters
+        ----------
+        x : Collection
+            Boolean data.
+        y : Collection
+            Boolean data.
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x, y):
@@ -605,12 +629,7 @@ class Or(Transformer):
 
 class Not(Transformer):
     """
-    Element-wise logical negation.
-
-    Preconditions:
-
-    - Number of inputs: 1
-    - Input data must be boolean.
+    Element-wise logical negation
     """
 
     def __init__(self, *parents, **kwargs):
@@ -619,6 +638,17 @@ class Not(Transformer):
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.bool_),
         ]
+
+    def transform(self, x, y, **kwargs):
+        """
+        Compute :math:`\\neg x`
+
+        Parameters
+        ----------
+        x : Collection
+            Boolean data.
+        """
+        return super().transform(x, y, **kwargs)
 
     @staticmethod
     def apply(x):
