@@ -18,8 +18,6 @@ Alternatively, you can install the latest, unreleased version from GitHub:
 
 The documentation is available on [https://arnedb.github.io/tsfuse/](https://arnedb.github.io/tsfuse/)
 
-Examples on how to use TSFuse are shown in the [getting started](https://arnedb.github.io/tsfuse/getting-started.html) page and the [synthetic sine waves demo](notebooks/Synthetic%20Sine%20Waves%20Demo.ipynb) notebook.
-
 ## Paper
 
 To learn more about TSFuse's feature construction method, read the following paper:
