@@ -10,6 +10,17 @@ __all__ = [
 
 
 class Resample(Transformer):
+    """
+    Resample
+
+    Parameters
+    ----------
+    num : int
+        New number of samples.
+    axis : {'time', 'dims'}, optional
+        Time direction: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
     def __init__(self, *parents, num=None, axis=None, **kwargs):
         super(Resample, self).__init__(*parents, **kwargs)
         self.num = num
@@ -17,6 +28,13 @@ class Resample(Transformer):
         self.preconditions = [
             lambda *collections: len(collections) == 1,
         ]
+
+    def transform(self, x, **kwargs):
+        """
+        Resample **x** in the time direction to **num** samples
+        using ``scipy.signal.resample``
+        """
+        return super().transform(x, **kwargs)
 
     def apply(self, x):
         def calculator(a):

@@ -43,14 +43,6 @@ tsfuse.transformers.peaks
    :undoc-members:
    :exclude-members: apply, graph, unit
 
-tsfuse.transformers.queries
----------------------------
-
-.. automodule:: tsfuse.transformers.queries
-   :members:
-   :undoc-members:
-   :exclude-members: apply, graph, unit
-
 tsfuse.transformers.sampling
 ----------------------------
 
