@@ -22,4 +22,4 @@ The documentation is available on [https://arnedb.github.io/tsfuse/](https://arn
 
 To learn more about TSFuse's feature construction method, read the following paper:
 
-> Arne De Brabandere, Pieter Robberechts, Tim Op De Beéck and Jesse Davis. [Automating Feature Construction for Multi-View Time Series Data](https://www.google.com/url?q=https%3A%2F%2Fupvedues-my.sharepoint.com%2F%3Ab%3A%2Fg%2Fpersonal%2Fjorallo_upv_edu_es%2FETxycG2WhmFBmVN7CNW8yKsBQHwhhlzdyegEx1AnNeRa2w%3Fe%3DbPQR7e&sa=D&sntz=1&usg=AFQjCNH-zTIQtPE2M0m0h_uUPN_25SaGCw). ECML/PKDD Workshop on Automating Data Science 2019.
+> De Brabandere, A., Op De Beéck, T., Hendrickx, K., Meert, W., & Davis, J. (2022). [TSFuse: Automated feature construction for multiple time series data](https://lirias.kuleuven.be/3552089?limo=0). Machine Learning.

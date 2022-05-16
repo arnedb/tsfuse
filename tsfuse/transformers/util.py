@@ -70,6 +70,8 @@ def transform_axis(collection, axis=None):
         return 2
     elif axis == 'time':
         return 1
+    elif axis == 'windows':
+        return 0
 
 
 def reduce_index(collection, a):

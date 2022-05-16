@@ -151,14 +151,14 @@ class Input(Node):
 
     @property
     def trace(self):
-        return 'Input', self.input_id
+        return "Input", self.input_id
 
     @property
     def name(self):
         return str(self.input_id)
 
     def __str__(self):
-        return 'Input({})'.format(self.input_id)
+        return "Input({})".format(self.input_id)
 
 
 class Constant(Node):
@@ -181,14 +181,14 @@ class Constant(Node):
 
     @property
     def trace(self):
-        return 'Constant', self.output
+        return "Constant", self.output
 
     @property
     def name(self):
-        return 'Constant'
+        return "Constant"
 
     def __str__(self):
-        return 'Constant({})'.format(self.output)
+        return "Constant({})".format(self.output)
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -200,10 +200,10 @@ class Transformer(Node):
     """
 
     def __init__(self, *parents, **kwargs):
-        is_output = kwargs.get('is_output', None)
-        if not hasattr(self, 'preconditions'):
+        is_output = kwargs.get("is_output", None)
+        if not hasattr(self, "preconditions"):
             self.preconditions = []
-        self.preconditions += kwargs.get('with_preconditions', [])
+        self.preconditions += kwargs.get("with_preconditions", [])
         super(Transformer, self).__init__(parents=parents, is_output=is_output)
 
     def check_preconditions(self, *collections):
@@ -223,6 +223,9 @@ class Transformer(Node):
         def satisfied(c):
             return all(p(*c) for p in self.preconditions)
 
+        if any(c is None for c in collections):
+            raise InvalidPreconditionError(self)
+
         if isinstance(collections[0].shape[1], tuple):
             for i in range(len(collections[0].shape[1])):
                 if not satisfied([c for c in collections]):
@@ -236,9 +239,11 @@ class Transformer(Node):
         if not ignore_preconditions:
             self.check_preconditions(*collections)
         result = None
-        if hasattr(self, 'apply'):
+        if hasattr(self, "apply"):
             if isinstance(collections[0].shape[1], tuple):
-                f = partial(_apply, apply=self.apply, collections=collections[:])
+                f = partial(
+                    _apply, apply=self.apply, collections=collections[:]
+                )
                 try:
                     results = [f(i) for i in range(len(collections[0].values))]
                 except:  # TODO: Make more restrictive!!
@@ -263,11 +268,12 @@ class Transformer(Node):
                 except:
                     # TODO: Generate warning instead of error
                     result = None
-        elif hasattr(self, 'graph'):
+        elif hasattr(self, "graph"):
             graph = self.graph(*[Input(i) for i in range(len(collections))])
-            outputs = graph.transform({
-                i: c for i, c in enumerate(collections)
-            }, return_dataframe=False)
+            outputs = graph.transform(
+                {i: c for i, c in enumerate(collections)},
+                return_dataframe=False,
+            )
             result = outputs[graph.outputs[-1]]
         if result is None:
             return None
@@ -277,7 +283,7 @@ class Transformer(Node):
             return result
 
     def tags(self, *collections):
-        collections = [c for c in collections if hasattr(c, '_tags')]
+        collections = [c for c in collections if hasattr(c, "_tags")]
         if len(collections) < 1:
             return Tags()
         propagated = Tags(collections[0]._tags)
@@ -296,7 +302,9 @@ class Transformer(Node):
             else:
                 return p
 
-        values = {p: self.__dict__[p] for p in self.__dict__ if _is_parameter(p)}
+        values = {
+            p: self.__dict__[p] for p in self.__dict__ if _is_parameter(p)
+        }
         params = tuple([parameter(values[p]) for p in sorted(values)])
         parents = tuple([p.trace for p in self.parents])
         t = tuple([self.__class__.__name__, params, parents])
@@ -304,52 +312,64 @@ class Transformer(Node):
 
     @property
     def n_inputs(self):
-        if hasattr(self, 'apply'):
+        if hasattr(self, "apply"):
             f = self.apply
         else:
             f = self.graph
         args = inspect.getfullargspec(f)[0]
-        return len(args) - 1 if 'self' in args else len(args)
+        return len(args) - 1 if "self" in args else len(args)
 
     def __str__(self):
         s = str(self.__class__.__name__)
-        values = {p: self.__dict__[p] for p in self.__dict__ if _is_parameter(p)}
+        values = {
+            p: self.__dict__[p] for p in self.__dict__ if _is_parameter(p)
+        }
         params = sorted(list(values))
-        s += '({})'.format(', '.join(
-            [str(p) for p in self.parents] +
-            ['{}={}'.format(p, values[p]) for p in params if values[p] is not None]
-        ))
+        s += "({})".format(
+            ", ".join(
+                [str(p) for p in self.parents]
+                + [
+                    "{}={}".format(p, values[p])
+                    for p in params
+                    if values[p] is not None
+                ]
+            )
+        )
         return s
 
     @property
     def name(self):
         args = [
-            a for a in list(self.__dict__)
-            if a not in [
-                'preconditions',
-                '_id',
-                '_parents',
-                '_children',
-                '_output',
-                '_is_output',
+            a
+            for a in list(self.__dict__)
+            if a
+            not in [
+                "preconditions",
+                "_id",
+                "_parents",
+                "_children",
+                "_output",
+                "_is_output",
             ]
         ]
         values = [getattr(self, a) for a in args]
         argsvalues = [(a, v) for a, v in zip(args, values) if v is not None]
         if len(argsvalues) > 0:
-            parameters = '(' + ', '.join([
-                '{}={}'.format(a, v) for a, v in argsvalues
-            ]) + ')'
+            parameters = (
+                "("
+                + ", ".join(["{}={}".format(a, v) for a, v in argsvalues])
+                + ")"
+            )
         else:
-            parameters = ''
+            parameters = ""
         return str(self.__class__.__name__) + parameters
 
 
 def _is_parameter(p):
-    if p[0].startswith('_'):
+    if p[0].startswith("_"):
         return False
     else:
-        return p not in ('preconditions',)
+        return p not in ("preconditions",)
 
 
 def _apply(i, apply=None, collections=None):
@@ -371,7 +391,8 @@ class Add(Transformer):
         super(Add, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -396,9 +417,10 @@ class Subtract(Transformer):
         super(Subtract, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
-    
+
     def transform(self, x, y, **kwargs):
         """
         Compute :math:`x - y`
@@ -421,7 +443,8 @@ class Multiply(Transformer):
         super(Multiply, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -446,7 +469,8 @@ class Divide(Transformer):
         super(Divide, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -458,7 +482,7 @@ class Divide(Transformer):
     @staticmethod
     def apply(x, y):
         x, y = _collections(x, y)
-        with np.errstate(divide='ignore', invalid='ignore'):
+        with np.errstate(divide="ignore", invalid="ignore"):
             values = np.true_divide(x.values, y.values)
         return _result(x, y, values)
 
@@ -472,7 +496,8 @@ class Greater(Transformer):
         super(Greater, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -497,7 +522,8 @@ class GreaterEqual(Transformer):
         super(GreaterEqual, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -522,7 +548,8 @@ class Less(Transformer):
         super(Less, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -547,9 +574,10 @@ class LessEqual(Transformer):
         super(LessEqual, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) & np.issubdtype(x.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            & np.issubdtype(x.dtype, np.float64),
         ]
-        
+
     def transform(self, x, y, **kwargs):
         """
         Compute :math:`x \\leq y`
@@ -572,7 +600,8 @@ class And(Transformer):
         super(And, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.bool_) & np.issubdtype(y.dtype, np.bool_),
+            lambda x, y: np.issubdtype(x.dtype, np.bool_)
+            & np.issubdtype(y.dtype, np.bool_),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -604,7 +633,8 @@ class Or(Transformer):
         super(Or, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.bool_) & np.issubdtype(y.dtype, np.bool_),
+            lambda x, y: np.issubdtype(x.dtype, np.bool_)
+            & np.issubdtype(y.dtype, np.bool_),
         ]
 
     def transform(self, x, y, **kwargs):
