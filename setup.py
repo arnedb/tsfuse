@@ -1,7 +1,10 @@
+import os
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
 from Cython.Build import cythonize
 import numpy as np
+
+os.environ["USE_CYTHONIZE"] = "1"
 
 setup(
     name="tsfuse",
@@ -31,8 +34,7 @@ setup(
         "scipy>=1.2.1",
         "statsmodels>=0.12.0",
         "six>=1.12.0",
-        "sklearn-gbmi @ git+https://github.com/arnedb/sklearn-gbmi.git"
-        "#egg=sklearn-gbmi-1.0.3",
+        "sklearn-gbmi>=1.0.3",
     ],
     extras_require={"test": ["pytest"]},
     ext_modules=cythonize(
