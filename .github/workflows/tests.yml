@@ -2,6 +2,9 @@ name: tests
 
 on: [push]
 
+env:
+  USE_CYTHONIZE: 1
+
 jobs:
   build:
 
