@@ -535,17 +535,17 @@ for each time series in <strong>x</strong></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sum">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">Sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sum" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Summation</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
 Default: first axis with more than one value.</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Sum.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Sum.transform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute sum for each dimension (if axis=’time’)
-or for each timestamp (if axis=’dims’)</p>
+<dd><p>Compute the sum along the given axis</p>
 </dd></dl>
 
 </dd></dl>
@@ -553,18 +553,17 @@ or for each timestamp (if axis=’dims’)</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.CumSum">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.mathematics.</span></span><span class="sig-name descname"><span class="pre">CumSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.CumSum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cumulative sum</p>
+<dd><p>Cumulative summation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
 Default: first axis with more than one value.</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.CumSum.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.CumSum.transform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute cumulative sum for each dimension (if axis=’time’)
-or for each timestamp (if axis=’dims’)</p>
+<dd><p>Compute cumulative sum along the given axis</p>
 </dd></dl>
 
 </dd></dl>
@@ -575,7 +574,7 @@ or for each timestamp (if axis=’dims’)</p>
 <dd><p>First-order derivative</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
 Default: first axis with more than one value.</p>
 </dd>
 </dl>
@@ -583,9 +582,7 @@ Default: first axis with more than one value.</p>
 <dt class="sig sig-object py" id="tsfuse.transformers.mathematics.Diff.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.mathematics.Diff.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute difference <span class="math notranslate nohighlight">\(v_{i+1} - v_i\)</span> for all pairs of consecutive
-value <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_{i+1}\)</span>,
-for each dimension (if axis=’time’)
-or for each timestamp (if axis=’dims’)</p>
+value <span class="math notranslate nohighlight">\(v_i\)</span> and <span class="math notranslate nohighlight">\(v_{i+1}\)</span> along the given axis</p>
 </dd></dl>
 
 </dd></dl>
@@ -596,7 +593,8 @@ or for each timestamp (if axis=’dims’)</p>
 <dd><p>Roots of a polynomial</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'windows'</em><em>, </em><em>'timestamps'</em><em>, </em><em>'dimensions'}</em><em>, </em><em>optional</em>) – Aggregation axis. Default: first axis with more than one value.</p>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -739,17 +737,17 @@ using <code class="docutils literal notranslate"><span class="pre">scipy.signal.
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Sum">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Sum" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Summation</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Aggregation axis: timestamps (‘time’) or dimensions (‘dims’).
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
 Default: first axis with more than one value.</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Sum.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Sum.transform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute sum for each dimension (if axis=’time’)
-or for each timestamp (if axis=’dims’)</p>
+<dd><p>Compute the sum along the given axis</p>
 </dd></dl>
 
 </dd></dl>

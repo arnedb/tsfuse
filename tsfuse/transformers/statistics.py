@@ -11,55 +11,55 @@ from .mathematics import Abs, Diff, Square, Sqrt, Roots, Exponent, Sum, CumSum
 from .boolean import Equal
 
 __all__ = [
-    'Length',
-    'Sum',
-    'Mean',
-    'Median',
-    'Min',
-    'ArgMin',
-    'Max',
-    'ArgMax',
-    'Variance',
-    'StandardDeviation',
-    'Skewness',
-    'Kurtosis',
-    'SpectralMoment',
-    'SpectralMean',
-    'SpectralVariance',
-    'SpectralSkewness',
-    'SpectralKurtosis',
-    'SinglePassStatistics',
-    'Quantile',
-    'IndexMassQuantile',
-    'Energy',
-    'EnergyRatio',
-    'Entropy',
-    'SampleEntropy',
-    'BinnedDistribution',
-    'BinnedEntropy',
-    'C3',
-    'CID',
-    'CountAboveMean',
-    'CountBelowMean',
-    'RangeCount',
-    'ValueCount',
-    'Outliers',
-    'AutoCorrelation',
-    'CrossCorrelation',
-    'AutoRegressiveCoefficients',
-    'HighVariance',
-    'HighStandardDeviation',
-    'SymmetryLooking',
-    'NumberCrossings',
-    'LinearTrend',
-    'LongestStrikeAboveMean',
-    'LongestStrikeBelowMean',
-    'SumChange',
-    'MeanChange',
-    'MeanSecondDerivativeCentral',
-    'TimeReversalAsymmetryStatistic',
-    'FriedrichCoefficients',
-    'MaxLangevinFixedPoint',
+    "Length",
+    "Sum",
+    "Mean",
+    "Median",
+    "Min",
+    "ArgMin",
+    "Max",
+    "ArgMax",
+    "Variance",
+    "StandardDeviation",
+    "Skewness",
+    "Kurtosis",
+    "SpectralMoment",
+    "SpectralMean",
+    "SpectralVariance",
+    "SpectralSkewness",
+    "SpectralKurtosis",
+    "SinglePassStatistics",
+    "Quantile",
+    "IndexMassQuantile",
+    "Energy",
+    "EnergyRatio",
+    "Entropy",
+    "SampleEntropy",
+    "BinnedDistribution",
+    "BinnedEntropy",
+    "C3",
+    "CID",
+    "CountAboveMean",
+    "CountBelowMean",
+    "RangeCount",
+    "ValueCount",
+    "Outliers",
+    "AutoCorrelation",
+    "CrossCorrelation",
+    "AutoRegressiveCoefficients",
+    "HighVariance",
+    "HighStandardDeviation",
+    "SymmetryLooking",
+    "NumberCrossings",
+    "LinearTrend",
+    "LongestStrikeAboveMean",
+    "LongestStrikeBelowMean",
+    "SumChange",
+    "MeanChange",
+    "MeanSecondDerivativeCentral",
+    "TimeReversalAsymmetryStatistic",
+    "FriedrichCoefficients",
+    "MaxLangevinFixedPoint",
 ]
 
 
@@ -80,6 +80,7 @@ class SinglePassStatistics(Transformer):
 
     Each series of the input collection is transformed to a series of eight values.
     """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(SinglePassStatistics, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -117,7 +118,9 @@ class Mean(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Slice(SinglePassStatistics(x, axis=self.axis), i=4, axis=self.axis))
+        return Graph(
+            Slice(SinglePassStatistics(x, axis=self.axis), i=4, axis=self.axis)
+        )
 
 
 class Median(Transformer):
@@ -146,7 +149,9 @@ class Min(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Slice(SinglePassStatistics(x, axis=self.axis), i=2, axis=self.axis))
+        return Graph(
+            Slice(SinglePassStatistics(x, axis=self.axis), i=2, axis=self.axis)
+        )
 
 
 class ArgMin(Transformer):
@@ -157,7 +162,8 @@ class ArgMin(Transformer):
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
-            lambda x: np.issubdtype(x.dtype, np.float64) or np.issubdtype(x.dtype, np.bool_),
+            lambda x: np.issubdtype(x.dtype, np.float64)
+            or np.issubdtype(x.dtype, np.bool_),
         ]
 
     def apply(self, x):
@@ -165,8 +171,10 @@ class ArgMin(Transformer):
             if self.first:
                 values = np.expand_dims(np.nanargmin(a, axis=-1), axis=-1)
             else:
-                values = np.expand_dims(np.nanargmin(np.flip(a, axis=-1), axis=-1), axis=-1)
-                values = - values + a.shape[-1] - 1
+                values = np.expand_dims(
+                    np.nanargmin(np.flip(a, axis=-1), axis=-1), axis=-1
+                )
+                values = -values + a.shape[-1] - 1
             if self.rel:
                 n = np.nansum(~np.isnan(a), axis=-1, keepdims=True)
                 values = values / n
@@ -185,7 +193,9 @@ class Max(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Slice(SinglePassStatistics(x, axis=self.axis), i=3, axis=self.axis))
+        return Graph(
+            Slice(SinglePassStatistics(x, axis=self.axis), i=3, axis=self.axis)
+        )
 
 
 class ArgMax(Transformer):
@@ -196,7 +206,8 @@ class ArgMax(Transformer):
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
-            lambda x: np.issubdtype(x.dtype, np.float64) or np.issubdtype(x.dtype, np.bool_),
+            lambda x: np.issubdtype(x.dtype, np.float64)
+            or np.issubdtype(x.dtype, np.bool_),
         ]
 
     def apply(self, x):
@@ -204,8 +215,10 @@ class ArgMax(Transformer):
             if self.first:
                 values = np.expand_dims(np.nanargmax(a, axis=-1), axis=-1)
             else:
-                values = np.expand_dims(np.nanargmax(np.flip(a, axis=-1), axis=-1), axis=-1)
-                values = - values + a.shape[-1] - 1
+                values = np.expand_dims(
+                    np.nanargmax(np.flip(a, axis=-1), axis=-1), axis=-1
+                )
+                values = -values + a.shape[-1] - 1
             if self.rel:
                 n = np.nansum(~np.isnan(a), axis=-1, keepdims=True)
                 values = values / n
@@ -224,7 +237,9 @@ class Variance(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Slice(SinglePassStatistics(x, axis=self.axis), i=5, axis=self.axis))
+        return Graph(
+            Slice(SinglePassStatistics(x, axis=self.axis), i=5, axis=self.axis)
+        )
 
 
 class StandardDeviation(Transformer):
@@ -250,7 +265,9 @@ class Skewness(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Slice(SinglePassStatistics(x, axis=self.axis), i=6, axis=self.axis))
+        return Graph(
+            Slice(SinglePassStatistics(x, axis=self.axis), i=6, axis=self.axis)
+        )
 
 
 class Kurtosis(Transformer):
@@ -263,7 +280,9 @@ class Kurtosis(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Slice(SinglePassStatistics(x, axis=self.axis), i=7, axis=self.axis))
+        return Graph(
+            Slice(SinglePassStatistics(x, axis=self.axis), i=7, axis=self.axis)
+        )
 
 
 class SpectralMoment(Transformer):
@@ -278,7 +297,9 @@ class SpectralMoment(Transformer):
         ]
 
     def apply(self, x):
-        return apply_to_axis(spectral_moment, x, r=self.r, origin=self.origin, axis=self.axis)
+        return apply_to_axis(
+            spectral_moment, x, r=self.r, origin=self.origin, axis=self.axis
+        )
 
 
 class SpectralMean(Transformer):
@@ -326,7 +347,8 @@ class SpectralSkewness(Transformer):
         mean = SpectralMean(x, axis=self.axis, origin=self.origin)
         variance = SpectralVariance(x, axis=self.axis, origin=self.origin)
         return Graph(
-            (m3 - mean * variance * Constant(3) - Exponent(mean, a=3)) / Exponent(variance, a=1.5)
+            (m3 - mean * variance * Constant(3) - Exponent(mean, a=3))
+            / Exponent(variance, a=1.5)
         )
 
 
@@ -347,13 +369,17 @@ class SpectralKurtosis(Transformer):
         mean = SpectralMean(x, axis=self.axis, origin=self.origin)
         variance = SpectralVariance(x, axis=self.axis, origin=self.origin)
         return Graph(
-            (m4 - mean * m3 * Constant(4) + m2 * Exponent(mean, a=2) * Constant(6)
-             - mean * Constant(3)) / Exponent(variance, a=2)
+            (
+                m4
+                - mean * m3 * Constant(4)
+                + m2 * Exponent(mean, a=2) * Constant(6)
+                - mean * Constant(3)
+            )
+            / Exponent(variance, a=2)
         )
 
 
 class Quantile(Transformer):
-
     def __init__(self, *parents, q=0.5, axis=None, **kwargs):
         super(Quantile, self).__init__(*parents, **kwargs)
         self.q = q
@@ -371,7 +397,6 @@ class Quantile(Transformer):
 
 
 class IndexMassQuantile(Transformer):
-
     def __init__(self, *parents, q=0.5, rel=False, axis=None, **kwargs):
         super(IndexMassQuantile, self).__init__(*parents, **kwargs)
         self.q = q
@@ -384,8 +409,9 @@ class IndexMassQuantile(Transformer):
 
     def graph(self, x):
         output = ArgMax(
-            (CumSum(Abs(x), axis=self.axis) / Sum(Abs(x), axis=self.axis)) >= Constant(self.q),
-            axis=self.axis
+            (CumSum(Abs(x), axis=self.axis) / Sum(Abs(x), axis=self.axis))
+            >= Constant(self.q),
+            axis=self.axis,
         ) + Constant(1)
         if self.rel:
             return Graph(output / Length(x, axis=self.axis))
@@ -417,7 +443,9 @@ class EnergyRatio(Transformer):
         ]
 
     def apply(self, x):
-        return apply_to_axis(energy_ratio, x, chunks=self.chunks, axis=self.axis)
+        return apply_to_axis(
+            energy_ratio, x, chunks=self.chunks, axis=self.axis
+        )
 
 
 class Entropy(Transformer):
@@ -447,7 +475,6 @@ class SampleEntropy(Transformer):
 
 
 class BinnedDistribution(Transformer):
-
     def __init__(self, *parents, bins=10, axis=None, **kwargs):
         super(BinnedDistribution, self).__init__(*parents, **kwargs)
         self.bins = bins
@@ -458,11 +485,12 @@ class BinnedDistribution(Transformer):
         ]
 
     def apply(self, x):
-        return apply_to_axis(binned_distribution, x, bins=self.bins, axis=self.axis)
+        return apply_to_axis(
+            binned_distribution, x, bins=self.bins, axis=self.axis
+        )
 
 
 class BinnedEntropy(Transformer):
-
     def __init__(self, *parents, bins=10, axis=None, **kwargs):
         super(BinnedEntropy, self).__init__(*parents, **kwargs)
         self.bins = bins
@@ -473,11 +501,15 @@ class BinnedEntropy(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Entropy(BinnedDistribution(x, axis=self.axis, bins=self.bins), axis=self.axis))
+        return Graph(
+            Entropy(
+                BinnedDistribution(x, axis=self.axis, bins=self.bins),
+                axis=self.axis,
+            )
+        )
 
 
 class C3(Transformer):
-
     def __init__(self, *parents, lag=1, axis=None, **kwargs):
         super(C3, self).__init__(*parents, **kwargs)
         self.lag = lag
@@ -493,13 +525,12 @@ class C3(Transformer):
                 Square(Slice(x, i=(2 * self.lag, None), axis=self.axis))
                 * Slice(x, i=(self.lag, -self.lag), axis=self.axis)
                 * Slice(x, i=(0, -2 * self.lag), axis=self.axis),
-                axis=self.axis
+                axis=self.axis,
             )
         )
 
 
 class CID(Transformer):
-
     def __init__(self, *parents, axis=None, **kwargs):
         super(CID, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -513,7 +544,6 @@ class CID(Transformer):
 
 
 class CountAboveMean(Transformer):
-
     def __init__(self, *parents, axis=None, **kwargs):
         super(CountAboveMean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -527,7 +557,6 @@ class CountAboveMean(Transformer):
 
 
 class CountBelowMean(Transformer):
-
     def __init__(self, *parents, axis=None, **kwargs):
         super(CountBelowMean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -541,7 +570,6 @@ class CountBelowMean(Transformer):
 
 
 class RangeCount(Transformer):
-
     def __init__(self, *parents, min=-1, max=1, axis=None, **kwargs):
         super(RangeCount, self).__init__(*parents, **kwargs)
         self.min = min
@@ -553,11 +581,15 @@ class RangeCount(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(Count((x >= Constant(self.min)) & (x < Constant(self.max)), axis=self.axis))
+        return Graph(
+            Count(
+                (x >= Constant(self.min)) & (x < Constant(self.max)),
+                axis=self.axis,
+            )
+        )
 
 
 class ValueCount(Transformer):
-
     def __init__(self, *parents, value=0, axis=None, **kwargs):
         super(ValueCount, self).__init__(*parents, **kwargs)
         self.value = value
@@ -572,7 +604,6 @@ class ValueCount(Transformer):
 
 
 class Outliers(Transformer):
-
     def __init__(self, *parents, r=3, rel=False, axis=None, **kwargs):
         super(Outliers, self).__init__(*parents, **kwargs)
         self.r = r
@@ -587,7 +618,7 @@ class Outliers(Transformer):
         n = Count(
             Abs(x - Mean(x, axis=self.axis))
             > StandardDeviation(x, axis=self.axis) * Constant(self.r),
-            axis=self.axis
+            axis=self.axis,
         )
         if self.rel:
             return Graph(n / Length(x, axis=self.axis))
@@ -596,7 +627,6 @@ class Outliers(Transformer):
 
 
 class AutoCorrelation(Transformer):
-
     def __init__(self, *parents, axis=None, **kwargs):
         super(AutoCorrelation, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -610,13 +640,13 @@ class AutoCorrelation(Transformer):
 
 
 class CrossCorrelation(Transformer):
-
     def __init__(self, *parents, axis=None, **kwargs):
         super(CrossCorrelation, self).__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            and np.issubdtype(y.dtype, np.float64),
         ]
 
     def apply(self, x, y):
@@ -624,7 +654,6 @@ class CrossCorrelation(Transformer):
 
 
 class AutoRegressiveCoefficients(Transformer):
-
     def __init__(self, *parents, axis=None, **kwargs):
         super(AutoRegressiveCoefficients, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -675,7 +704,10 @@ class HighStandardDeviation(Transformer):
     def graph(self, x):
         return Graph(
             StandardDeviation(x, axis=self.axis)
-            > ((Max(x, axis=self.axis) - Min(x, axis=self.axis)) * Constant(self.r))
+            > (
+                (Max(x, axis=self.axis) - Min(x, axis=self.axis))
+                * Constant(self.r)
+            )
         )
 
 
@@ -692,7 +724,8 @@ class SymmetryLooking(Transformer):
     def graph(self, x):
         g = Graph(
             Abs(Mean(x, axis=self.axis) - Median(x, axis=self.axis))
-            < (Max(x, axis=self.axis) - Min(x, axis=self.axis)) * Constant(self.r)
+            < (Max(x, axis=self.axis) - Min(x, axis=self.axis))
+            * Constant(self.r)
         )
         return g
 
@@ -743,7 +776,8 @@ class LongestStrike(Transformer):
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
-            lambda x: np.issubdtype(x.dtype, np.float64) or np.issubdtype(x.dtype, np.bool_),
+            lambda x: np.issubdtype(x.dtype, np.float64)
+            or np.issubdtype(x.dtype, np.bool_),
         ]
 
     def apply(self, x):
@@ -760,9 +794,7 @@ class LongestStrikeAboveMean(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(
-            LongestStrike(x > Mean(x, axis=self.axis), axis=self.axis)
-        )
+        return Graph(LongestStrike(x > Mean(x, axis=self.axis), axis=self.axis))
 
 
 class LongestStrikeBelowMean(Transformer):
@@ -775,9 +807,7 @@ class LongestStrikeBelowMean(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(
-            LongestStrike(x < Mean(x, axis=self.axis), axis=self.axis)
-        )
+        return Graph(LongestStrike(x < Mean(x, axis=self.axis), axis=self.axis))
 
 
 class SumChange(Transformer):
@@ -792,13 +822,9 @@ class SumChange(Transformer):
 
     def graph(self, x):
         if self.abs:
-            return Graph(
-                Sum(Abs(Diff(x, axis=self.axis)), axis=self.axis)
-            )
+            return Graph(Sum(Abs(Diff(x, axis=self.axis)), axis=self.axis))
         else:
-            return Graph(
-                Sum(Diff(x, axis=self.axis), axis=self.axis)
-            )
+            return Graph(Sum(Diff(x, axis=self.axis), axis=self.axis))
 
 
 class MeanChange(Transformer):
@@ -813,13 +839,9 @@ class MeanChange(Transformer):
 
     def graph(self, x):
         if self.abs:
-            return Graph(
-                Mean(Abs(Diff(x, axis=self.axis)), axis=self.axis)
-            )
+            return Graph(Mean(Abs(Diff(x, axis=self.axis)), axis=self.axis))
         else:
-            return Graph(
-                Mean(Diff(x, axis=self.axis), axis=self.axis)
-            )
+            return Graph(Mean(Diff(x, axis=self.axis), axis=self.axis))
 
 
 class MeanSecondDerivativeCentral(Transformer):
@@ -837,13 +859,12 @@ class MeanSecondDerivativeCentral(Transformer):
                 Slice(x, i=(2, None), axis=self.axis)
                 - Slice(x, i=(1, -1), axis=self.axis) * Constant(2)
                 + Slice(x, i=(0, -2), axis=self.axis),
-                axis=self.axis
+                axis=self.axis,
             )
         )
 
 
 class TimeReversalAsymmetryStatistic(Transformer):
-
     def __init__(self, *parents, lag=1, axis=None, **kwargs):
         super(TimeReversalAsymmetryStatistic, self).__init__(*parents, **kwargs)
         self.lag = lag
@@ -861,13 +882,12 @@ class TimeReversalAsymmetryStatistic(Transformer):
                 * Slice(x, i=(self.lag, -self.lag), axis=self.axis)
                 - Slice(x, i=(self.lag, -self.lag), axis=self.axis)
                 * Square(Slice(x, i=(0, -2 * self.lag), axis=self.axis)),
-                axis=self.axis
+                axis=self.axis,
             )
         )
 
 
 class FriedrichCoefficients(Transformer):
-
     def __init__(self, *parents, m=1, r=10, axis=None, **kwargs):
         super(FriedrichCoefficients, self).__init__(*parents, **kwargs)
         self.m = m
@@ -890,9 +910,9 @@ class FriedrichCoefficients(Transformer):
                 q_min = np.quantile(signal, quantiles[i])
                 q_max = np.quantile(signal, quantiles[i + 1])
                 if i == 0:
-                    q = (signal <= q_max)
+                    q = signal <= q_max
                 elif i == self.r - 1:
-                    q = (signal > q_min)
+                    q = signal > q_min
                 else:
                     q = (signal > q_min) & (signal <= q_max)
                 xy[i, 0] = np.mean(signal[q])
@@ -921,9 +941,11 @@ class MaxLangevinFixedPoint(Transformer):
         return Graph(
             Max(
                 Roots(
-                    FriedrichCoefficients(x, m=self.m, r=self.r, axis=self.axis),
-                    axis=self.axis
+                    FriedrichCoefficients(
+                        x, m=self.m, r=self.r, axis=self.axis
+                    ),
+                    axis=self.axis,
                 ),
-                axis=self.axis
+                axis=self.axis,
             )
         )

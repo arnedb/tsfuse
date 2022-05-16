@@ -173,12 +173,12 @@ class Abs(Transformer):
 
 class Sum(Transformer):
     """
-    Sum
+    Summation
 
     Parameters
     ----------
     axis : {'time', 'dims'}, optional
-        Aggregation axis: timestamps ('time') or dimensions ('dims').
+        Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
     def __init__(self, *parents, axis=None, **kwargs):
@@ -191,8 +191,7 @@ class Sum(Transformer):
 
     def transform(self, x, **kwargs):
         """
-        Compute sum for each dimension (if axis='time')
-        or for each timestamp (if axis='dims')
+        Compute the sum along the given axis
         """
         return super().transform(x, **kwargs)
 
@@ -205,12 +204,12 @@ class Sum(Transformer):
 
 class CumSum(Transformer):
     """
-    Cumulative sum
+    Cumulative summation
 
     Parameters
     ----------
     axis : {'time', 'dims'}, optional
-        Aggregation axis: timestamps ('time') or dimensions ('dims').
+        Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
     def __init__(self, *parents, axis=None, **kwargs):
@@ -223,8 +222,7 @@ class CumSum(Transformer):
         
     def transform(self, x, **kwargs):
         """
-        Compute cumulative sum for each dimension (if axis='time')
-        or for each timestamp (if axis='dims')
+        Compute cumulative sum along the given axis
         """
         return super().transform(x, **kwargs)
 
@@ -242,7 +240,7 @@ class Diff(Transformer):
     Parameters
     ----------
     axis : {'time', 'dims'}, optional
-        Aggregation axis: timestamps ('time') or dimensions ('dims').
+        Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
     def __init__(self, *parents, axis=None, **kwargs):
@@ -256,9 +254,7 @@ class Diff(Transformer):
     def transform(self, x, **kwargs):
         """
         Compute difference :math:`v_{i+1} - v_i` for all pairs of consecutive
-        value :math:`v_i` and :math:`v_{i+1}`,
-        for each dimension (if axis='time')
-        or for each timestamp (if axis='dims')
+        value :math:`v_i` and :math:`v_{i+1}` along the given axis
         """
         return super().transform(x, **kwargs)
 
@@ -275,8 +271,9 @@ class Roots(Transformer):
 
     Parameters
     ----------
-    axis : {'windows', 'timestamps', 'dimensions'}, optional
-        Aggregation axis. Default: first axis with more than one value.
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
     """
     def __init__(self, *parents, axis=None, **kwargs):
         super(Roots, self).__init__(*parents, **kwargs)
