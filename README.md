@@ -75,7 +75,7 @@ To construct features, TSFuse provides a `construct` function which takes time s
 
 ```python
 from tsfuse import construct
-features, graph = construct(X, y, transformers="minimal", return_graph=True)
+features, graph = construct(X, y, return_graph=True)
 ```
 
 To apply this computation graph to new data, simply call `transform` with a time series dictionary `X` as input:
