@@ -14,12 +14,8 @@
 <hr>
 
 ## Installation
-
-TSFuse requires Python 3, NumPy, and Cython:
-
-    pip install numpy cython
     
-The latest release can be installed using pip:
+Install the latest release using pip:
 
     pip install tsfuse
     
