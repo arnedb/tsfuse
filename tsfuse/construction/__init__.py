@@ -6,7 +6,13 @@ __all__ = ["construct"]
 
 
 def construct(
-    X, y, task="auto", transformers="full", return_graph=False, **kwargs
+    X,
+    y,
+    task="auto",
+    transformers="full",
+    max_depth=2,
+    return_graph=False,
+    **kwargs
 ):
     """
     Construct features for a given time series dataset ``X, y``
@@ -22,6 +28,8 @@ def construct(
     transformers : {'minimal', 'fast', 'full'}, optional
         Feature construction settings.
         Default: `full` (the most extensive set of transformers)
+    max_depth : int, optional
+        Maximum computation graph depth. Default: 2
     return_graph : bool, optional
         Return the computation graph. Default: `False`
 
@@ -33,7 +41,9 @@ def construct(
         Constructed computation graph.
         Only returned if ``return_graph == True``
     """
-    extractor = TSFuseExtractor(transformers=transformers, task=task, **kwargs)
+    extractor = TSFuseExtractor(
+        transformers=transformers, task=task, max_depth=max_depth, **kwargs
+    )
     features = extractor.fit_transform(X, pd.Series(y))
     if return_graph:
         return features, extractor.graph_

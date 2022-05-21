@@ -1,5 +1,4 @@
 from graphviz import Digraph
-from copy import copy
 
 from .nodes import Node, Input, Constant, Transformer
 from .apply import compute
@@ -10,23 +9,26 @@ class Graph(object):
     """
     Computation graph.
 
-    A computation graph is a directed acyclic graph (DAG) whose nodes are connected by edges that
-    represent the flow of the data. There are three types of nodes:
+    A computation graph is a directed acyclic graph (DAG) whose nodes
+    areconnected by edges that represent the flow of the data. There are three
+    types of nodes:
 
     - **Inputs:** placeholders for the input time series data.
     - **Constants:** values that do not depend on the input data.
-    - **Transformers:** computation steps which create new data from existing data. The input of a
-      transformer is given by its parent nodes. See :ref:`transformers` for an overview of all
-      available transformers.
+    - **Transformers:** computation steps which create new data from existing
+      data. The input of a transformer is given by its parent nodes. See
+      :ref:`transformers` for an overview of all available transformers.
 
-    The outputs of a computation graph are the values computed by all transformers that either
-    have no outgoing edges, or are marked as an output node.
+    The outputs of a computation graph are the values computed by all
+    transformers that either have no outgoing edges, or are marked as an output
+    node.
 
     Parameters
     ----------
     nodes : list(Node), optional
         Initialize the computation graph with a list of nodes.
-        Nodes can also be added later using :meth:`~tsfuse.computation.Graph.add_node`
+        Nodes can also be added later using :meth:`~tsfuse.computation.Grap
+        add_node`
 
     Attributes
     ----------
@@ -101,7 +103,7 @@ class Graph(object):
         -------
         node : Node
         """
-        optimize = kwargs.get('optimize', False)
+        optimize = kwargs.get("optimize", False)
 
         if not optimize:
             if self.optimized is None:
@@ -114,7 +116,11 @@ class Graph(object):
 
         if isinstance(node, (Input, int, str)):
             node = self._add_input(node)
-        elif optimize and isinstance(node, Transformer) and hasattr(node, 'graph'):
+        elif (
+            optimize
+            and isinstance(node, Transformer)
+            and hasattr(node, "graph")
+        ):
             node = self._add_graph_transformer(node, optimize=True)
         elif node not in self._nodes:
             if node.trace in self.traces:
@@ -131,8 +137,8 @@ class Graph(object):
         Parameters
         ----------
         X : dict(int or str: Collection)
-            Data collections used as inputs for the graph. Collection ``X[i]`` will
-            be used for ``graph.inputs[i]``.
+            Data collections used as inputs for the graph. Collection ``X[i]``
+            will be used for ``graph.inputs[i]``.
         return_dataframe : bool, default True
             Return the graph's output as a pandas DataFrame.
         chunk_size : int, optional
@@ -209,4 +215,4 @@ class Graph(object):
         return output
 
     def _repr_svg_(self):
-        return self.to_dot()._repr_svg_()
+        return self.to_dot()._repr_image_svg_xml()

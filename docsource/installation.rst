@@ -1,14 +1,14 @@
 Installation
 ------------
 
-TSFuse requires Python 3 and is available on PyPI:
+Install the latest release using pip:
 
 ::
 
     $ pip install tsfuse
 
 
-Alternatively, you can install the latest, unreleased version from GitHub:
+Alternatively, you can install the unreleased version from GitHub:
 
 ::
 

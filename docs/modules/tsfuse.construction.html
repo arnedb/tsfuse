@@ -1,73 +1,35 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>tsfuse.construction &mdash; TSFuse 0.1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>tsfuse.construction &mdash; TSFuse 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="tsfuse.transformers" href="tsfuse.transformers.html" /> 
+    <link rel="next" title="tsfuse.transformers" href="tsfuse.transformers.html" />
+    <link rel="prev" title="tsfuse.computation" href="tsfuse.computation.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> TSFuse
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -75,100 +37,48 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Modules</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.html">tsfuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.data.html">tsfuse.data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.computation.html">tsfuse.computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tsfuse.transformers.html">tsfuse.transformers</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">tsfuse.construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.construction.autods19">tsfuse.construction.autods19</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tsfuse.transformers.html">tsfuse.transformers</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">TSFuse</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>tsfuse.construction</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/modules/tsfuse.construction.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS overrides for sphinx_rtd_theme */
@@ -193,97 +103,74 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-tsfuse.construction">
-<span id="tsfuse-construction"></span><h1>tsfuse.construction<a class="headerlink" href="#module-tsfuse.construction" title="Permalink to this headline">¶</a></h1>
+<section id="module-tsfuse.construction">
+<span id="tsfuse-construction"></span><h1>tsfuse.construction<a class="headerlink" href="#module-tsfuse.construction" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="tsfuse.construction.construct">
-<span class="sig-prename descclassname"><span class="pre">tsfuse.construction.</span></span><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.construction.construct" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tsfuse.construction.</span></span><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.construction.construct" title="Permalink to this definition"></a></dt>
 <dd><p>Construct features for a given time series dataset <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">y</span></code></p>
-<p>This function implements the method presented in our paper in the ECML/PKDD Workshop on
-Automating Data Science 2019. <a class="footnote-reference brackets" href="#id2" id="id1">1</a> The construction method will change in future versions of TSFuse.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>dict</em><em>(</em><em>str</em><em>, </em><a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a><em>)</em>) – Multi-view time series data.</p></li>
-<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>optional</em>) – Target data. Not required for unsupervised feature construction.</p></li>
-<li><p><strong>task</strong> (<em>{'classification'</em><em>, </em><em>'regression'}</em><em>, </em><em>optional</em>) – Machine learning task. Default: <cite>classification</cite></p></li>
-<li><p><strong>transformers</strong> (<em>{'minimal'</em><em>, </em><em>'fast'</em><em>, </em><em>'full'}</em><em>, </em><em>optional</em>) – Feature construction settings. Default: <cite>full</cite> (the most extensive set of transformers)</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – Target data.</p></li>
+<li><p><strong>task</strong> (<em>{'classification'</em><em>, </em><em>'regression'</em><em>, </em><em>'auto'}</em><em>, </em><em>optional</em>) – Machine learning task. Default: <cite>auto</cite> (detect task automatically)</p></li>
+<li><p><strong>transformers</strong> (<em>{'minimal'</em><em>, </em><em>'fast'</em><em>, </em><em>'full'}</em><em>, </em><em>optional</em>) – Feature construction settings.
+Default: <cite>full</cite> (the most extensive set of transformers)</p></li>
+<li><p><strong>max_depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum computation graph depth. Default: 2</p></li>
 <li><p><strong>return_graph</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the computation graph. Default: <cite>False</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>features</strong> (<em>pandas.DataFrame</em>) – Tabular representation of the constructed features.</p></li>
-<li><p><strong>graph</strong> (<em>Graph</em>) – Constructed computation graph. Only returned if <code class="docutils literal notranslate"><span class="pre">return_graph</span> <span class="pre">==</span> <span class="pre">True</span></code></p></li>
+<li><p><strong>graph</strong> (<em>Graph</em>) – Constructed computation graph.
+Only returned if <code class="docutils literal notranslate"><span class="pre">return_graph</span> <span class="pre">==</span> <span class="pre">True</span></code></p></li>
 </ul>
 </p>
 </dd>
 </dl>
-<p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Arne De Brabandere, Pieter Robberechts, Tim Op De Beéck and Jesse Davis.
-<a class="reference external" href="https://www.google.com/url?q=https%3A%2F%2Fupvedues-my.sharepoint.com%2F%3Ab%3A%2Fg%2Fpersonal%2Fjorallo_upv_edu_es%2FETxycG2WhmFBmVN7CNW8yKsBQHwhhlzdyegEx1AnNeRa2w%3Fe%3DbPQR7e&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH-zTIQtPE2M0m0h_uUPN_25SaGCw">Automating Feature Construction for Multi-View Time Series Data</a>.
-ECML/PKDD Workshop on Automating Data Science 2019.</p>
-</dd>
-</dl>
 </dd></dl>
 
-<div class="section" id="module-tsfuse.construction.autods19">
-<span id="tsfuse-construction-autods19"></span><h2>tsfuse.construction.autods19<a class="headerlink" href="#module-tsfuse.construction.autods19" title="Permalink to this headline">¶</a></h2>
+<section id="module-tsfuse.construction.autods19">
+<span id="tsfuse-construction-autods19"></span><h2>tsfuse.construction.autods19<a class="headerlink" href="#module-tsfuse.construction.autods19" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="tsfuse.construction.autods19.construct">
-<span class="sig-prename descclassname"><span class="pre">tsfuse.construction.autods19.</span></span><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.construction.autods19.construct" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tsfuse.construction.autods19.</span></span><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.construction.autods19.construct" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="tsfuse.transformers.html" class="btn btn-neutral float-left" title="tsfuse.transformers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tsfuse.computation.html" class="btn btn-neutral float-left" title="tsfuse.computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tsfuse.transformers.html" class="btn btn-neutral float-right" title="tsfuse.transformers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, DTAI KU Leuven.
-
-    </p>
+    <p>&#169; Copyright 2022, DTAI KU Leuven.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

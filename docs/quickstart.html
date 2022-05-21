@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quickstart &mdash; TSFuse 0.1.0 documentation</title>
+  <title>Quickstart &mdash; TSFuse 0.1.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -58,8 +58,8 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.html">tsfuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.data.html">tsfuse.data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.computation.html">tsfuse.computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.transformers.html">tsfuse.transformers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.construction.html">tsfuse.construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tsfuse.transformers.html">tsfuse.transformers</a></li>
 </ul>
 
         </div>
@@ -78,7 +78,7 @@
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Quickstart</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/getting-started.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/quickstart.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -371,7 +371,6 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
 <span class="kn">from</span> <span class="nn">tsfuse.data</span> <span class="kn">import</span> <span class="n">Collection</span>
-
 <span class="n">X</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">Collection</span><span class="p">(</span><span class="n">DataFrame</span><span class="p">({</span>
         <span class="s2">&quot;id&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
@@ -511,7 +510,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="_images/getting-started_17_0.svg" src="_images/getting-started_17_0.svg" /></div>
+<img alt="_images/quickstart_17_0.svg" src="_images/quickstart_17_0.svg" /></div>
 </div>
 <p>To apply this computation graph, simply call <a class="reference internal" href="modules/tsfuse.computation.html#tsfuse.computation.Graph.transform" title="tsfuse.computation.Graph.transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">transform()</span></code></a> with a time series dictionary <cite>X</cite> as input:</p>
 <div class="nbinput docutils container">
@@ -603,7 +602,7 @@ div.rendered_html tbody tr:hover {
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, DTAI KU Leuven.</p>
+    <p>&#169; Copyright 2022, DTAI KU Leuven.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
