@@ -39,12 +39,12 @@ Time series are represented using a dictionary where each entry represents a uni
 from pandas import DataFrame
 from tsfuse.data import Collection
 X = {
-    "x1": Collection(pd.DataFrame({
+    "x1": Collection(DataFrame({
         "id":   [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3],
         "time": [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2],
         "data": [1, 2, 3, 1, 2, 3, 3, 2, 1, 3, 2, 1],
     })),
-    "x2": Collection(pd.DataFrame({
+    "x2": Collection(DataFrame({
         "id":   [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3],
         "time": [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2],
         "data": [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
