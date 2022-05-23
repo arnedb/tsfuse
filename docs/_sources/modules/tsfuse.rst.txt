@@ -1,5 +1,0 @@
-tsfuse
-======
-
-.. automodule:: tsfuse
-   :members:
