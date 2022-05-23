@@ -82,18 +82,6 @@ def test_number_of_unique_values_0_abs():
     np.testing.assert_equal(actual, np.nan)
 
 
-def test_sum_of_reoccurring_data_poins():
-    x = Collection.from_array([1, 1, 2, 3, 3, 4])
-    actual = SumReoccurringDataPoints().transform(x).values
-    np.testing.assert_equal(actual, 8)
-
-
-def test_sum_of_reoccurring_data_points_0():
-    x = Collection.from_array([1, 2, 3, 4])
-    actual = SumReoccurringDataPoints().transform(x).values
-    np.testing.assert_equal(actual, 0)
-
-
 def test_sum_of_reoccurring_values():
     x = Collection.from_array([1, 1, 2, 3, 3, 4])
     actual = SumReoccurringValues().transform(x).values

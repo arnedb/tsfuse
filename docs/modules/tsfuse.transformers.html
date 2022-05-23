@@ -640,7 +640,14 @@ using <code class="docutils literal notranslate"><span class="pre">scipy.signal.
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Length">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Length" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Sum">
@@ -663,232 +670,648 @@ Default: first axis with more than one value.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Mean">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Mean" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Arithmetic mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Median">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Median" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Middle value of the sorted values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Min">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Min" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Smallest value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.ArgMin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">ArgMin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.ArgMin" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Location of smallest value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first</strong> (<em>bool</em><em>, </em><em>default: True</em>) – If true, return first location. Otherwise, return last location.</p></li>
+<li><p><strong>rel</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Return location relative to total length (i.e., as a number in [0, 1])</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Max">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Max" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Largest value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.ArgMax">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">ArgMax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.ArgMax" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Location of largest value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first</strong> (<em>bool</em><em>, </em><em>default: True</em>) – If true, return first location. Otherwise, return last location.</p></li>
+<li><p><strong>rel</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Return location relative to total length (i.e., as a number in [0, 1])</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Variance">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Variance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.StandardDeviation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">StandardDeviation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.StandardDeviation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Standard deviation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Skewness">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Skewness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Skewness" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Kurtosis">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Kurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Kurtosis" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SpectralMoment">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SpectralMoment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SpectralMoment" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Spectral moment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SpectralMean">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SpectralMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SpectralMean" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Spectral mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SpectralVariance">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SpectralVariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SpectralVariance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Spectral variance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SpectralSkewness">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SpectralSkewness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SpectralSkewness" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Spectral skewness</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SpectralKurtosis">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SpectralKurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SpectralKurtosis" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Spectral kurtosis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Quantile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Quantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Quantile" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>q-Quantile</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>float</em><em>, </em><em>default: 0.5</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.IndexMassQuantile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">IndexMassQuantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.IndexMassQuantile" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Index mass q-quantile</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>float</em><em>, </em><em>default: 0.5</em>) – </p></li>
+<li><p><strong>rel</strong> (<em>bool</em><em>, </em><em>default: False</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Energy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Energy" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Sum of the squared values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.EnergyRatio">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">EnergyRatio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.EnergyRatio" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Energy ratio</p>
+<p>Divides the values into bins and computes the sum of squares of each bin
+divided by the total sum of squares of all bins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chunks</strong> (<em>int</em>) – Number of bins.</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Entropy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Entropy" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SampleEntropy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SampleEntropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SampleEntropy" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Sample entropy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.BinnedDistribution">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">BinnedDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.BinnedDistribution" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Binned distribution</p>
+<p>Divides the values into bins
+and computes the fraction of values in each bin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bins</strong> (<em>int</em><em>, </em><em>default: 10</em>) – Number of bins.</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.BinnedEntropy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">BinnedEntropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.BinnedEntropy" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Binned entropy</p>
+<p>Divides the values into bins
+and computes the entropy of the values in each bin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bins</strong> (<em>int</em><em>, </em><em>default: 10</em>) – Number of bins.</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.C3">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">C3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.C3" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Non-linearity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lag</strong> (<em>int</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.CID">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">CID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.CID" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Complexity estimate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.CountAboveMean">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">CountAboveMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.CountAboveMean" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of values greater than the mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.CountBelowMean">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">CountBelowMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.CountBelowMean" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of values smaller than the mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.RangeCount">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">RangeCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.RangeCount" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of values in range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> (<em>int</em><em>, </em><em>default: -1</em>) – Lower bound of the range.</p></li>
+<li><p><strong>max</strong> (<em>int</em><em>, </em><em>default: 1</em>) – Upper bound of the range.</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.ValueCount">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">ValueCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.ValueCount" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of occurrences of a value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>int</em><em>, </em><em>default: 0</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.Outliers">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">Outliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.Outliers" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of outliers, based on number of unit standard deviations from mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>int</em><em>, </em><em>default: 3</em>) – Number of unit standard deviations from mean.</p></li>
+<li><p><strong>rel</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Return the number of outliers relative to the total number of values.</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.AutoCorrelation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">AutoCorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.AutoCorrelation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Auto-correlation coefficients</p>
+<p>Returns the auto-correlation coefficients for lags <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">...,</span> <span class="pre">t]</span></code>
+where <code class="docutils literal notranslate"><span class="pre">t</span></code> is the total number of values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.CrossCorrelation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">CrossCorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.CrossCorrelation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Cross-correlation coefficients of two series</p>
+<p>Returns the cross-correlation coefficients for lags <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">...,</span> <span class="pre">t]</span></code>
+where <code class="docutils literal notranslate"><span class="pre">t</span></code> is the total number of values in each series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.AutoRegressiveCoefficients">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">AutoRegressiveCoefficients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.AutoRegressiveCoefficients" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Auto regressive coefficients</p>
+<p>Fits an autoregressive (AR) model and returns the coefficients of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.HighVariance">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">HighVariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.HighVariance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check if the series has a high variance</p>
+<p>Returns true if the variance is larger than a given threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.HighStandardDeviation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">HighStandardDeviation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.HighStandardDeviation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check if the series has a high standard deviation</p>
+<p>Returns true if</p>
+<div class="math notranslate nohighlight">
+\[StandardDeviation(x) &gt; r * (Max(x) - Min(x))\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>float</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SymmetryLooking">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SymmetryLooking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SymmetryLooking" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check whether the series looks symmetrical</p>
+<p>Returns true if</p>
+<div class="math notranslate nohighlight">
+\[|Mean(x) - Median(x)| &lt; r * (Max(x) - Min(x))\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>float</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.NumberCrossings">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">NumberCrossings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.NumberCrossings" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of times that the series crosses a given threshold</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>default: 0</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.LinearTrend">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">LinearTrend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.LinearTrend" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Linear trend statistics</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">scipy.stats.linregress</span></code> this transformer computes the following
+linear trend statistics:</p>
+<ul class="simple">
+<li><p>Slope</p></li>
+<li><p>Intercept</p></li>
+<li><p>Pearson correlation coefficient</p></li>
+<li><p>p-value of the hypothesis test
+where the null hypothesis is that the slope is zero</p></li>
+<li><p>Standard error of the slope</p></li>
+<li><p>Standard error of the intercept</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.LongestStrikeAboveMean">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">LongestStrikeAboveMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.LongestStrikeAboveMean" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Largest number of consecutive values greather than the mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.LongestStrikeBelowMean">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">LongestStrikeBelowMean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.LongestStrikeBelowMean" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Largest number of consecutive values smaller than the mean</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.SumChange">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">SumChange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.SumChange" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Sum of differences between consecutive timestamps</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abs</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Take the absolute value of the differences</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.MeanChange">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">MeanChange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.MeanChange" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Average of differences between consecutive timestamps</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abs</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Take the absolute value of the differences</p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.MeanSecondDerivativeCentral">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">MeanSecondDerivativeCentral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.MeanSecondDerivativeCentral" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Mean of the central approximation of the second derivative</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.TimeReversalAsymmetryStatistic">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">TimeReversalAsymmetryStatistic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.TimeReversalAsymmetryStatistic" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Time reversal asymmetry statistic</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lag</strong> (<em>int</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.FriedrichCoefficients">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">FriedrichCoefficients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.FriedrichCoefficients" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Coefficients of a polynomial fitted to the deterministic dynamics of
+a Langevin model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>r</strong> (<em>int</em><em>, </em><em>default: 10</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.statistics.MaxLangevinFixedPoint">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.statistics.</span></span><span class="sig-name descname"><span class="pre">MaxLangevinFixedPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.statistics.MaxLangevinFixedPoint" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Largest fixed point of a polynomial fitted to the deterministic dynamics of
+a Langevin model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em><em>, </em><em>default: 1</em>) – </p></li>
+<li><p><strong>r</strong> (<em>int</em><em>, </em><em>default: 10</em>) – </p></li>
+<li><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-tsfuse.transformers.uniqueness">
@@ -896,32 +1319,62 @@ Default: first axis with more than one value.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.uniqueness.HasDuplicate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.uniqueness.</span></span><span class="sig-name descname"><span class="pre">HasDuplicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.uniqueness.HasDuplicate" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check whether the series has a duplicated value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.uniqueness.HasDuplicateMin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.uniqueness.</span></span><span class="sig-name descname"><span class="pre">HasDuplicateMin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.uniqueness.HasDuplicateMin" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check whether the series has a duplicated minimum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.uniqueness.HasDuplicateMax">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.uniqueness.</span></span><span class="sig-name descname"><span class="pre">HasDuplicateMax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.uniqueness.HasDuplicateMax" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check whether the series has a duplicated maximum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.uniqueness.NumberUniqueValues">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.uniqueness.</span></span><span class="sig-name descname"><span class="pre">NumberUniqueValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.uniqueness.NumberUniqueValues" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="tsfuse.transformers.uniqueness.SumReoccurringDataPoints">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.uniqueness.</span></span><span class="sig-name descname"><span class="pre">SumReoccurringDataPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.uniqueness.SumReoccurringDataPoints" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of unique values in the series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tsfuse.transformers.uniqueness.SumReoccurringValues">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tsfuse.transformers.uniqueness.</span></span><span class="sig-name descname"><span class="pre">SumReoccurringValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">parents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.transformers.uniqueness.SumReoccurringValues" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Sum of values that occur at least twice</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<em>{'time'</em><em>, </em><em>'dims'}</em><em>, </em><em>optional</em>) – Direction of time: timestamps (‘time’) or dimensions (‘dims’).
+Default: first axis with more than one value.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>

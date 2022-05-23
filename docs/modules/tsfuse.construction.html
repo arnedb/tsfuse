@@ -48,10 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.html">tsfuse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.data.html">tsfuse.data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.computation.html">tsfuse.computation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">tsfuse.construction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-tsfuse.construction.autods19">tsfuse.construction.autods19</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tsfuse.construction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfuse.transformers.html">tsfuse.transformers</a></li>
 </ul>
 
@@ -108,23 +105,25 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="tsfuse.construction.construct">
 <span class="sig-prename descclassname"><span class="pre">tsfuse.construction.</span></span><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.construction.construct" title="Permalink to this definition"></a></dt>
-<dd><p>Construct features for a given time series dataset <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">y</span></code></p>
+<dd><p>Construct features for a labeled time series dataset <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">y</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>dict</em><em>(</em><em>str</em><em>, </em><a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a><em>)</em>) – Multi-view time series data.</p></li>
-<li><p><strong>y</strong> (<em>array-like</em>) – Target data.</p></li>
-<li><p><strong>task</strong> (<em>{'classification'</em><em>, </em><em>'regression'</em><em>, </em><em>'auto'}</em><em>, </em><em>optional</em>) – Machine learning task. Default: <cite>auto</cite> (detect task automatically)</p></li>
-<li><p><strong>transformers</strong> (<em>{'minimal'</em><em>, </em><em>'fast'</em><em>, </em><em>'full'}</em><em>, </em><em>optional</em>) – Feature construction settings.
-Default: <cite>full</cite> (the most extensive set of transformers)</p></li>
-<li><p><strong>max_depth</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum computation graph depth. Default: 2</p></li>
-<li><p><strong>return_graph</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the computation graph. Default: <cite>False</cite></p></li>
+<li><p><strong>X</strong> (<em>dict</em><em>(</em><em>str</em><em>, </em><a class="reference internal" href="tsfuse.data.html#tsfuse.data.Collection" title="tsfuse.data.Collection"><em>Collection</em></a><em>)</em>) – Time series data.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – Labels. Since each window has a single label, the length should be
+equal to the number of windows in the given time series data.</p></li>
+<li><p><strong>task</strong> (<em>{'classification'</em><em>, </em><em>'regression'</em><em>, </em><em>'auto'}</em><em>, </em><em>default: 'auto'</em>) – Machine learning task: detected automatically by default.</p></li>
+<li><p><strong>transformers</strong> (<em>{'minimal'</em><em>, </em><em>'full'}</em><em>, </em><em>default: 'full'</em>) – Feature construction settings: ‘minimal’ uses a minimal set of
+simple statistical transformers and ‘full’ the complete set of
+transformers.</p></li>
+<li><p><strong>max_depth</strong> (<em>int</em><em>, </em><em>default: 2</em>) – Maximum computation graph depth.</p></li>
+<li><p><strong>return_graph</strong> (<em>bool</em><em>, </em><em>default: False</em>) – Return computation graph.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>features</strong> (<em>pandas.DataFrame</em>) – Tabular representation of the constructed features.</p></li>
-<li><p><strong>graph</strong> (<em>Graph</em>) – Constructed computation graph.
+<li><p><strong>features</strong> (<em>pandas.DataFrame</em>) – Constructed features.</p></li>
+<li><p><strong>graph</strong> (<em>Graph</em>) – Computation graph that computes the constructed features.
 Only returned if <code class="docutils literal notranslate"><span class="pre">return_graph</span> <span class="pre">==</span> <span class="pre">True</span></code></p></li>
 </ul>
 </p>
@@ -132,14 +131,6 @@ Only returned if <code class="docutils literal notranslate"><span class="pre">re
 </dl>
 </dd></dl>
 
-<section id="module-tsfuse.construction.autods19">
-<span id="tsfuse-construction-autods19"></span><h2>tsfuse.construction.autods19<a class="headerlink" href="#module-tsfuse.construction.autods19" title="Permalink to this headline"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="tsfuse.construction.autods19.construct">
-<span class="sig-prename descclassname"><span class="pre">tsfuse.construction.autods19.</span></span><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsfuse.construction.autods19.construct" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
 </section>
 
 

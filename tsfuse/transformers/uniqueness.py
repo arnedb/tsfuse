@@ -5,16 +5,24 @@ from .statistics import ArgMin, ArgMax
 from .util import apply_to_axis
 
 __all__ = [
-    'HasDuplicate',
-    'HasDuplicateMin',
-    'HasDuplicateMax',
-    'NumberUniqueValues',
-    'SumReoccurringDataPoints',
-    'SumReoccurringValues',
+    "HasDuplicate",
+    "HasDuplicateMin",
+    "HasDuplicateMax",
+    "NumberUniqueValues",
+    "SumReoccurringValues",
 ]
 
 
 class NumberUniqueValues(Transformer):
+    """
+    Number of unique values in the series
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
 
     def __init__(self, *parents, rel=True, axis=None, **kwargs):
         super(NumberUniqueValues, self).__init__(*parents, **kwargs)
@@ -47,6 +55,15 @@ class NumberUniqueValues(Transformer):
 
 
 class HasDuplicate(Transformer):
+    """
+    Check whether the series has a duplicated value
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
 
     def __init__(self, *parents, axis=None, **kwargs):
         super(HasDuplicate, self).__init__(*parents, **kwargs)
@@ -56,10 +73,21 @@ class HasDuplicate(Transformer):
         ]
 
     def graph(self, x):
-        return Graph(NumberUniqueValues(x, rel=True, axis=self.axis) < Constant(1))
+        return Graph(
+            NumberUniqueValues(x, rel=True, axis=self.axis) < Constant(1)
+        )
 
 
 class HasDuplicateMin(Transformer):
+    """
+    Check whether the series has a duplicated minimum
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
 
     def __init__(self, *parents, axis=None, **kwargs):
         super(HasDuplicateMin, self).__init__(*parents, **kwargs)
@@ -70,11 +98,21 @@ class HasDuplicateMin(Transformer):
 
     def graph(self, x):
         return Graph(
-            ArgMin(x, first=True, axis=self.axis) < ArgMin(x, first=False, axis=self.axis)
+            ArgMin(x, first=True, axis=self.axis)
+            < ArgMin(x, first=False, axis=self.axis)
         )
 
 
 class HasDuplicateMax(Transformer):
+    """
+    Check whether the series has a duplicated maximum
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
 
     def __init__(self, *parents, axis=None, **kwargs):
         super(HasDuplicateMax, self).__init__(*parents, **kwargs)
@@ -85,11 +123,21 @@ class HasDuplicateMax(Transformer):
 
     def graph(self, x):
         return Graph(
-            ArgMax(x, first=True, axis=self.axis) < ArgMax(x, first=False, axis=self.axis)
+            ArgMax(x, first=True, axis=self.axis)
+            < ArgMax(x, first=False, axis=self.axis)
         )
 
 
 class SumReoccurringValues(Transformer):
+    """
+    Sum of values that occur at least twice
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
 
     def __init__(self, *parents, axis=None, **kwargs):
         super(SumReoccurringValues, self).__init__(*parents, **kwargs)
@@ -107,32 +155,6 @@ class SumReoccurringValues(Transformer):
             unique, counts = np.unique(a, return_counts=True)
             counts[counts < 2] = 0
             counts[counts > 1] = 1
-            result[nnan] = np.sum(counts * unique, keepdims=True)
-            return result
-
-        def calculator(a):
-            return np.apply_along_axis(calculator1d, -1, a)
-
-        return apply_to_axis(calculator, x, axis=self.axis)
-
-
-class SumReoccurringDataPoints(Transformer):
-
-    def __init__(self, *parents, axis=None, **kwargs):
-        super(SumReoccurringDataPoints, self).__init__(*parents, **kwargs)
-        self.axis = axis
-        self.preconditions = [
-            lambda *collections: len(collections) == 1,
-            lambda x: np.issubdtype(x.dtype, np.float64),
-        ]
-
-    def apply(self, x):
-        def calculator1d(a):
-            nnan = ~np.isnan(a)
-            result = np.full(a.shape, fill_value=np.nan)
-            a = a[nnan]
-            unique, counts = np.unique(a, return_counts=True)
-            counts[counts < 2] = 0
             result[nnan] = np.sum(counts * unique, keepdims=True)
             return result
 

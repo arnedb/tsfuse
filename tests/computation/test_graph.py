@@ -2,18 +2,19 @@ import pytest
 import numpy as np
 
 from tsfuse.data.synthetic import brownian
-from tsfuse.computation import Graph, Input, extract
-from tsfuse.construction.autods19 import minimal
+from tsfuse.computation import Graph, Input
 from tsfuse.transformers import Add, Mean, Variance, PowerSpectralDensity
 
 
 @pytest.fixture
 def graph():
-    return Graph([
-        Mean(Input('x')),
-        PowerSpectralDensity(Input('y')),
-        Variance(Add(Input('x'), Input('y'))),
-    ])
+    return Graph(
+        [
+            Mean(Input("x")),
+            PowerSpectralDensity(Input("y")),
+            Variance(Add(Input("x"), Input("y"))),
+        ]
+    )
 
 
 def test_add_node_input_node_new():
@@ -51,18 +52,18 @@ def test_add_node_input_id_existing_int():
 
 def test_add_node_input_id_new_str():
     graph = Graph()
-    graph.add_node('x')
+    graph.add_node("x")
     assert len(graph.inputs) == 1
-    assert graph.inputs['x'].input_id == 'x'
+    assert graph.inputs["x"].input_id == "x"
 
 
 def test_add_node_input_id_existing_str():
     graph = Graph()
-    node = Input('x')
+    node = Input("x")
     graph.add_node(node)
-    graph.add_node('x')
+    graph.add_node("x")
     assert len(graph.inputs) == 1
-    assert graph.inputs['x'] == node
+    assert graph.inputs["x"] == node
 
 
 def test_add_node_transformer():
@@ -86,52 +87,24 @@ def test_add_node_transformer_with_optimization():
 def test_transform(graph):
     x = brownian()
     y = brownian()
-    result = graph.transform({'x': x, 'y': y}, return_dataframe=False)
+    result = graph.transform({"x": x, "y": y}, return_dataframe=False)
     assert len(result) == 3
     np.testing.assert_almost_equal(
-        result[graph.outputs[0]].values,
-        Mean().transform(x).values
+        result[graph.outputs[0]].values, Mean().transform(x).values
     )
     np.testing.assert_almost_equal(
         result[graph.outputs[1]].values,
-        PowerSpectralDensity().transform(y).values
+        PowerSpectralDensity().transform(y).values,
     )
     np.testing.assert_almost_equal(
         result[graph.outputs[2]].values,
-        Variance().transform(Add().transform(x, y)).values
+        Variance().transform(Add().transform(x, y)).values,
     )
 
 
 def test_transform_to_dataframe(graph):
     x = brownian()
     y = brownian()
-    result = graph.transform({'x': x, 'y': y}, return_dataframe=True)
+    result = graph.transform({"x": x, "y": y}, return_dataframe=True)
     print(graph.outputs)
     assert result.shape == (10, 4)
-
-def test_extract_minimal(graph):
-    x = brownian()
-    y = brownian()
-    X = {'x': x, 'y': y}
-    features, graph = extract(X, transformers='minimal', return_graph=True)
-    print(list(features.columns))
-    print(graph.optimized.outputs)
-    assert features.shape == (x.shape[0], len(minimal['series-to-attribute']) * 2 * 2)
-    np.testing.assert_almost_equal(
-        features.loc[:, 'Mean(Input(x)){0}'],
-        Mean().transform(x).values[:, 0, 0]
-    )
-
-def test_extract_custom(graph):
-    x = brownian()
-    y = brownian()
-    X = {'x': x, 'y': y}
-    transformers = [Mean(), Variance()]
-    features, graph = extract(X, transformers=transformers, return_graph=True)
-    print(list(features.columns))
-    print(graph.optimized.outputs)
-    assert features.shape == (x.shape[0], len(transformers) * 2 * 2)
-    np.testing.assert_almost_equal(
-        features.loc[:, 'Mean(Input(x)){0}'],
-        Mean().transform(x).values[:, 0, 0]
-    )

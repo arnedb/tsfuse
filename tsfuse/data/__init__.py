@@ -7,68 +7,9 @@ from .tags import Tags
 from .units import units
 
 __all__ = [
-    'Collection',
-    'Type',
+    "Collection",
+    "Tags",
 ]
-
-
-def create_dataset(X, y=None, column_id='id', column_sort='time', collections=None):
-    """
-    Create a dataset from given time series data (required) and labels (optional).
-
-    Parameters
-    ----------
-    X : DataFrame
-        Time series data.
-    y : Series, optional
-        Labels.
-    column_id : str, optional
-        Name of the column that contains the instance identifiers. Default: 'id'
-    column_sort : str, optional
-        Name of the column that contains the timestamps. Default: 'time'
-    collections : dict, optional
-        Dictonary where each key is the names of a collection
-        and each value is a list of time series names (i.e., columns of `X`)
-        that belong to the collection.
-    """
-    # Input data checks
-    if not isinstance(X, pd.DataFrame):
-        raise ValueError('X must be a DataFrame')
-    if column_id not in X.columns:
-        raise ValueError(f'Column "{column_id}" does not exist in X')
-    if column_sort not in X.columns:
-        raise ValueError(f'Column "{column_sort}" does not exist in X')
-    if y is not None:
-        X_ids = X['id'].unique()
-        y_ids = y.index
-        if not all(i in y_ids for i in X_ids):
-            raise ValueError('Not all identifiers in X are in y')
-        if not all(i in X_ids for i in y_ids):
-            raise ValueError('Not all identifiers in y are in X')
-    if collections is not None:
-        for c in collections:
-            names = collections[c]
-            if not isinstance(names, (list, tuple, np.ndarray)):
-                raise ValueError(
-                    'Column names of each collection must be given as a list'
-                )
-            for n in names:
-                if n not in X.columns:
-                    raise ValueError(f'Column "{n}" does not exist in X')
-    else:
-        ignore_columns = [column_id, column_sort]
-        collections = {c: [c] for c in X.columns if c not in ignore_columns}
-    
-    # Create TSFuse format
-    X_tsfuse = dict()
-    for c in collections:
-        x = X[[column_id, column_sort] + list(collections[c])]
-        x[column_id] = x[column_id].astype('category')
-        x[column_id].cat.set_categories(y.index, inplace=True)
-        x = x.sort_values('id')
-        X_tsfuse[c] = Collection(x, column_id=column_id, column_sort=column_sort)
-
-    return X_tsfuse, y
 
 
 class Collection(object):
@@ -79,29 +20,45 @@ class Collection(object):
     ----------
     x : pandas.DataFrame
         Time series or attributes given as a DataFrame.
-    column_id : str, optional
-        Name of the column that contains the instance identifiers. Default: 'id'
-    column_sort : str, optional
-        Name of the column that contains the timestamps. Default: 'time'
+    column_id : str, default: 'id'
+        Name of the column that contains the instance identifiers.
+    column_sort : str, default: 'time'
+        Name of the column that contains the timestamps.
     tags : optional
         Tags specified by keys and values.
     unit : optional
         Unit, see the `Pint documentation <https://pint.readthedocs.io>`_.
+
+    Attributes
+    ----------
+    values : numpy.array
+        Three-dimensional array of shape ``(N, t, d)``
+        containing the values of the time series data.
+    shape : numpy.array
+        Shape ``(N, t, d)`` of the tme series data.
+    tags : tsfuse.data.Tags
+        Tags specified by keys and values.
+    unit : pint.unit.Unit
+        Unit of the time series data.
     """
 
-    def __init__(self, x, column_id='id', column_sort='time', tags=None, unit=None):
+    def __init__(
+        self, x, column_id="id", column_sort="time", tags=None, unit=None
+    ):
         # Data
         if isinstance(x, pd.DataFrame):
             self._init_from_dataframe(x, column_id, column_sort)
         elif x is not None:
-            raise ValueError('Data must be given as a DataFrame')
+            raise ValueError("Data must be given as a DataFrame")
         # Tags
         self._tags = tags if tags is not None else Tags()
         # Unit
         self._unit = unit
 
     @classmethod
-    def from_array(cls, values, id=None, time=None, dims=None, tags=None, unit=None):
+    def from_array(
+        cls, values, id=None, time=None, dims=None, tags=None, unit=None
+    ):
         collection = Collection(None, tags=tags, unit=unit)
         collection._init_from_array(values, id, time, dims)
         return collection
@@ -124,11 +81,15 @@ class Collection(object):
             if column_sort not in x.columns:
                 raise ValueError(f'Column "{column_sort}" does not exist')
             parsed_time = []
-            parsed_dims = [c for c in x.columns if (c != column_id) and (c != column_sort)]
+            parsed_dims = [
+                c for c in x.columns if (c != column_id) and (c != column_sort)
+            ]
             for i in parsed_id:
                 parsed_data.append(x.loc[x[column_id] == i, parsed_dims].values)
                 parsed_time.append(x.loc[x[column_id] == i, column_sort].values)
-            self._init_from_array(parsed_data, parsed_id, parsed_time, parsed_dims)
+            self._init_from_array(
+                parsed_data, parsed_id, parsed_time, parsed_dims
+            )
 
     def _init_from_array(self, data, id, time, dims):
         # Multiple variable-length collections
@@ -136,15 +97,17 @@ class Collection(object):
             # Get all collections
             collections = []
             for i in range(len(data)):
-                if data[i].__class__.__name__ == 'Collection':
+                if data[i].__class__.__name__ == "Collection":
                     collections.append(data[i])
                 else:
-                    collections.append(Collection.from_array(
-                        data[i],
-                        id=id[i] if id is not None else i,
-                        time=time[i] if time is not None else None,
-                        dims=dims
-                    ))
+                    collections.append(
+                        Collection.from_array(
+                            data[i],
+                            id=id[i] if id is not None else i,
+                            time=time[i] if time is not None else None,
+                            dims=dims,
+                        )
+                    )
             # Store all collections in self._values
             self._values = np.array(collections)
             # Create id property
@@ -193,7 +156,7 @@ class Collection(object):
             # Determine data type of time
             self._itype = time.dtype
             if np.issubdtype(self._itype, np.datetime64):
-                self._itype = np.dtype('datetime64[ns]')
+                self._itype = np.dtype("datetime64[ns]")
             elif np.issubdtype(self._itype, np.integer):
                 self._itype = np.int64
             else:
@@ -216,51 +179,30 @@ class Collection(object):
 
     @property
     def values(self):
-        """
-        numpy.array : Three-dimensional array of shape ``(N, t, d)``
-        """
         return self._values
 
     @property
     def id(self):
-        """
-        numpy.array : One-dimensional array of length ``N``
-        """
         return self._id
 
     @property
     def time(self):
-        """
-        numpy.array : Two-dimensional array of shape ``(N, t)``
-        """
         return self._time
 
     @property
     def dims(self):
-        """
-        numpy.array : One-dimensional array of length ``d``
-        """
         return self._dims
 
     @property
     def tags(self):
-        """
-        :class:`~tsfuse.data.tags.Tags` object which specifies values for one or more tag keys.
-        """
         return self._tags
 
     @property
     def unit(self):
-        """
-        pint.unit.Unit : Unit of ``self.values``
-        """
         return self._unit
 
     @property
     def type(self):
-        """
-        tsfuse.data.Type : Type of data.
-        """
         if self.shape[0] > 1:
             return Type.WINDOWS
         elif np.max(self.shape[1]) > 1:
@@ -273,22 +215,19 @@ class Collection(object):
     @property
     def transform_axis(self):
         if (self.type == Type.WINDOWS) or (self.type == Type.SERIES):
-            return 'time'
+            return "time"
         else:
-            return 'dims'
+            return "dims"
 
     @property
     def shape(self):
-        """
-        Shape ``(N, t, d)``
-        """
         if np.isscalar(self.values):
             return ()
         elif len(self.values.shape) == 1:
             return (
                 np.sum([c.shape[0] for c in self.values]),
                 tuple([c.shape[1] for c in self.values]),
-                len(self.dims)
+                len(self.dims),
             )
         else:
             return self.values.shape
@@ -303,9 +242,6 @@ class Collection(object):
 
     @property
     def dtype(self):
-        """
-        Data type of ``self.values``
-        """
         if (self.values is not None) and (len(self.values.shape) == 3):
             return np.array(self.values, copy=False).dtype
         else:
@@ -313,17 +249,21 @@ class Collection(object):
 
     @property
     def itype(self):
-        """
-        Data type of ``self.time``
-        """
         if (self.values is not None) and (len(self.time.shape) == 2):
             return self.time.dtype
         else:
             return None
 
-    def to_dataframe(self, id='id', time='time'):
+    def to_dataframe(self, id="id", time="time"):
         """
         Convert to a DataFrame.
+
+        Arguments
+        ---------
+        id : str, default: 'id'
+            Name of the column with the instance identifiers.
+        time : str, default: 'time'
+            Name of the column with the timestamps.
         """
         # Variable length time series collection
         if isinstance(self.shape[1], tuple):
@@ -469,7 +409,9 @@ def _reshape(data, id, time, dims):
             i = np.empty((1, v.shape[1]), dtype=time.dtype)
             i[0, :] = time
     else:
-        v = np.empty((data.shape[0], data.shape[1], data.shape[2]), dtype=data.dtype)
+        v = np.empty(
+            (data.shape[0], data.shape[1], data.shape[2]), dtype=data.dtype
+        )
         v[:, :, :] = data
         if dims is None:
             n = np.arange(v.shape[2])
@@ -494,9 +436,10 @@ def _multiple_collections(values):
         return False
     if len(values) == 0:
         return False
-    if isinstance(values[0], (list, tuple, np.ndarray)) \
-            and (len(set(len(values[i]) for i in range(len(values)))) > 1):
+    if isinstance(values[0], (list, tuple, np.ndarray)) and (
+        len(set(len(values[i]) for i in range(len(values)))) > 1
+    ):
         return True
-    if values[0].__class__.__name__ == 'Collection':
+    if values[0].__class__.__name__ == "Collection":
         return True
     return False

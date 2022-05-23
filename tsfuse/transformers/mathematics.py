@@ -8,29 +8,29 @@ from ..computation.nodes import Add, Subtract, Multiply, Divide, Constant
 from .queries import Slice
 
 __all__ = [
-    'Add',
-    'Subtract',
-    'Multiply',
-    'Divide',
-    'Negative',
-    'Reciprocal',
-    'Square',
-    'Exponent',
-    'Sqrt',
-    'Abs',
-    'Sum',
-    'CumSum',
-    'Diff',
-    'Roots',
-    'Average',
-    'Difference',
-    'Ratio',
-    'Sin',
-    'Cos',
-    'Tan',
-    'ArcSin',
-    'ArcCos',
-    'ArcTan',
+    "Add",
+    "Subtract",
+    "Multiply",
+    "Divide",
+    "Negative",
+    "Reciprocal",
+    "Square",
+    "Exponent",
+    "Sqrt",
+    "Abs",
+    "Sum",
+    "CumSum",
+    "Diff",
+    "Roots",
+    "Average",
+    "Difference",
+    "Ratio",
+    "Sin",
+    "Cos",
+    "Tan",
+    "ArcSin",
+    "ArcCos",
+    "ArcTan",
 ]
 
 
@@ -38,6 +38,7 @@ class Negative(Transformer):
     """
     Element-wise negation
     """
+
     def __init__(self, *parents, **kwargs):
         super(Negative, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -59,6 +60,7 @@ class Reciprocal(Transformer):
     """
     Element-wise multiplicative inverse
     """
+
     def __init__(self, *parents, **kwargs):
         super(Reciprocal, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -80,6 +82,7 @@ class Square(Transformer):
     """
     Element-wise square
     """
+
     def __init__(self, *parents, **kwargs):
         super(Square, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -106,6 +109,7 @@ class Exponent(Transformer):
     a : int, optional
         Exponent. Default: 2
     """
+
     def __init__(self, *parents, a=2, **kwargs):
         super(Exponent, self).__init__(*parents, **kwargs)
         self.a = a
@@ -133,6 +137,7 @@ class Sqrt(Transformer):
     """
     Element-wise square root
     """
+
     def __init__(self, *parents, **kwargs):
         super(Sqrt, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -154,6 +159,7 @@ class Abs(Transformer):
     """
     Element-wise absolute value
     """
+
     def __init__(self, *parents, **kwargs):
         super(Abs, self).__init__(*parents, **kwargs)
         self.preconditions = [
@@ -181,6 +187,7 @@ class Sum(Transformer):
         Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Sum, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -212,6 +219,7 @@ class CumSum(Transformer):
         Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(CumSum, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -219,7 +227,7 @@ class CumSum(Transformer):
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
         ]
-        
+
     def transform(self, x, **kwargs):
         """
         Compute cumulative sum along the given axis
@@ -243,6 +251,7 @@ class Diff(Transformer):
         Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Diff, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -275,6 +284,7 @@ class Roots(Transformer):
         Direction of time: timestamps ('time') or dimensions ('dims').
         Default: first axis with more than one value.
     """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Roots, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -315,11 +325,13 @@ class Average(Transformer):
     """
     Element-wise average
     """
+
     def __init__(self, *parents, **kwargs):
         super(Average, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            and np.issubdtype(y.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -342,12 +354,14 @@ class Difference(Transformer):
     rel : bool, optional
         Compute the relative difference. Default: False
     """
+
     def __init__(self, *parents, rel=False, **kwargs):
         super(Difference, self).__init__(*parents, **kwargs)
         self.rel = rel
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            and np.issubdtype(y.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):
@@ -367,11 +381,13 @@ class Ratio(Transformer):
     """
     Element-wise ratio
     """
+
     def __init__(self, *parents, **kwargs):
         super(Ratio, self).__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
-            lambda x, y: np.issubdtype(x.dtype, np.float64) and np.issubdtype(y.dtype, np.float64),
+            lambda x, y: np.issubdtype(x.dtype, np.float64)
+            and np.issubdtype(y.dtype, np.float64),
         ]
 
     def transform(self, x, y, **kwargs):

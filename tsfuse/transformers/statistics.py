@@ -65,7 +65,7 @@ __all__ = [
 
 class SinglePassStatistics(Transformer):
     """
-    Eight simple statistics.
+    Eight simple statistics
 
     Calculates the following statistics using only one pass over the data:
 
@@ -77,8 +77,6 @@ class SinglePassStatistics(Transformer):
     - variance
     - skewness
     - kurtosis
-
-    Each series of the input collection is transformed to a series of eight values.
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
@@ -94,6 +92,16 @@ class SinglePassStatistics(Transformer):
 
 
 class Length(Transformer):
+    """
+    Number of samples
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Length, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -109,6 +117,16 @@ class Length(Transformer):
 
 
 class Mean(Transformer):
+    """
+    Arithmetic mean
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Mean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -124,6 +142,16 @@ class Mean(Transformer):
 
 
 class Median(Transformer):
+    """
+    Middle value of the sorted values
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Median, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -140,6 +168,16 @@ class Median(Transformer):
 
 
 class Min(Transformer):
+    """
+    Smallest value
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Min, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -155,6 +193,20 @@ class Min(Transformer):
 
 
 class ArgMin(Transformer):
+    """
+    Location of smallest value
+
+    Parameters
+    ----------
+    first : bool, default: True
+        If true, return first location. Otherwise, return last location.
+    rel : bool, default: False
+        Return location relative to total length (i.e., as a number in [0, 1])
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, first=True, rel=False, axis=None, **kwargs):
         super(ArgMin, self).__init__(*parents, **kwargs)
         self.first = first
@@ -184,6 +236,16 @@ class ArgMin(Transformer):
 
 
 class Max(Transformer):
+    """
+    Largest value
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Max, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -199,6 +261,20 @@ class Max(Transformer):
 
 
 class ArgMax(Transformer):
+    """
+    Location of largest value
+
+    Parameters
+    ----------
+    first : bool, default: True
+        If true, return first location. Otherwise, return last location.
+    rel : bool, default: False
+        Return location relative to total length (i.e., as a number in [0, 1])
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, first=True, rel=False, axis=None, **kwargs):
         super(ArgMax, self).__init__(*parents, **kwargs)
         self.first = first
@@ -228,6 +304,16 @@ class ArgMax(Transformer):
 
 
 class Variance(Transformer):
+    """
+    Variance
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Variance, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -243,6 +329,16 @@ class Variance(Transformer):
 
 
 class StandardDeviation(Transformer):
+    """
+    Standard deviation
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(StandardDeviation, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -256,6 +352,16 @@ class StandardDeviation(Transformer):
 
 
 class Skewness(Transformer):
+    """
+    Skewness
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Skewness, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -271,6 +377,16 @@ class Skewness(Transformer):
 
 
 class Kurtosis(Transformer):
+    """
+    Kurtosis
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Kurtosis, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -286,6 +402,16 @@ class Kurtosis(Transformer):
 
 
 class SpectralMoment(Transformer):
+    """
+    Spectral moment
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, r=1, origin=False, axis=None, **kwargs):
         super(SpectralMoment, self).__init__(*parents, **kwargs)
         self.r = r
@@ -303,6 +429,16 @@ class SpectralMoment(Transformer):
 
 
 class SpectralMean(Transformer):
+    """
+    Spectral mean
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
         super(SpectralMean, self).__init__(*parents, **kwargs)
         self.origin = origin
@@ -317,6 +453,16 @@ class SpectralMean(Transformer):
 
 
 class SpectralVariance(Transformer):
+    """
+    Spectral variance
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
         super(SpectralVariance, self).__init__(*parents, **kwargs)
         self.origin = origin
@@ -333,6 +479,16 @@ class SpectralVariance(Transformer):
 
 
 class SpectralSkewness(Transformer):
+    """
+    Spectral skewness
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
         super(SpectralSkewness, self).__init__(*parents, **kwargs)
         self.origin = origin
@@ -353,6 +509,16 @@ class SpectralSkewness(Transformer):
 
 
 class SpectralKurtosis(Transformer):
+    """
+    Spectral kurtosis
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
         super(SpectralKurtosis, self).__init__(*parents, **kwargs)
         self.origin = origin
@@ -380,6 +546,17 @@ class SpectralKurtosis(Transformer):
 
 
 class Quantile(Transformer):
+    """
+    q-Quantile
+
+    Parameters
+    ----------
+    q : float, default: 0.5
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, q=0.5, axis=None, **kwargs):
         super(Quantile, self).__init__(*parents, **kwargs)
         self.q = q
@@ -397,6 +574,18 @@ class Quantile(Transformer):
 
 
 class IndexMassQuantile(Transformer):
+    """
+    Index mass q-quantile
+
+    Parameters
+    ----------
+    q : float, default: 0.5
+    rel : bool, default: False
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, q=0.5, rel=False, axis=None, **kwargs):
         super(IndexMassQuantile, self).__init__(*parents, **kwargs)
         self.q = q
@@ -420,6 +609,16 @@ class IndexMassQuantile(Transformer):
 
 
 class Energy(Transformer):
+    """
+    Sum of the squared values
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Energy, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -433,6 +632,21 @@ class Energy(Transformer):
 
 
 class EnergyRatio(Transformer):
+    """
+    Energy ratio
+
+    Divides the values into bins and computes the sum of squares of each bin
+    divided by the total sum of squares of all bins.
+
+    Parameters
+    ----------
+    chunks : int
+        Number of bins.
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, chunks=10, axis=None, **kwargs):
         super(EnergyRatio, self).__init__(*parents, **kwargs)
         self.chunks = chunks
@@ -449,6 +663,16 @@ class EnergyRatio(Transformer):
 
 
 class Entropy(Transformer):
+    """
+    Entropy
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(Entropy, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -462,6 +686,16 @@ class Entropy(Transformer):
 
 
 class SampleEntropy(Transformer):
+    """
+    Sample entropy
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(SampleEntropy, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -475,6 +709,21 @@ class SampleEntropy(Transformer):
 
 
 class BinnedDistribution(Transformer):
+    """
+    Binned distribution
+
+    Divides the values into bins
+    and computes the fraction of values in each bin.
+
+    Parameters
+    ----------
+    bins : int, default: 10
+        Number of bins.
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, bins=10, axis=None, **kwargs):
         super(BinnedDistribution, self).__init__(*parents, **kwargs)
         self.bins = bins
@@ -491,6 +740,21 @@ class BinnedDistribution(Transformer):
 
 
 class BinnedEntropy(Transformer):
+    """
+    Binned entropy
+
+    Divides the values into bins
+    and computes the entropy of the values in each bin.
+
+    Parameters
+    ----------
+    bins : int, default: 10
+         Number of bins.
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, bins=10, axis=None, **kwargs):
         super(BinnedEntropy, self).__init__(*parents, **kwargs)
         self.bins = bins
@@ -510,6 +774,17 @@ class BinnedEntropy(Transformer):
 
 
 class C3(Transformer):
+    """
+    Non-linearity
+
+    Parameters
+    ----------
+    lag : int, default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, lag=1, axis=None, **kwargs):
         super(C3, self).__init__(*parents, **kwargs)
         self.lag = lag
@@ -531,6 +806,16 @@ class C3(Transformer):
 
 
 class CID(Transformer):
+    """
+    Complexity estimate
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(CID, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -544,6 +829,16 @@ class CID(Transformer):
 
 
 class CountAboveMean(Transformer):
+    """
+    Number of values greater than the mean
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(CountAboveMean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -557,6 +852,16 @@ class CountAboveMean(Transformer):
 
 
 class CountBelowMean(Transformer):
+    """
+    Number of values smaller than the mean
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(CountBelowMean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -570,6 +875,20 @@ class CountBelowMean(Transformer):
 
 
 class RangeCount(Transformer):
+    """
+    Number of values in range
+
+    Parameters
+    ----------
+    min : int, default: -1
+        Lower bound of the range.
+    max : int, default: 1
+        Upper bound of the range.
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, min=-1, max=1, axis=None, **kwargs):
         super(RangeCount, self).__init__(*parents, **kwargs)
         self.min = min
@@ -590,6 +909,17 @@ class RangeCount(Transformer):
 
 
 class ValueCount(Transformer):
+    """
+    Number of occurrences of a value
+
+    Parameters
+    ----------
+    value : int, default: 0
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, value=0, axis=None, **kwargs):
         super(ValueCount, self).__init__(*parents, **kwargs)
         self.value = value
@@ -604,6 +934,20 @@ class ValueCount(Transformer):
 
 
 class Outliers(Transformer):
+    """
+    Number of outliers, based on number of unit standard deviations from mean
+
+    Parameters
+    ----------
+    r : int, default: 3
+        Number of unit standard deviations from mean.
+    rel : bool, default: False
+        Return the number of outliers relative to the total number of values.
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, r=3, rel=False, axis=None, **kwargs):
         super(Outliers, self).__init__(*parents, **kwargs)
         self.r = r
@@ -627,6 +971,19 @@ class Outliers(Transformer):
 
 
 class AutoCorrelation(Transformer):
+    """
+    Auto-correlation coefficients
+    
+    Returns the auto-correlation coefficients for lags ``[1, ..., t]``
+    where ``t`` is the total number of values.
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(AutoCorrelation, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -640,6 +997,19 @@ class AutoCorrelation(Transformer):
 
 
 class CrossCorrelation(Transformer):
+    """
+    Cross-correlation coefficients of two series
+
+    Returns the cross-correlation coefficients for lags ``[1, ..., t]``
+    where ``t`` is the total number of values in each series.
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(CrossCorrelation, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -654,6 +1024,18 @@ class CrossCorrelation(Transformer):
 
 
 class AutoRegressiveCoefficients(Transformer):
+    """
+    Auto regressive coefficients
+
+    Fits an autoregressive (AR) model and returns the coefficients of the model.
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(AutoRegressiveCoefficients, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -678,6 +1060,19 @@ class AutoRegressiveCoefficients(Transformer):
 
 
 class HighVariance(Transformer):
+    """
+    Check if the series has a high variance
+
+    Returns true if the variance is larger than a given threshold.
+
+    Parameters
+    ----------
+    threshold: float, default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, threshold=1, axis=None, **kwargs):
         super(HighVariance, self).__init__(*parents, **kwargs)
         self.threshold = threshold
@@ -692,6 +1087,22 @@ class HighVariance(Transformer):
 
 
 class HighStandardDeviation(Transformer):
+    """
+    Check if the series has a high standard deviation
+
+    Returns true if
+    
+    .. math::
+       StandardDeviation(x) > r * (Max(x) - Min(x))
+
+    Parameters
+    ----------
+    r : float, default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, r=1, axis=None, **kwargs):
         super(HighStandardDeviation, self).__init__(*parents, **kwargs)
         self.r = r
@@ -712,6 +1123,22 @@ class HighStandardDeviation(Transformer):
 
 
 class SymmetryLooking(Transformer):
+    """
+    Check whether the series looks symmetrical
+
+    Returns true if
+
+    .. math::
+       |Mean(x) - Median(x)| < r * (Max(x) - Min(x))
+
+    Parameters
+    ----------
+    r : float, default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, r=1, axis=None, **kwargs):
         super(SymmetryLooking, self).__init__(*parents, **kwargs)
         self.r = r
@@ -731,6 +1158,17 @@ class SymmetryLooking(Transformer):
 
 
 class NumberCrossings(Transformer):
+    """
+    Number of times that the series crosses a given threshold
+
+    Parameters
+    ----------
+    threshold : float, default: 0
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, threshold=0, axis=None, **kwargs):
         super(NumberCrossings, self).__init__(*parents, **kwargs)
         self.threshold = threshold
@@ -750,6 +1188,27 @@ class NumberCrossings(Transformer):
 
 
 class LinearTrend(Transformer):
+    """
+    Linear trend statistics
+
+    Using ``scipy.stats.linregress`` this transformer computes the following 
+    linear trend statistics:
+
+    - Slope
+    - Intercept
+    - Pearson correlation coefficient
+    - p-value of the hypothesis test
+      where the null hypothesis is that the slope is zero
+    - Standard error of the slope
+    - Standard error of the intercept
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(LinearTrend, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -771,6 +1230,16 @@ class LinearTrend(Transformer):
 
 
 class LongestStrike(Transformer):
+    """
+    Largest number of consecutive values not equal to zero
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(LongestStrike, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -785,6 +1254,16 @@ class LongestStrike(Transformer):
 
 
 class LongestStrikeAboveMean(Transformer):
+    """
+    Largest number of consecutive values greather than the mean
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(LongestStrikeAboveMean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -798,6 +1277,16 @@ class LongestStrikeAboveMean(Transformer):
 
 
 class LongestStrikeBelowMean(Transformer):
+    """
+    Largest number of consecutive values smaller than the mean
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(LongestStrikeBelowMean, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -811,6 +1300,18 @@ class LongestStrikeBelowMean(Transformer):
 
 
 class SumChange(Transformer):
+    """
+    Sum of differences between consecutive timestamps
+
+    Parameters
+    ----------
+    abs : bool, default: False
+        Take the absolute value of the differences
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, abs=False, axis=None, **kwargs):
         super(SumChange, self).__init__(*parents, **kwargs)
         self.abs = abs
@@ -828,6 +1329,18 @@ class SumChange(Transformer):
 
 
 class MeanChange(Transformer):
+    """
+    Average of differences between consecutive timestamps
+
+    Parameters
+    ----------
+    abs : bool, default: False
+        Take the absolute value of the differences
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, abs=False, axis=None, **kwargs):
         super(MeanChange, self).__init__(*parents, **kwargs)
         self.abs = abs
@@ -845,6 +1358,16 @@ class MeanChange(Transformer):
 
 
 class MeanSecondDerivativeCentral(Transformer):
+    """
+    Mean of the central approximation of the second derivative
+
+    Parameters
+    ----------
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, axis=None, **kwargs):
         super(MeanSecondDerivativeCentral, self).__init__(*parents, **kwargs)
         self.axis = axis
@@ -865,6 +1388,17 @@ class MeanSecondDerivativeCentral(Transformer):
 
 
 class TimeReversalAsymmetryStatistic(Transformer):
+    """
+    Time reversal asymmetry statistic
+
+    Parameters
+    ----------
+    lag : int, default: 1
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, lag=1, axis=None, **kwargs):
         super(TimeReversalAsymmetryStatistic, self).__init__(*parents, **kwargs)
         self.lag = lag
@@ -888,6 +1422,19 @@ class TimeReversalAsymmetryStatistic(Transformer):
 
 
 class FriedrichCoefficients(Transformer):
+    """
+    Coefficients of a polynomial fitted to the deterministic dynamics of 
+    a Langevin model.
+
+    Parameters
+    ----------
+    m : int, default: 1
+    r : int, default: 10
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, m=1, r=10, axis=None, **kwargs):
         super(FriedrichCoefficients, self).__init__(*parents, **kwargs)
         self.m = m
@@ -927,6 +1474,19 @@ class FriedrichCoefficients(Transformer):
 
 
 class MaxLangevinFixedPoint(Transformer):
+    """
+    Largest fixed point of a polynomial fitted to the deterministic dynamics of
+    a Langevin model.
+
+    Parameters
+    ----------
+    m : int, default: 1
+    r : int, default: 10
+    axis : {'time', 'dims'}, optional
+        Direction of time: timestamps ('time') or dimensions ('dims').
+        Default: first axis with more than one value.
+    """
+
     def __init__(self, *parents, m=1, r=10, axis=None, **kwargs):
         super(MaxLangevinFixedPoint, self).__init__(*parents, **kwargs)
         self.m = m
