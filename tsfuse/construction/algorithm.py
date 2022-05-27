@@ -17,7 +17,6 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     GradientBoostingRegressor,
 )
-from sklearn_gbmi import *
 
 
 class TSFuseExtractor(object):
@@ -444,6 +443,8 @@ class TSFuseExtractor(object):
         return selected
 
     def select_interactions(self, data, y, permutations):
+        from sklearn_gbmi import h
+
         # Collect data for the nodes in the permutations only
         permutations_nodes = set()
         for permutation in permutations:

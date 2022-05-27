@@ -11,6 +11,8 @@ def construct(
     task="auto",
     transformers="full",
     max_depth=2,
+    series_fusion=True,
+    attribute_fusion=False,
     return_graph=False,
     **kwargs
 ):
@@ -32,6 +34,10 @@ def construct(
         transformers.
     max_depth : int, default: 2
         Maximum computation graph depth.
+    series_fusion : bool, defaut: True
+        Construct features that use time series fusion.
+    attribute_fusion : bool, defaut: True
+        Construct features that use attribute fusion.
     return_graph : bool, default: False
         Return computation graph.
 
@@ -44,7 +50,12 @@ def construct(
         Only returned if ``return_graph == True``
     """
     extractor = TSFuseExtractor(
-        transformers=transformers, task=task, max_depth=max_depth, **kwargs
+        transformers=transformers,
+        task=task,
+        max_depth=max_depth,
+        series_fusion=series_fusion,
+        attribute_fusion=attribute_fusion,
+        **kwargs
     )
     features = extractor.fit_transform(X, pd.Series(y))
     if return_graph:
