@@ -34,7 +34,7 @@ setup(
         "scipy>=1.2.1",
         "statsmodels>=0.12.0",
         "six>=1.12.0",
-        "sklearn-gbmi>=1.0.3",
+        # "sklearn-gbmi>=1.0.3",
     ],
     extras_require={"test": ["pytest"]},
     ext_modules=cythonize(
