@@ -36,8 +36,9 @@ def construct(
         Maximum computation graph depth.
     series_fusion : bool, defaut: True
         Construct features that use time series fusion.
-    attribute_fusion : bool, defaut: True
+    attribute_fusion : bool, defaut: False
         Construct features that use attribute fusion.
+        Deprecated: attribute fusion is not supported anymore.
     return_graph : bool, default: False
         Return computation graph.
 
@@ -54,7 +55,6 @@ def construct(
         task=task,
         max_depth=max_depth,
         series_fusion=series_fusion,
-        attribute_fusion=attribute_fusion,
         **kwargs
     )
     features = extractor.fit_transform(X, pd.Series(y))
