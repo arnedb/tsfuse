@@ -1,23 +1,44 @@
 <h1 align="center">TSFuse</h1>
 
-<p align="center">Python package for automatically constructing features from multiple time series</p>
+<p align="center">
+    <em>Automated feature construction for multiple time series data</em>
+</p>
 
 <p align="center">
-    <a href="https://badge.fury.io/py/tsfuse">
-        <img alt="PyPI" src="https://badge.fury.io/py/tsfuse.svg">
+    <a href="https://pypi.org/project/tsfuse/">
+        <img alt="PyPI" src="https://img.shields.io/pypi/v/tsfuse?color=blue">
     </a>
-    <a href="https://github.com/arnedb/tsfuse/actions/workflows/tests.yml">
-        <img alt="tests" src="https://github.com/arnedb/tsfuse/workflows/tests/badge.svg" />
+    <a href="https://pypi.org/project/tsfuse/">
+        <img alt="Python" src="https://img.shields.io/pypi/pyversions/tsfuse">
+    </a>
+    <a href="https://github.com/arnedb/tsfuse/actions/workflows/ci.yml">
+        <img alt="CI" src="https://github.com/arnedb/tsfuse/actions/workflows/ci.yml/badge.svg" />
+    </a>
+    <a href="https://codecov.io/gh/arnedb/tsfuse">
+        <img alt="Coverage" src="https://codecov.io/gh/arnedb/tsfuse/branch/main/graph/badge.svg" />
+    </a>
+    <a href="https://github.com/arnedb/tsfuse/blob/main/LICENSE">
+        <img alt="License" src="https://img.shields.io/github/license/arnedb/tsfuse">
     </a>
 </p>
 
 <hr>
 
 ## Installation
-    
+
 Install the latest release using pip:
 
-    pip install tsfuse
+```bash
+pip install tsfuse
+```
+
+For development:
+
+```bash
+git clone https://github.com/arnedb/tsfuse.git
+cd tsfuse
+pip install -e ".[dev]"
+```
     
 ## Quickstart
 
@@ -104,3 +125,11 @@ If you use TSFuse for a scientific publication, please consider citing this pape
     url     = {https://doi.org/10.1007/s10994-021-06096-2}
 }
 ```
+
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## License
+
+This project is licensed under the Apache License 2.0 — see [LICENSE](LICENSE) for details.
