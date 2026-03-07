@@ -79,21 +79,31 @@ def test_fft_moments(x):
             np.testing.assert_allclose(result_kurtosis.values[i], kurtosis(a))
 
 
-@pytest.mark.xfail(reason="scipy.signal.cwt removed in SciPy 1.12+")
+def _ricker(points, a):
+    A = 2 / (np.sqrt(3 * a) * (np.pi**0.25))
+    wsq = a**2
+    vec = np.arange(0, points) - (points - 1.0) / 2
+    tsq = vec**2
+    mod = 1 - tsq / wsq
+    gauss = np.exp(-tsq / (2 * wsq))
+    return A * mod * gauss
+
+
 def test_cwt_ricker_width_1(x):
     result = CWT(wavelet='ricker', width=1).transform(x)
     for i, a in series(x):
         actual = result.values[i]
-        expected = signal.cwt(a, signal.ricker, widths=(1,)).flatten()
+        wavelet = _ricker(min(10, len(a)), 1)
+        expected = signal.convolve(a, wavelet, mode='same')
         np.testing.assert_almost_equal(actual, expected)
 
 
-@pytest.mark.xfail(reason="scipy.signal.cwt removed in SciPy 1.12+")
 def test_cwt_ricker_width_2(x):
     result = CWT(wavelet='ricker', width=2).transform(x)
     for i, a in series(x):
         actual = result.values[i]
-        expected = signal.cwt(a, signal.ricker, widths=(2,)).flatten()
+        wavelet = _ricker(min(20, len(a)), 2)
+        expected = signal.convolve(a, wavelet, mode='same')
         np.testing.assert_almost_equal(actual, expected)
 
 

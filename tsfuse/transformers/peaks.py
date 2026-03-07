@@ -11,6 +11,21 @@ __all__ = [
     'NumberPeaksCWT',
 ]
 
+
+def _ricker(points: int, a: float) -> np.ndarray:
+    """Ricker (Mexican hat) wavelet.
+
+    Reimplemented locally because ``scipy.signal.ricker`` was removed
+    in SciPy 1.12.
+    """
+    A = 2 / (np.sqrt(3 * a) * (np.pi**0.25))
+    wsq = a**2
+    vec = np.arange(0, points) - (points - 1.0) / 2
+    tsq = vec**2
+    mod = 1 - tsq / wsq
+    gauss = np.exp(-tsq / (2 * wsq))
+    return A * mod * gauss
+
 """
 Add later:
 - DetectPeaks
@@ -99,7 +114,7 @@ class NumberPeaksCWT(Transformer):
             result = np.full(a.shape, fill_value=np.nan)
             a = a[nnan]
             widths = np.arange(1, self.max_width + 1)
-            peaks = signal.find_peaks_cwt(a, widths, wavelet=signal.ricker)
+            peaks = signal.find_peaks_cwt(a, widths, wavelet=_ricker)
             result[nnan] = np.array([len(peaks)])
             return result
 

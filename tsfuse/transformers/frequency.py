@@ -13,6 +13,21 @@ __all__ = [
 ]
 
 
+def _ricker(points: int, a: float) -> np.ndarray:
+    """Ricker (Mexican hat) wavelet.
+
+    Reimplemented locally because ``scipy.signal.ricker`` was removed
+    in SciPy 1.12.
+    """
+    A = 2 / (np.sqrt(3 * a) * (np.pi**0.25))
+    wsq = a**2
+    vec = np.arange(0, points) - (points - 1.0) / 2
+    tsq = vec**2
+    mod = 1 - tsq / wsq
+    gauss = np.exp(-tsq / (2 * wsq))
+    return A * mod * gauss
+
+
 class FFT(Transformer):
     """
     Fast Fourier transform
@@ -107,7 +122,7 @@ class CWT(Transformer):
             nnan = ~np.isnan(a)
             a = a[nnan]
             if self.wavelet == 'ricker':
-                wavelet = signal.ricker(min(10 * self.width, len(a)), self.width)
+                wavelet = _ricker(min(10 * self.width, len(a)), self.width)
             else:
                 raise NotImplementedError()
             return signal.convolve(a, wavelet, mode='same')

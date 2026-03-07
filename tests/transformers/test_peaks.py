@@ -36,10 +36,19 @@ def test_number_of_peaks_support_2_zero():
     np.testing.assert_equal(actual, 0)
 
 
-@pytest.mark.xfail(reason="scipy.signal.cwt removed in SciPy 1.12+")
+def _ricker(points, a):
+    A = 2 / (np.sqrt(3 * a) * (np.pi**0.25))
+    wsq = a**2
+    vec = np.arange(0, points) - (points - 1.0) / 2
+    tsq = vec**2
+    mod = 1 - tsq / wsq
+    gauss = np.exp(-tsq / (2 * wsq))
+    return A * mod * gauss
+
+
 def test_number_of_peaks_cwt(x):
     result = NumberPeaksCWT(max_width=5).transform(x)
     for i, a in series(x):
         actual = result.values[i]
-        expected = len(signal.find_peaks_cwt(a, np.arange(1, 6), wavelet=signal.ricker))
+        expected = len(signal.find_peaks_cwt(a, np.arange(1, 6), wavelet=_ricker))
         np.testing.assert_almost_equal(actual, expected)
