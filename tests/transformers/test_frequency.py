@@ -1,9 +1,10 @@
-import pytest
 import warnings
+
 import numpy as np
+import pytest
 import scipy.signal as signal
 
-from tsfuse.data.synthetic import series, brownian
+from tsfuse.data.synthetic import brownian, series
 from tsfuse.transformers.frequency import *
 from tsfuse.transformers.statistics import *
 

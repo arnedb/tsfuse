@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import warnings
+
 import numpy as np
 
+from ..computation import Graph, Transformer
+from ..computation.nodes import Add, Constant, Divide, Multiply, Subtract
 from ..data import units
-from ..computation import Transformer, Graph
-from .util import apply, apply_to_axis
-from ..computation.nodes import Add, Subtract, Multiply, Divide, Constant
 from .queries import Slice
+from .util import apply, apply_to_axis
 
 __all__ = [
     "Add",

@@ -3,8 +3,9 @@ from __future__ import annotations
 import numpy as np
 
 from tsfuse.data.units import units
-from ..computation import Transformer, Graph
-from .mathematics import Sum, ArcCos
+
+from ..computation import Graph, Transformer
+from .mathematics import ArcCos, Sum
 from .util import apply_to_axis
 
 __all__ = [

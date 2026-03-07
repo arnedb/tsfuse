@@ -1,10 +1,10 @@
-import pytest
 import numpy as np
+import pytest
 from scipy import signal
 
-from tsfuse.data.synthetic import series, brownian
-from tsfuse.transformers.peaks import *
 from tsfuse.data import Collection
+from tsfuse.data.synthetic import brownian, series
+from tsfuse.transformers.peaks import *
 
 
 @pytest.fixture

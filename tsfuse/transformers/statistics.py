@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 import numpy as np
-from scipy import stats
 import statsmodels.tsa.ar_model
+from scipy import stats
 from statsmodels.tools.sm_exceptions import MissingDataError
 
-from ..computation import Transformer, Graph, Constant
-from .util import apply_to_axis, length
-from .calculators.statistics import *
-from .queries import Count, Slice
-from .mathematics import Abs, Diff, Square, Sqrt, Roots, Exponent, Sum, CumSum
+from ..computation import Constant, Graph, Transformer
 from .boolean import Equal
+from .calculators.statistics import *
+from .mathematics import Abs, CumSum, Diff, Exponent, Roots, Sqrt, Square, Sum
+from .queries import Count, Slice
+from .util import apply_to_axis, length
 
 __all__ = [
     "Length",

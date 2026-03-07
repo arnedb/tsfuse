@@ -1,10 +1,8 @@
-from tsfuse.data import Collection
-
 import numpy as np
 import pandas as pd
 
-from tsfuse.data import Type, Tags
-from tsfuse.data.tags import quantity, body_part
+from tsfuse.data import Collection, Tags, Type
+from tsfuse.data.tags import body_part, quantity
 from tsfuse.transformers import Ratio
 
 
