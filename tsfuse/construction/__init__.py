@@ -1,3 +1,9 @@
+"""Feature construction module."""
+
+from __future__ import annotations
+
+from typing import Any
+
 import pandas as pd
 
 from .algorithm import TSFuseExtractor
@@ -6,16 +12,16 @@ __all__ = ["construct"]
 
 
 def construct(
-    X,
-    y,
-    task="auto",
-    transformers="full",
-    max_depth=2,
-    series_fusion=True,
-    attribute_fusion=False,
-    return_graph=False,
-    **kwargs
-):
+    X: dict[str, Any],
+    y: Any,
+    task: str = "auto",
+    transformers: str = "full",
+    max_depth: int = 2,
+    series_fusion: bool = True,
+    attribute_fusion: bool = False,
+    return_graph: bool = False,
+    **kwargs: Any,
+) -> pd.DataFrame | tuple[pd.DataFrame, Any]:
     """
     Construct features for a labeled time series dataset ``X, y``
 
