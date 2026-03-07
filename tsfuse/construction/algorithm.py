@@ -1,25 +1,29 @@
-import itertools
-import warnings
-import random
+"""Core feature construction algorithm."""
 
+from __future__ import annotations
+
+import itertools
+import random
+import warnings
 from functools import partial
+from typing import Any
 
 import numpy as np
 import pandas as pd
 
-from tsfuse.errors import InvalidPreconditionError
 from tsfuse.computation import Graph, Input
 from tsfuse.computation.util import to_dataframe
+from tsfuse.errors import InvalidPreconditionError
 from tsfuse.transformers import *
 
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.ensemble import (
     GradientBoostingClassifier,
     GradientBoostingRegressor,
 )
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 
 
-class TSFuseExtractor(object):
+class TSFuseExtractor:
     def __init__(
         self,
         transformers="full",

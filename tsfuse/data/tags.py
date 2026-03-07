@@ -1,15 +1,19 @@
+"""Tag system for annotating time series data."""
+
+from __future__ import annotations
+
 from graphviz import Graph
 
 from tsfuse.errors import InvalidTagError
 
 __all__ = [
-    'Tags',
-    'TagKey',
-    'HierarchicalTagKey',
+    "Tags",
+    "TagKey",
+    "HierarchicalTagKey",
 ]
 
 
-class Tags(object):
+class Tags:
     """
     Mapping of tag keys to values.
 
@@ -176,7 +180,7 @@ class Tags(object):
         return self.get(key)
 
 
-class TagKey(object):
+class TagKey:
     """
     Name and domain of a tag.
 
@@ -276,7 +280,7 @@ class HierarchicalTagKey(TagKey):
                 nodes[general] = HierarchicalValue(general)
             nodes[specific].add_parent(nodes[general])
 
-        super(HierarchicalTagKey, self).__init__(name, lattice)
+        super().__init__(name, lattice)
         self._values = values
         self._nodes = nodes
         self._propagated = dict()
@@ -383,7 +387,7 @@ def common_tags(data):
         return tags
 
 
-class HierarchicalValue(object):
+class HierarchicalValue:
     def __init__(self, value):
         self.value = value
         self.parents = []

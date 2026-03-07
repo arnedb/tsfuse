@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 import scipy.signal as signal
 
@@ -26,7 +28,7 @@ class FFT(Transformer):
         Default: 'time'
     """
     def __init__(self, *parents, attr='abs', axis='time', **kwargs):
-        super(FFT, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.attr = attr
         self.axis = axis
         self.preconditions = [
@@ -80,7 +82,7 @@ class CWT(Transformer):
         Default: 'time'
     """
     def __init__(self, *parents, wavelet='ricker', width=1, axis=None, **kwargs):
-        super(CWT, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.wavelet = wavelet
         self.width = width
         self.axis = axis
@@ -127,7 +129,7 @@ class PowerSpectralDensity(Transformer):
         Default: 'time'
     """
     def __init__(self, *parents, axis=None, **kwargs):
-        super(PowerSpectralDensity, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,

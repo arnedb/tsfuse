@@ -1,11 +1,17 @@
+"""Computation graph for feature construction pipelines."""
+
+from __future__ import annotations
+
+from typing import Any
+
 from graphviz import Digraph
 
-from .nodes import Node, Input, Constant, Transformer
 from .apply import compute
+from .nodes import Constant, Input, Node, Transformer
 from .util import to_dataframe
 
 
-class Graph(object):
+class Graph:
     """
     Computation graph.
 
@@ -44,13 +50,13 @@ class Graph(object):
         Output nodes.
     """
 
-    def __init__(self, nodes=None):
-        self.optimized = None
-        self._nodes = []
-        self._inputs = dict()
-        self._parents = dict()
-        self._children = dict()
-        self._traces = dict()
+    def __init__(self, nodes: list[Node] | Node | None = None) -> None:
+        self.optimized: Graph | None = None
+        self._nodes: list[Node] = []
+        self._inputs: dict[str | int, Input] = {}
+        self._parents: dict[Node, list[Node]] = {}
+        self._children: dict[Node, list[Node]] = {}
+        self._traces: dict[tuple, Node] = {}
         if nodes is not None:
             if isinstance(nodes, Node):
                 self.add_node(nodes)
@@ -90,7 +96,7 @@ class Graph(object):
     def outputs(self):
         return [n for n in self.nodes if n.is_output]
 
-    def add_node(self, node, **kwargs):
+    def add_node(self, node: Node, **kwargs: Any) -> Node:
         """
         Add a node to the computation graph.
 
@@ -130,7 +136,13 @@ class Graph(object):
 
         return node
 
-    def transform(self, X, return_dataframe=True, chunk_size=None, n_jobs=None):
+    def transform(
+        self,
+        X: dict[int | str, Any],
+        return_dataframe: bool = True,
+        chunk_size: int | None = None,
+        n_jobs: int | None = None,
+    ) -> Any:
         """
         Compute all outputs of the graph.
 

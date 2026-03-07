@@ -1,3 +1,7 @@
+"""Boolean comparison transformers."""
+
+from __future__ import annotations
+
 import numpy as np
 
 from ..computation import Transformer
@@ -5,10 +9,10 @@ from ..computation.nodes import Greater, Less
 from ..data import Collection
 
 __all__ = [
-    'Greater',
-    'Less',
-    'Equal',
-    'NotEqual',
+    "Greater",
+    "Less",
+    "Equal",
+    "NotEqual",
 ]
 
 
@@ -18,7 +22,7 @@ class Equal(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Equal, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
         ]
@@ -42,7 +46,7 @@ class NotEqual(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(NotEqual, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
         ]

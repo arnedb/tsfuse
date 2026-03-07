@@ -1,4 +1,9 @@
+"""Data structures for time series and attribute-value data."""
+
+from __future__ import annotations
+
 from enum import Enum
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -12,7 +17,7 @@ __all__ = [
 ]
 
 
-class Collection(object):
+class Collection:
     """
     Data structure for representing time series data and attribute-value data.
 
@@ -318,7 +323,7 @@ def plot(X, i=0):
     plt.show()
 
 
-class IndexLocationIndexer(object):
+class IndexLocationIndexer:
     def __init__(self, collection):
         self.collection = collection
 

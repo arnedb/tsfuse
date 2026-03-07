@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 
 from tsfuse.data.units import units
@@ -22,7 +24,7 @@ class Norm(Transformer):
         Order of the vector norm. Default: 2
     """
     def __init__(self, *parents, p=2, **kwargs):
-        super(Norm, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.p = p
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -53,7 +55,7 @@ class Resultant(Transformer):
     Euclidean norm
     """
     def __init__(self, *parents, **kwargs):
-        super(Resultant, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -80,7 +82,7 @@ class Angle(Transformer):
     Angle defined by three points
     """
     def __init__(self, *parents, **kwargs):
-        super(Angle, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 3,
             lambda *collections: all(c.shape[2] > 1 for c in collections),

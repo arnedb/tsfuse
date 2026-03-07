@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import warnings
 import numpy as np
 
@@ -40,7 +42,7 @@ class Negative(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Negative, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -62,7 +64,7 @@ class Reciprocal(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Reciprocal, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -84,7 +86,7 @@ class Square(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Square, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -111,7 +113,7 @@ class Exponent(Transformer):
     """
 
     def __init__(self, *parents, a=2, **kwargs):
-        super(Exponent, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.a = a
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -139,7 +141,7 @@ class Sqrt(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Sqrt, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -161,7 +163,7 @@ class Abs(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Abs, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -189,7 +191,7 @@ class Sum(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Sum, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -221,7 +223,7 @@ class CumSum(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(CumSum, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -253,7 +255,7 @@ class Diff(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Diff, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -286,7 +288,7 @@ class Roots(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Roots, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -327,7 +329,7 @@ class Average(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Average, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -356,7 +358,7 @@ class Difference(Transformer):
     """
 
     def __init__(self, *parents, rel=False, **kwargs):
-        super(Difference, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.rel = rel
         self.preconditions = [
             lambda *collections: len(collections) == 2,
@@ -383,7 +385,7 @@ class Ratio(Transformer):
     """
 
     def __init__(self, *parents, **kwargs):
-        super(Ratio, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -402,7 +404,7 @@ class Ratio(Transformer):
 
 class Sin(Transformer):
     def __init__(self, *parents, **kwargs):
-        super(Sin, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -414,7 +416,7 @@ class Sin(Transformer):
 
 class Cos(Transformer):
     def __init__(self, *parents, **kwargs):
-        super(Cos, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -426,7 +428,7 @@ class Cos(Transformer):
 
 class Tan(Transformer):
     def __init__(self, *parents, **kwargs):
-        super(Tan, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -438,7 +440,7 @@ class Tan(Transformer):
 
 class ArcSin(Transformer):
     def __init__(self, *parents, **kwargs):
-        super(ArcSin, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -452,7 +454,7 @@ class ArcSin(Transformer):
 
 class ArcCos(Transformer):
     def __init__(self, *parents, **kwargs):
-        super(ArcCos, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),
@@ -466,7 +468,7 @@ class ArcCos(Transformer):
 
 class ArcTan(Transformer):
     def __init__(self, *parents, **kwargs):
-        super(ArcTan, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.float64),

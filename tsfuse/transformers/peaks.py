@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 from scipy import signal
 
@@ -33,7 +35,7 @@ class NumberPeaks(Transformer):
         Default: first axis with more than one value.
     """
     def __init__(self, *parents, support=1, axis=None, **kwargs):
-        super(NumberPeaks, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.support = support
         self.axis = axis
         self.preconditions = [
@@ -76,7 +78,7 @@ class NumberPeaksCWT(Transformer):
         Default: first axis with more than one value.
     """
     def __init__(self, *parents, max_width=1, axis=None, **kwargs):
-        super(NumberPeaksCWT, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.max_width = max_width
         self.axis = axis
         self.preconditions = [

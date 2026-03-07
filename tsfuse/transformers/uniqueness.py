@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 
 from ..computation import Graph, Transformer, Constant
@@ -25,7 +27,7 @@ class NumberUniqueValues(Transformer):
     """
 
     def __init__(self, *parents, rel=True, axis=None, **kwargs):
-        super(NumberUniqueValues, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.rel = rel
         self.axis = axis
         self.preconditions = [
@@ -66,7 +68,7 @@ class HasDuplicate(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(HasDuplicate, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -90,7 +92,7 @@ class HasDuplicateMin(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(HasDuplicateMin, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -115,7 +117,7 @@ class HasDuplicateMax(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(HasDuplicateMax, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -140,7 +142,7 @@ class SumReoccurringValues(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(SumReoccurringValues, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,

@@ -1,18 +1,19 @@
-import abc
-import six
-import inspect
+from __future__ import annotations
 
+import abc
+import inspect
 from functools import partial
+from typing import Any
 
 import numpy as np
+
 from tsfuse.data import Tags
 
 from ..data import Collection
 from ..errors import InvalidPreconditionError
 
 
-@six.add_metaclass(abc.ABCMeta)
-class Node(object):
+class Node(abc.ABC):
     """
     Node of a computation graph.
 
@@ -36,9 +37,9 @@ class Node(object):
         True if the node is an output node.
     """
 
-    def __init__(self, parents=None, is_output=None):
-        self._id = None
-        self._parents = [] if parents is None else parents
+    def __init__(self, parents: list[Node] | None = None, is_output: bool | None = None) -> None:
+        self._id: int | None = None
+        self._parents: list[Node] = [] if parents is None else parents
         for p in self._parents:
             p.add_child(self)
         self._children = []
@@ -134,8 +135,8 @@ class Input(Node):
         Input identifier.
     """
 
-    def __init__(self, input_id):
-        super(Input, self).__init__()
+    def __init__(self, input_id: int | str) -> None:
+        super().__init__()
         self.input_id = input_id
 
     @property
@@ -172,8 +173,8 @@ class Constant(Node):
         Output data.
     """
 
-    def __init__(self, data):
-        super(Constant, self).__init__()
+    def __init__(self, data: Any) -> None:
+        super().__init__()
         self.output = data
 
     def apply(self):
@@ -191,20 +192,19 @@ class Constant(Node):
         return "Constant({})".format(self.output)
 
 
-@six.add_metaclass(abc.ABCMeta)
-class Transformer(Node):
+class Transformer(Node, abc.ABC):
     """
     Transformer node.
 
 
     """
 
-    def __init__(self, *parents, **kwargs):
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
         is_output = kwargs.get("is_output", None)
         if not hasattr(self, "preconditions"):
-            self.preconditions = []
+            self.preconditions: list = []
         self.preconditions += kwargs.get("with_preconditions", [])
-        super(Transformer, self).__init__(parents=parents, is_output=is_output)
+        super().__init__(parents=parents, is_output=is_output)
 
     def check_preconditions(self, *collections):
         """
@@ -387,15 +387,15 @@ class Add(Transformer):
     Element-wise addition
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Add, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
             & np.issubdtype(x.dtype, np.float64),
         ]
 
-    def transform(self, x, y, **kwargs):
+    def transform(self, x: Collection, y: Collection, **kwargs: Any) -> Collection | None:
         """
         Compute :math:`x + y`
         """
@@ -413,8 +413,8 @@ class Subtract(Transformer):
     Element-wise subtraction
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Subtract, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -439,8 +439,8 @@ class Multiply(Transformer):
     Element-wise multiplication
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Multiply, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -465,8 +465,8 @@ class Divide(Transformer):
     Element-wise division
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Divide, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -492,8 +492,8 @@ class Greater(Transformer):
     Element-wise greater than comparison
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Greater, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -518,8 +518,8 @@ class GreaterEqual(Transformer):
     Element-wise greater than or equal comparison.
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(GreaterEqual, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -544,8 +544,8 @@ class Less(Transformer):
     Element-wise less than comparison
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Less, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -570,8 +570,8 @@ class LessEqual(Transformer):
     Element-wise less than or equal comparison
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(LessEqual, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.float64)
@@ -596,8 +596,8 @@ class And(Transformer):
     Element-wise logical and
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(And, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.bool_)
@@ -629,8 +629,8 @@ class Or(Transformer):
     Element-wise logical or
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Or, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 2,
             lambda x, y: np.issubdtype(x.dtype, np.bool_)
@@ -662,8 +662,8 @@ class Not(Transformer):
     Element-wise logical negation
     """
 
-    def __init__(self, *parents, **kwargs):
-        super(Not, self).__init__(*parents, **kwargs)
+    def __init__(self, *parents: Node, **kwargs: Any) -> None:
+        super().__init__(*parents, **kwargs)
         self.preconditions = [
             lambda *collections: len(collections) == 1,
             lambda x: np.issubdtype(x.dtype, np.bool_),

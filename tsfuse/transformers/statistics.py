@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 from scipy import stats
 import statsmodels.tsa.ar_model
@@ -80,7 +82,7 @@ class SinglePassStatistics(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(SinglePassStatistics, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -103,7 +105,7 @@ class Length(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Length, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -128,7 +130,7 @@ class Mean(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Mean, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -153,7 +155,7 @@ class Median(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Median, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -179,7 +181,7 @@ class Min(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Min, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -208,7 +210,7 @@ class ArgMin(Transformer):
     """
 
     def __init__(self, *parents, first=True, rel=False, axis=None, **kwargs):
-        super(ArgMin, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.first = first
         self.rel = rel
         self.axis = axis
@@ -247,7 +249,7 @@ class Max(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Max, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -276,7 +278,7 @@ class ArgMax(Transformer):
     """
 
     def __init__(self, *parents, first=True, rel=False, axis=None, **kwargs):
-        super(ArgMax, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.first = first
         self.rel = rel
         self.axis = axis
@@ -315,7 +317,7 @@ class Variance(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Variance, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -340,7 +342,7 @@ class StandardDeviation(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(StandardDeviation, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -363,7 +365,7 @@ class Skewness(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Skewness, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -388,7 +390,7 @@ class Kurtosis(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Kurtosis, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -413,7 +415,7 @@ class SpectralMoment(Transformer):
     """
 
     def __init__(self, *parents, r=1, origin=False, axis=None, **kwargs):
-        super(SpectralMoment, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.r = r
         self.origin = origin
         self.axis = axis
@@ -440,7 +442,7 @@ class SpectralMean(Transformer):
     """
 
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
-        super(SpectralMean, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.origin = origin
         self.axis = axis
         self.preconditions = [
@@ -464,7 +466,7 @@ class SpectralVariance(Transformer):
     """
 
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
-        super(SpectralVariance, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.origin = origin
         self.axis = axis
         self.preconditions = [
@@ -490,7 +492,7 @@ class SpectralSkewness(Transformer):
     """
 
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
-        super(SpectralSkewness, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.origin = origin
         self.axis = axis
         self.preconditions = [
@@ -520,7 +522,7 @@ class SpectralKurtosis(Transformer):
     """
 
     def __init__(self, *parents, origin=False, axis=None, **kwargs):
-        super(SpectralKurtosis, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.origin = origin
         self.axis = axis
         self.preconditions = [
@@ -558,7 +560,7 @@ class Quantile(Transformer):
     """
 
     def __init__(self, *parents, q=0.5, axis=None, **kwargs):
-        super(Quantile, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.q = q
         self.axis = axis
         self.preconditions = [
@@ -587,7 +589,7 @@ class IndexMassQuantile(Transformer):
     """
 
     def __init__(self, *parents, q=0.5, rel=False, axis=None, **kwargs):
-        super(IndexMassQuantile, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.q = q
         self.rel = rel
         self.axis = axis
@@ -620,7 +622,7 @@ class Energy(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Energy, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -648,7 +650,7 @@ class EnergyRatio(Transformer):
     """
 
     def __init__(self, *parents, chunks=10, axis=None, **kwargs):
-        super(EnergyRatio, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.chunks = chunks
         self.axis = axis
         self.preconditions = [
@@ -674,7 +676,7 @@ class Entropy(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Entropy, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -697,7 +699,7 @@ class SampleEntropy(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(SampleEntropy, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -725,7 +727,7 @@ class BinnedDistribution(Transformer):
     """
 
     def __init__(self, *parents, bins=10, axis=None, **kwargs):
-        super(BinnedDistribution, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.bins = bins
         self.axis = axis
         self.preconditions = [
@@ -756,7 +758,7 @@ class BinnedEntropy(Transformer):
     """
 
     def __init__(self, *parents, bins=10, axis=None, **kwargs):
-        super(BinnedEntropy, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.bins = bins
         self.axis = axis
         self.preconditions = [
@@ -786,7 +788,7 @@ class C3(Transformer):
     """
 
     def __init__(self, *parents, lag=1, axis=None, **kwargs):
-        super(C3, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.lag = lag
         self.axis = axis
         self.preconditions = [
@@ -817,7 +819,7 @@ class CID(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(CID, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -840,7 +842,7 @@ class CountAboveMean(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(CountAboveMean, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -863,7 +865,7 @@ class CountBelowMean(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(CountBelowMean, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -890,7 +892,7 @@ class RangeCount(Transformer):
     """
 
     def __init__(self, *parents, min=-1, max=1, axis=None, **kwargs):
-        super(RangeCount, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.min = min
         self.max = max
         self.axis = axis
@@ -921,7 +923,7 @@ class ValueCount(Transformer):
     """
 
     def __init__(self, *parents, value=0, axis=None, **kwargs):
-        super(ValueCount, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.value = value
         self.axis = axis
         self.preconditions = [
@@ -949,7 +951,7 @@ class Outliers(Transformer):
     """
 
     def __init__(self, *parents, r=3, rel=False, axis=None, **kwargs):
-        super(Outliers, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.r = r
         self.rel = rel
         self.axis = axis
@@ -985,7 +987,7 @@ class AutoCorrelation(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(AutoCorrelation, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1011,7 +1013,7 @@ class CrossCorrelation(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(CrossCorrelation, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 2,
@@ -1037,7 +1039,7 @@ class AutoRegressiveCoefficients(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(AutoRegressiveCoefficients, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1074,7 +1076,7 @@ class HighVariance(Transformer):
     """
 
     def __init__(self, *parents, threshold=1, axis=None, **kwargs):
-        super(HighVariance, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.threshold = threshold
         self.axis = axis
         self.preconditions = [
@@ -1104,7 +1106,7 @@ class HighStandardDeviation(Transformer):
     """
 
     def __init__(self, *parents, r=1, axis=None, **kwargs):
-        super(HighStandardDeviation, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.r = r
         self.axis = axis
         self.preconditions = [
@@ -1140,7 +1142,7 @@ class SymmetryLooking(Transformer):
     """
 
     def __init__(self, *parents, r=1, axis=None, **kwargs):
-        super(SymmetryLooking, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.r = r
         self.axis = axis
         self.preconditions = [
@@ -1170,7 +1172,7 @@ class NumberCrossings(Transformer):
     """
 
     def __init__(self, *parents, threshold=0, axis=None, **kwargs):
-        super(NumberCrossings, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.threshold = threshold
         self.axis = axis
         self.preconditions = [
@@ -1210,7 +1212,7 @@ class LinearTrend(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(LinearTrend, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1241,7 +1243,7 @@ class LongestStrike(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(LongestStrike, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1265,7 +1267,7 @@ class LongestStrikeAboveMean(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(LongestStrikeAboveMean, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1288,7 +1290,7 @@ class LongestStrikeBelowMean(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(LongestStrikeBelowMean, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1313,7 +1315,7 @@ class SumChange(Transformer):
     """
 
     def __init__(self, *parents, abs=False, axis=None, **kwargs):
-        super(SumChange, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.abs = abs
         self.axis = axis
         self.preconditions = [
@@ -1342,7 +1344,7 @@ class MeanChange(Transformer):
     """
 
     def __init__(self, *parents, abs=False, axis=None, **kwargs):
-        super(MeanChange, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.abs = abs
         self.axis = axis
         self.preconditions = [
@@ -1369,7 +1371,7 @@ class MeanSecondDerivativeCentral(Transformer):
     """
 
     def __init__(self, *parents, axis=None, **kwargs):
-        super(MeanSecondDerivativeCentral, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -1400,7 +1402,7 @@ class TimeReversalAsymmetryStatistic(Transformer):
     """
 
     def __init__(self, *parents, lag=1, axis=None, **kwargs):
-        super(TimeReversalAsymmetryStatistic, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.lag = lag
         self.axis = axis
         self.preconditions = [
@@ -1436,7 +1438,7 @@ class FriedrichCoefficients(Transformer):
     """
 
     def __init__(self, *parents, m=1, r=10, axis=None, **kwargs):
-        super(FriedrichCoefficients, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.m = m
         self.r = r
         self.axis = axis
@@ -1488,7 +1490,7 @@ class MaxLangevinFixedPoint(Transformer):
     """
 
     def __init__(self, *parents, m=1, r=10, axis=None, **kwargs):
-        super(MaxLangevinFixedPoint, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.m = m
         self.r = r
         self.axis = axis

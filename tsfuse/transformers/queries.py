@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 
 from ..computation import Transformer
@@ -14,7 +16,7 @@ __all__ = [
 
 class Count(Transformer):
     def __init__(self, *parents, axis=None, **kwargs):
-        super(Count, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.axis = axis
         self.preconditions = [
             lambda *collections: len(collections) == 1,
@@ -30,7 +32,7 @@ class Count(Transformer):
 
 class Slice(Transformer):
     def __init__(self, *parents, i=None, axis=None, **kwargs):
-        super(Slice, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.i = i
         self.axis = axis
         self.preconditions = [
@@ -67,7 +69,7 @@ class Slice(Transformer):
 
 class Aggregate(Transformer):
     def __init__(self, *parents, size=10, agg='mean', axis='time', **kwargs):
-        super(Aggregate, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.size = size
         self.agg = agg
         self.axis = axis

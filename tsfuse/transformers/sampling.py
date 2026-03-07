@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 import scipy.signal as signal
 
@@ -22,7 +24,7 @@ class Resample(Transformer):
         Default: first axis with more than one value.
     """
     def __init__(self, *parents, num=None, axis=None, **kwargs):
-        super(Resample, self).__init__(*parents, **kwargs)
+        super().__init__(*parents, **kwargs)
         self.num = num
         self.axis = axis
         self.preconditions = [

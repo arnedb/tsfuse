@@ -1,9 +1,17 @@
+"""Graph computation engine."""
+
+from __future__ import annotations
+
 import time
 import warnings
 from multiprocessing import Pool
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from .graph import Graph
 
 __all__ = [
-    'compute',
+    "compute",
 ]
 
 

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ..computation import Transformer
 from ..data import Collection
 

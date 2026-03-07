@@ -1,5 +1,9 @@
+"""Computation graph module."""
+
+from __future__ import annotations
+
 from .graph import Graph
-from .nodes import Node, Input, Constant, Transformer
+from .nodes import Constant, Input, Node, Transformer
 
 __all__ = [
     "Graph",

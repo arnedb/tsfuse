@@ -1,23 +1,22 @@
-# -*- coding: UTF-8 -*-
-"""
-tsfuse.errors
-=============
+"""Exceptions and warnings for TSFuse."""
 
-Exceptions and warnings.
-"""
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from tsfuse.computation.nodes import Transformer
 
 
 class InvalidTagError(Exception):
     """Error that is raised when an invalid tag is created."""
-    pass
 
 
 class InvalidPreconditionError(Exception):
-    """Warning that is raised when a precondition is not satisfied."""
+    """Error that is raised when a precondition is not satisfied."""
 
-    def __init__(self, transformer):
+    def __init__(self, transformer: Transformer) -> None:
         self.transformer = transformer
 
-    def __str__(self):
-        return "Not all preconditions for {} are satisfied." \
-            .format(self.transformer.__class__.__name__)
+    def __str__(self) -> str:
+        return f"Not all preconditions for {self.transformer.__class__.__name__} are satisfied."
