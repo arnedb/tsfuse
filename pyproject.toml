@@ -1,3 +1,166 @@
 [build-system]
-requires = ['setuptools', 'wheel', 'cython', 'numpy']
-build-backend = 'setuptools.build_meta'
+requires = ["setuptools>=68.0", "setuptools-scm>=8.0", "wheel", "cython>=3.0", "numpy>=1.24"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tsfuse"
+version = "0.2.0"
+description = "Automated feature construction for multiple time series data"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Arne De Brabandere" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Cython",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = [
+    "cython>=3.0",
+    "graphviz",
+    "matplotlib",
+    "numpy>=1.24",
+    "pandas>=1.5",
+    "Pint>=0.20",
+    "scikit-learn>=1.2",
+    "scipy>=1.10",
+    "statsmodels>=0.14",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pre-commit>=3.0",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-rtd-theme>=2.0",
+    "nbsphinx>=0.9",
+]
+
+[project.urls]
+Documentation = "https://arnedb.github.io/tsfuse/"
+Repository = "https://github.com/arnedb/tsfuse"
+Issues = "https://github.com/arnedb/tsfuse/issues"
+Changelog = "https://github.com/arnedb/tsfuse/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+include = ["tsfuse*"]
+
+[tool.setuptools.package-data]
+tsfuse = ["py.typed", "**/*.pyx", "**/*.pxd"]
+
+# ──────────────────────────────────────────────
+# Ruff – replaces flake8, isort, pyupgrade, etc.
+# ──────────────────────────────────────────────
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B905",   # zip without strict (needs py3.10+)
+    "SIM108", # ternary operator
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tsfuse"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+# ──────────────────────────────────────────
+# Mypy – static type checking
+# ──────────────────────────────────────────
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = [
+    "graphviz.*",
+    "pint.*",
+    "scipy.*",
+    "statsmodels.*",
+    "sklearn.*",
+    "tsfuse.data.df",
+    "tsfuse.transformers.calculators.*",
+]
+ignore_missing_imports = true
+
+# ──────────────────────────────────────────
+# Pytest
+# ──────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "-v",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+# ──────────────────────────────────────────
+# Coverage
+# ──────────────────────────────────────────
+[tool.coverage.run]
+source = ["tsfuse"]
+branch = true
+omit = [
+    "tsfuse/data/df.pyx",
+    "tsfuse/transformers/calculators/*.pyx",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@overload",
+]
