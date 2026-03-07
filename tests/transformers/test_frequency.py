@@ -78,6 +78,7 @@ def test_fft_moments(x):
             np.testing.assert_allclose(result_kurtosis.values[i], kurtosis(a))
 
 
+@pytest.mark.xfail(reason="scipy.signal.cwt removed in SciPy 1.12+")
 def test_cwt_ricker_width_1(x):
     result = CWT(wavelet='ricker', width=1).transform(x)
     for i, a in series(x):
@@ -86,6 +87,7 @@ def test_cwt_ricker_width_1(x):
         np.testing.assert_almost_equal(actual, expected)
 
 
+@pytest.mark.xfail(reason="scipy.signal.cwt removed in SciPy 1.12+")
 def test_cwt_ricker_width_2(x):
     result = CWT(wavelet='ricker', width=2).transform(x)
     for i, a in series(x):

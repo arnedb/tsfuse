@@ -93,7 +93,7 @@ class Angle(Transformer):
         ]
 
     def transform(self, p1, p2, p3, **kwargs):
-        """
+        r"""
         Compute the angle :math:`\mathbf{\\theta}` defined by three points
         **p1**, **p2**, **p3** as shown in the figure below:
 

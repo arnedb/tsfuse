@@ -56,10 +56,9 @@ def test_to_dataframe_attributes():
         [[10, 20, 30]],
         [[40, 50, 60]],
     ], dims=['x', 'y', 'z'])
-    print(collection.id)
     df = collection.to_dataframe()
-    np.testing.assert_equal(df.columns.values, ['id', 'x', 'y', 'z'])
-    np.testing.assert_equal(df.values, [
+    assert list(df.columns) == ['id', 'x', 'y', 'z']
+    np.testing.assert_array_equal(df.values, [
         [0, 10, 20, 30],
         [1, 40, 50, 60],
     ])
@@ -78,8 +77,8 @@ def test_to_dataframe_time_series_fixed_length():
         [0, 1, 2],
     ], dims=['x', 'y', 'z'])
     df = collection.to_dataframe()
-    np.testing.assert_equal(df.columns.values, ['id', 'time', 'x', 'y', 'z'])
-    np.testing.assert_equal(df.values, [
+    assert list(df.columns) == ['id', 'time', 'x', 'y', 'z']
+    np.testing.assert_array_equal(df.values, [
         [0, 0, 10, 20, 30],
         [0, 1, 11, 21, 31],
         [0, 2, 12, 22, 33],
@@ -101,8 +100,8 @@ def test_to_dataframe_time_series_variable_length():
         [0, 1],
     ], dims=['x', 'y', 'z'])
     df = collection.to_dataframe()
-    np.testing.assert_equal(df.columns.values, ['id', 'time', 'x', 'y', 'z'])
-    np.testing.assert_equal(df.values, [
+    assert list(df.columns) == ['id', 'time', 'x', 'y', 'z']
+    np.testing.assert_array_equal(df.values, [
         [0, 0, 10, 20, 30],
         [0, 1, 11, 21, 31],
         [0, 2, 12, 22, 33],

@@ -296,7 +296,7 @@ class Roots(Transformer):
         ]
 
     def transform(self, x, **kwargs):
-        """
+        r"""
         For the axis to which this transformer is applied, the values
         :math:`p_0, p_1, ..., p_n` are interpreted as the coefficients of a
         polynomial of degree `n`:

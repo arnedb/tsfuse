@@ -119,7 +119,7 @@ class Collection:
             if id is None:
                 self._id = [c.id for c in collections]
             else:
-                self._id = np.array(id, copy=False)
+                self._id = np.asarray(id)
             # Create time property
             if time is None:
                 self._time = [c.time for c in collections]
@@ -132,13 +132,13 @@ class Collection:
                 else:
                     self._dims = np.arange(collections[0].shape[2])
             else:
-                self._dims = np.array(dims, copy=False)
+                self._dims = np.asarray(dims)
         # Single fixed-length collection
         else:
-            data = np.array(data, copy=False)
-            id = np.array(id, copy=False) if id is not None else None
-            time = np.array(time, copy=False) if time is not None else None
-            dims = np.array(dims, copy=False) if dims is not None else None
+            data = np.asarray(data)
+            id = np.asarray(id) if id is not None else None
+            time = np.asarray(time) if time is not None else None
+            dims = np.asarray(dims) if dims is not None else None
             data, id, time, dims = _reshape(data, id, time, dims)
             # Determine data type of values
             self._dtype = data.dtype
@@ -248,7 +248,7 @@ class Collection:
     @property
     def dtype(self):
         if (self.values is not None) and (len(self.values.shape) == 3):
-            return np.array(self.values, copy=False).dtype
+            return np.asarray(self.values).dtype
         else:
             return None
 
@@ -291,7 +291,6 @@ class Collection:
         else:
             df = pd.DataFrame(self.values.reshape((-1, self.shape[-1])))
             df.columns = self.dims
-            print(df.shape, np.repeat(self.id, self.shape[1]).shape)
             df.insert(0, id, np.repeat(self.id, self.shape[1]))
             return df
 

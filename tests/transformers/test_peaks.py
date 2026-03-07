@@ -36,6 +36,7 @@ def test_number_of_peaks_support_2_zero():
     np.testing.assert_equal(actual, 0)
 
 
+@pytest.mark.xfail(reason="scipy.signal.cwt removed in SciPy 1.12+")
 def test_number_of_peaks_cwt(x):
     result = NumberPeaksCWT(max_width=5).transform(x)
     for i, a in series(x):
